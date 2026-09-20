@@ -1,4 +1,4 @@
-// UI logic. Depends on data.js (osData, families, baseLogo, baseColor, authors, authorTop, deviceTypes, licenseTypes, DATA_AS_OF) and icons.js (uiIcon).
+// UI logic. Depends on data.js (osData, families, baseTypes, authors, authorTop, deviceTypes, licenseTypes, userTiers, DATA_AS_OF) and icons.js (uiIcon).
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -23,20 +23,27 @@ const COMPARE_ROWS = [
   ['Author', 'user', (os) => joined(os.by)],
   ['Devices', 'smartphone', (os) => joined(os.devices)],
   ['License', 'lock', (os) => os.license],
+  ['Users (est.)', 'users', (os) => os.users],
   ['Repository', 'code', (os) => os.source.url ?? '—', true], // URLs always differ, so don't highlight
   ...SPECS.map(([key, label, icon]) => [label, icon, (os) => joined(os.specs[key])]),
 ];
 
 const byId = new Map(osData.map((os) => [os.id, os]));
-const bases = ['All', ...new Set(osData.map((os) => os.baseOS))];
+const bases = ['All', ...Object.keys(baseTypes)];
+const baseCount = (b) => (b === 'All' ? osData.length : osData.filter((os) => os.baseOS === b).length);
 const distros = ['All', ...Object.keys(families)];
 const deviceNames = ['All', ...Object.keys(deviceTypes)];
 const deviceCount = (d) => (d === 'All' ? osData.length : osData.filter((os) => os.devices.includes(d)).length);
-// License pills: "Open Source" (anything not purely proprietary), then each family in use
+// License pills: All / Proprietary / Open Source; Open Source reveals a second row with the license families in use
 const LICENSE_OPEN = 'Open Source';
 const openSource = (os) => os.licenseTags.some((t) => t !== 'Proprietary');
-const licenseCount = (l) => osData.filter((os) => (l === LICENSE_OPEN ? openSource(os) : os.licenseTags.includes(l))).length;
-const licenseNames = ['All', LICENSE_OPEN, ...Object.keys(licenseTypes).filter((l) => licenseCount(l))];
+const licenseMatch = (os, l) => (l === 'All' ? true : l === LICENSE_OPEN ? openSource(os) : os.licenseTags.includes(l));
+const licenseCount = (l, family = 'All') => osData.filter((os) => licenseMatch(os, l) && (family === 'All' || os.licenseTags.includes(family))).length;
+const licenseFamilies = Object.keys(licenseTypes).filter((f) => f !== 'Proprietary' && licenseCount(LICENSE_OPEN, f));
+// User pills: "at least" a tier (estimates)
+const USER_RANK = Object.fromEntries(userTiers.map((t, i) => [t, userTiers.length - i]));
+const usersAtLeast = (os, t) => t === 'All' || (USER_RANK[os.users] ?? 0) >= USER_RANK[t];
+const userCount = (t) => osData.filter((os) => usersAtLeast(os, t)).length;
 const authorCount = {};
 osData.forEach((os) => os.by.forEach((a) => { authorCount[a] = (authorCount[a] ?? 0) + 1; }));
 // authorTop first (in that order), then most systems, then companies > organizations > developers, then A-Z
@@ -44,7 +51,7 @@ const TYPE_RANK = { company: 0, organization: 1, developer: 2 };
 const rank = (a) => (authorTop.includes(a) ? authorTop.indexOf(a) : authorTop.length);
 const authorNames = Object.keys(authors).sort((a, b) =>
   rank(a) - rank(b) || authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
-const state = { base: 'All', distro: 'All', device: 'All', license: 'All', author: 'All', authorsOpen: false, query: '' };
+const state = { base: 'All', distro: 'All', device: 'All', license: 'All', family: 'All', users: 'All', author: 'All', authorsOpen: false, query: '' };
 // "Red Hat (IBM)": show the owning company next to an author that has one
 const authorLabel = (a) => (authors[a].parent ? `${a} (${authors[a].parent})` : a);
 const compare = []; // ids, in the order added
@@ -72,24 +79,24 @@ function logoTile(file, size, initialsText, color, dir = 'logos') {
 }
 
 const osIcon = (os, size) =>
-  logoTile(os.logo, size, initials(os.name), families[os.distroBase]?.color ?? baseColor[os.baseOS]);
+  logoTile(os.logo, size, initials(os.name), families[os.distroBase]?.color ?? baseTypes[os.baseOS].color);
 
 const cell = (v) => /^https?:\/\//.test(v)
   ? `<a href="${esc(v)}" target="_blank" rel="noopener" class="text-emerald-400 hover:underline break-all">${esc(v.replace(/^https?:\/\//, ''))}</a>`
   : esc(v);
 
 // ---------- render ----------
-// Pills without a logo file (All, and base OSes with no logo) get a UI icon instead.
-const BASE_PILL_ICON = { All: 'grid', UNIX: 'terminal', Independent: 'compass' };
-
 function pill(kind, value, label, file, fallbackIcon, size, dir) {
   const icon = file ? logoTile(file, size, '', '', dir) : uiIcon(fallbackIcon, size);
   return `<button type="button" class="pill" data-${kind}="${esc(value)}" aria-pressed="${state[kind] === value}">${icon}${esc(label)}</button>`;
 }
 
 function renderPills() {
-  $('basePills').innerHTML = bases.map((b) =>
-    pill('base', b, b === 'All' ? 'All OS' : b, baseLogo[b], BASE_PILL_ICON[b], 'w-5 h-5')).join('');
+  // Pills without a logo file (All, UNIX, ...) get a UI icon instead.
+  $('basePills').innerHTML =
+    '<span class="text-slate-400 self-center font-medium mr-1" title="Kernel lineage">Base OS:</span>' +
+    bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : b, baseTypes[b]?.logo, baseTypes[b]?.icon ?? 'grid', 'w-5 h-5')
+      .replace('<button ', `<button title="${esc(baseTypes[b]?.hint ?? '')}${b === 'All' ? '' : ' · '}${baseCount(b)} systems" `)).join('');
   $('distroPills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1">Distro Base:</span>' +
     distros.map((d) =>
@@ -100,15 +107,20 @@ function renderPills() {
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
       .replace('<button ', `<button title="${deviceCount(d)} systems" `)).join('');
 
+  const hintTitle = (hint, n) => `title="${esc(hint)}${hint ? ' · ' : ''}${n} systems"`;
   $('licensePills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1">License:</span>' +
-    licenseNames.map((l) => {
-      const t = licenseTypes[l];
-      const label = l === 'All' ? 'All Licenses' : l === LICENSE_OPEN ? LICENSE_OPEN : t.label;
-      const hint = l === LICENSE_OPEN ? 'Anything with an open-source license' : l === 'All' ? '' : t.hint;
-      return pill('license', l, label, null, l === 'All' ? 'grid' : l === LICENSE_OPEN ? 'unlock' : t.icon, 'w-4 h-4')
-        .replace('<button ', `<button title="${esc(hint)}${hint ? ' · ' : ''}${l === 'All' ? osData.length : licenseCount(l)} systems" `);
-    }).join('');
+    [['All', 'All Licenses', 'grid', ''], ['Proprietary', 'Proprietary', 'lock', licenseTypes.Proprietary.hint], [LICENSE_OPEN, LICENSE_OPEN, 'unlock', 'Anything with an open-source license']]
+      .map(([l, label, icon, hint]) => pill('license', l, label, null, icon, 'w-4 h-4').replace('<button ', `<button ${hintTitle(hint, licenseCount(l))} `)).join('');
+  $('licenseFamilyPills').innerHTML =
+    '<span class="text-slate-400 self-center font-medium mr-1">Open Source:</span>' +
+    ['All', ...licenseFamilies].map((f) => pill('family', f, f === 'All' ? 'All open licenses' : licenseTypes[f].label, null, f === 'All' ? 'unlock' : licenseTypes[f].icon, 'w-4 h-4')
+      .replace('<button ', `<button ${hintTitle(f === 'All' ? '' : licenseTypes[f].hint, licenseCount(LICENSE_OPEN, f))} `)).join('');
+  $('licenseFamilyPills').hidden = state.license !== LICENSE_OPEN;
+  $('userPills').innerHTML =
+    '<span class="text-slate-400 self-center font-medium mr-1" title="Rough active users / devices, not measured">Users (est.):</span>' +
+    ['All', ...userTiers].map((t) => pill('users', t, t === 'All' ? 'All Users' : t, null, 'users', 'w-4 h-4')
+      .replace('<button ', `<button ${hintTitle(t === 'All' ? '' : `at least ${t} users`, userCount(t))} `)).join('');
 
   // Authors: collapsed to authorTop (plus the selected one) until expanded.
   const shown = state.authorsOpen ? authorNames
@@ -123,7 +135,7 @@ function renderPills() {
 function card(os) {
   const badge = os.source.type === 'closed'
     ? `<span class="badge badge-closed">${uiIcon('lock')} Proprietary</span>`
-    : `<a href="${esc(os.source.url)}" target="_blank" rel="noopener" class="badge badge-open">${uiIcon('branch')} FOSS Repo</a>`;
+    : `<span class="badge badge-open">${uiIcon('branch')} Open Source</span>`;
   return `
     <article class="glass-card rounded-xl p-4 flex flex-col items-center justify-between text-center">
       <button type="button" class="card-hit" data-action="open" data-id="${os.id}" aria-label="${esc(os.name)} details"></button>
@@ -133,7 +145,7 @@ function card(os) {
         <h3 class="font-bold text-slate-100 text-sm">${esc(os.name)}</h3>
         <span class="tag">${esc(os.distroBase ?? os.baseOS)}</span>
       </div>
-      <div class="mt-3 text-xs relative">${badge}</div>
+      <div class="mt-3 text-xs">${badge}</div>
     </article>`;
 }
 
@@ -143,7 +155,8 @@ function renderGrid() {
     (state.base === 'All' || os.baseOS === state.base) &&
     (state.base !== 'Linux' || state.distro === 'All' || os.distroBase === state.distro) &&
     (state.device === 'All' || os.devices.includes(state.device)) &&
-    (state.license === 'All' || (state.license === LICENSE_OPEN ? openSource(os) : os.licenseTags.includes(state.license))) &&
+    licenseMatch(os, state.license) && (state.family === 'All' || os.licenseTags.includes(state.family)) &&
+    usersAtLeast(os, state.users) &&
     (state.author === 'All' || os.by.includes(state.author)) &&
     text.includes(q)).map(({ os }) => os);
 
@@ -170,6 +183,7 @@ function openModal(id) {
         </div>
         <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${os.devices.map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
         <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('file', 'w-4 h-4 text-sky-400')}${esc(os.license)}</p>
+        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5" title="Rough estimate of active users / devices">${uiIcon('users', 'w-4 h-4 text-sky-400')}Users: ${esc(os.users)} (est.)</p>
         <button type="button" class="btn mt-3" data-action="toggle" data-id="${os.id}" data-text></button>
       </div>
     </div>
@@ -260,7 +274,9 @@ $('filters').addEventListener('click', (e) => {
   if ('moreAuthors' in btn.dataset) state.authorsOpen = !state.authorsOpen;
   else if (btn.dataset.base) { state.base = btn.dataset.base; state.distro = 'All'; }
   else if (btn.dataset.device) state.device = btn.dataset.device;
-  else if (btn.dataset.license) state.license = btn.dataset.license;
+  else if (btn.dataset.license) { state.license = btn.dataset.license; state.family = 'All'; }
+  else if (btn.dataset.family) state.family = btn.dataset.family;
+  else if (btn.dataset.users) state.users = btn.dataset.users;
   else if (btn.dataset.author) state.author = btn.dataset.author;
   else state.distro = btn.dataset.distro;
   renderPills();
