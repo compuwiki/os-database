@@ -31,6 +31,7 @@ const byId = new Map(osData.map((os) => [os.id, os]));
 const bases = ['All', ...new Set(osData.map((os) => os.baseOS))];
 const distros = ['All', ...Object.keys(families)];
 const deviceNames = ['All', ...Object.keys(deviceTypes)];
+const deviceCount = (d) => (d === 'All' ? osData.length : osData.filter((os) => os.devices.includes(d)).length);
 const authorCount = {};
 osData.forEach((os) => os.by.forEach((a) => { authorCount[a] = (authorCount[a] ?? 0) + 1; }));
 // authorTop first (in that order), then most systems, then companies > organizations > developers, then A-Z
@@ -91,7 +92,8 @@ function renderPills() {
   $('distroPills').hidden = state.base !== 'Linux';
   $('devicePills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1">Device:</span>' +
-    deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')).join('');
+    deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
+      .replace('<button ', `<button title="${deviceCount(d)} systems" `)).join('');
 
   // Authors: collapsed to authorTop (plus the selected one) until expanded.
   const shown = state.authorsOpen ? authorNames
