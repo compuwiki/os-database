@@ -14,6 +14,8 @@ const SPECS = [
   ['audioServer', 'Audio Server', 'audio'],
   ['desktopEnvironment', 'Desktop / Shell', 'layout'],
   ['packageManager', 'Package Manager', 'package'],
+  ['defaultShell', 'Default Shell', 'chevrons'],
+  ['userland', 'Userland / Core Tools', 'tool'],
 ];
 
 // Comparison table rows: [label, icon, value(os) -> text, skipDiff?]
@@ -51,6 +53,13 @@ const rank = (a) => (authorTop.includes(a) ? authorTop.indexOf(a) : authorTop.le
 const authorNames = Object.keys(authors).sort((a, b) =>
   rank(a) - rank(b) || authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
 const state = { base: 'All', distro: 'All', device: 'All', license: 'All', family: 'All', users: 'All', author: 'All', authorsOpen: false, query: '' };
+// Authors that have at least one system in the selected Base OS (with their system count there)
+const authorsInBase = () => {
+  const n = {};
+  osData.forEach((os) => { if (state.base === 'All' || os.baseOS === state.base) os.by.forEach((a) => { n[a] = (n[a] ?? 0) + 1; }); });
+  return n;
+};
+const AUTHORS_COLLAPSE_OVER = 12; // more authors than this: show only the pinned ones until "Show all"
 // "Red Hat (IBM)": show the owning company next to an author that has one
 const authorLabel = (a) => (authors[a].parent ? `${a} (${authors[a].parent})` : a);
 const compare = []; // ids, in the order added
@@ -121,14 +130,17 @@ function renderPills() {
     ['All', ...Object.keys(userTiers)].map((t) => pill('users', t, t === 'All' ? 'All Users' : t, null, 'users', 'w-4 h-4')
       .replace('<button ', `<button ${hintTitle(t === 'All' ? '' : `${userTiers[t]} users`, userCount(t))} `)).join('');
 
-  // Authors: collapsed to authorTop (plus the selected one) until expanded.
-  const shown = state.authorsOpen ? authorNames
-    : authorNames.filter((a) => authorTop.includes(a) || a === state.author);
+  // Authors: only those inside the selected Base OS; collapsed to the pinned ones (plus the selected) until expanded.
+  const inBase = authorsInBase();
+  const list = authorNames.filter((a) => a in inBase);
+  const collapsible = list.length > AUTHORS_COLLAPSE_OVER;
+  const pinned = list.filter((a) => authorTop.includes(a) || a === state.author);
+  const shown = state.authorsOpen || !collapsible ? list : pinned.length >= 3 ? pinned : list.slice(0, 8);
   $('authorPills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1" title="Primary author, plus the upstream projects it is built on">Author / upstream:</span>' +
     pill('author', 'All', 'All Authors', null, 'grid', 'w-4 h-4') +
-    shown.map((a) => pill('author', a, authorLabel(a), authors[a].logo, 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authors[a].type)} · ${authorCount[a]} system${authorCount[a] > 1 ? 's' : ''}" `)).join('') +
-    `<button type="button" class="pill pill-more" data-more-authors>${state.authorsOpen ? 'Show fewer' : `Show all ${authorNames.length}`}</button>`;
+    shown.map((a) => pill('author', a, authorLabel(a), authors[a].logo, 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authors[a].type)} · ${inBase[a]} system${inBase[a] > 1 ? 's' : ''}" `)).join('') +
+    (collapsible ? `<button type="button" class="pill pill-more" data-more-authors>${state.authorsOpen ? 'Show fewer' : `Show all ${list.length}`}</button>` : '');
 }
 
 function card(os) {
@@ -271,7 +283,11 @@ $('filters').addEventListener('click', (e) => {
   const btn = e.target.closest('.pill');
   if (!btn) return;
   if ('moreAuthors' in btn.dataset) state.authorsOpen = !state.authorsOpen;
-  else if (btn.dataset.base) { state.base = btn.dataset.base; state.distro = 'All'; }
+  else if (btn.dataset.base) {
+    state.base = btn.dataset.base;
+    state.distro = 'All';
+    if (state.author !== 'All' && !(state.author in authorsInBase())) state.author = 'All'; // that author has nothing in this Base OS
+  }
   else if (btn.dataset.device) state.device = btn.dataset.device;
   else if (btn.dataset.license) { state.license = btn.dataset.license; state.family = 'All'; }
   else if (btn.dataset.family) state.family = btn.dataset.family;
