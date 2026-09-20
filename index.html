@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OS & Distro Directory</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2338bdf8' d='M4 4h7v7H4V4zm9 0h7v7h-7V4zm0 9h7v7h-7v-7zm-9 0h7v7H4v-7z'/%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+  <header class="max-w-7xl mx-auto mb-8">
+    <div class="flex items-center gap-3 mb-4">
+      <svg class="w-8 h-8 text-sky-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zm0 9h7v7h-7v-7zm-9 0h7v7H4v-7z"/></svg>
+      <h1 class="text-3xl font-bold tracking-tight text-sky-400">OS & Distro Directory</h1>
+    </div>
+
+    <div class="relative mb-6">
+      <span data-icon="search" data-size="w-5 h-5" class="absolute left-3.5 top-3 text-slate-400"></span>
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search name, kernel, desktop, package manager, file system… (press / to focus)"
+        aria-label="Search operating systems"
+        class="w-full pl-11 pr-4 py-2.5 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-sky-500 transition"
+      >
+    </div>
+
+    <div id="filters" class="space-y-3">
+      <div id="basePills" class="pill-row text-sm" role="group" aria-label="Operating system"></div>
+      <div id="distroPills" class="pill-row text-xs pt-2 border-t border-slate-800/80" role="group" aria-label="Linux distro base" hidden></div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto">
+    <p id="count" class="text-sm text-slate-400 mb-3" aria-live="polite"></p>
+    <div id="osGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+    <p id="empty" class="text-center text-slate-400 py-16" hidden>No systems match your filters.</p>
+  </main>
+
+  <dialog id="detailModal" aria-label="Operating system details">
+    <div class="relative p-6 overflow-y-auto" style="max-height: 90vh">
+      <button type="button" data-action="close" data-icon="close" data-size="w-5 h-5" aria-label="Close" class="icon-btn absolute top-4 right-4"></button>
+      <div id="modalContent"></div>
+    </div>
+  </dialog>
+
+  <dialog id="compareModal" aria-labelledby="compareTitle">
+    <div class="flex items-center justify-between gap-4 p-4 border-b border-slate-800">
+      <div>
+        <h2 id="compareTitle" class="text-xl font-bold text-white"></h2>
+        <p class="text-xs text-slate-400 mt-0.5">Rows that differ between systems are highlighted.</p>
+      </div>
+      <button type="button" data-action="close" data-icon="close" data-size="w-5 h-5" aria-label="Close" class="icon-btn"></button>
+    </div>
+    <div class="overflow-auto flex-1"><table id="compareTable" class="cmp"></table></div>
+  </dialog>
+
+  <div id="compareBar" hidden>
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-3 p-3">
+      <span id="compareCount" class="text-sm text-slate-300 font-medium" aria-live="polite"></span>
+      <ul id="compareChips" class="flex flex-wrap gap-2 flex-1"></ul>
+      <button type="button" class="btn" data-action="clear"><span data-icon="trash"></span> Clear</button>
+      <button type="button" id="compareBtn" class="btn btn-primary" data-action="compare"><span data-icon="compare"></span> Compare</button>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
