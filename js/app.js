@@ -1,4 +1,4 @@
-// UI logic. Depends on data.js (osData, families, baseColor) and icons.js (uiIcon).
+// UI logic. Depends on data.js (osData, families, baseLogo, baseColor, authors, DATA_AS_OF) and icons.js (uiIcon).
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -20,6 +20,7 @@ const SPECS = [
 const COMPARE_ROWS = [
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
+  ['Author', 'user', (os) => os.author],
   ['License', 'lock', (os) => (os.source.type === 'closed' ? 'Proprietary' : 'Open source')],
   ['Repository', 'code', (os) => os.source.url ?? '—', true], // URLs always differ, so don't highlight
   ...SPECS.map(([key, label, icon]) => [label, icon, (os) => joined(os.specs[key])]),
@@ -28,13 +29,20 @@ const COMPARE_ROWS = [
 const byId = new Map(osData.map((os) => [os.id, os]));
 const bases = ['All', ...new Set(osData.map((os) => os.baseOS))];
 const distros = ['All', ...Object.keys(families)];
-const state = { base: 'All', distro: 'All', query: '' };
+const authorCount = {};
+osData.forEach((os) => { authorCount[os.author] = (authorCount[os.author] ?? 0) + 1; });
+// most systems first, then companies > organizations > developers, then A-Z
+const TYPE_RANK = { company: 0, organization: 1, developer: 2 };
+const authorNames = Object.keys(authors).sort((a, b) =>
+  authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
+const state = { base: 'All', distro: 'All', author: 'All', authorsOpen: false, query: '' };
+const AUTHORS_COLLAPSED = 10; // authors shown before "Show all"
 const compare = []; // ids, in the order added
 
 // Lowercased searchable text per OS, built once.
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.baseOS, os.distroBase, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.baseOS, os.distroBase, os.author, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -45,30 +53,47 @@ function initials(name) {
   return w.length > 1 ? (w[0][0] + w[1][0]).toUpperCase() : w[0][0].toUpperCase() + w[0][1];
 }
 
-// Logo tile: the OS's logo file, else its initials tinted with the family (or base OS) color.
-function osIcon(os, size) {
-  const color = families[os.distroBase]?.color ?? baseColor[os.baseOS];
-  const inner = os.logo
-    ? `<img src="assets/logos/${os.logo}" alt="" loading="lazy">`
-    : `<svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="12.5" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="${color}">${esc(initials(os.name))}</text></svg>`;
+// Logo tile: a logo file, else initials tinted with `color`.
+function logoTile(file, size, initialsText, color, dir = 'logos') {
+  const inner = file
+    ? `<img src="assets/${dir}/${file}" alt="" loading="lazy">`
+    : `<svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="12.5" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="${color}">${esc(initialsText)}</text></svg>`;
   return `<span class="logo ${size}">${inner}</span>`;
 }
+
+const osIcon = (os, size) =>
+  logoTile(os.logo, size, initials(os.name), families[os.distroBase]?.color ?? baseColor[os.baseOS]);
 
 const cell = (v) => /^https?:\/\//.test(v)
   ? `<a href="${esc(v)}" target="_blank" rel="noopener" class="text-emerald-400 hover:underline break-all">${esc(v.replace(/^https?:\/\//, ''))}</a>`
   : esc(v);
 
 // ---------- render ----------
-function pill(kind, value, label) {
-  return `<button type="button" class="pill" data-${kind}="${esc(value)}" aria-pressed="${state[kind] === value}">${esc(label)}</button>`;
+// Pills without a logo file (All, and base OSes with no logo) get a UI icon instead.
+const BASE_PILL_ICON = { All: 'grid', UNIX: 'terminal', Independent: 'compass' };
+
+function pill(kind, value, label, file, fallbackIcon, size, dir) {
+  const icon = file ? logoTile(file, size, '', '', dir) : uiIcon(fallbackIcon, size);
+  return `<button type="button" class="pill" data-${kind}="${esc(value)}" aria-pressed="${state[kind] === value}">${icon}${esc(label)}</button>`;
 }
 
 function renderPills() {
-  $('basePills').innerHTML = bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : b)).join('');
+  $('basePills').innerHTML = bases.map((b) =>
+    pill('base', b, b === 'All' ? 'All OS' : b, baseLogo[b], BASE_PILL_ICON[b], 'w-5 h-5')).join('');
   $('distroPills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1">Distro Base:</span>' +
-    distros.map((d) => pill('distro', d, d === 'All' ? 'All Distros' : families[d].label)).join('');
+    distros.map((d) =>
+      pill('distro', d, d === 'All' ? 'All Distros' : families[d].label, families[d]?.logo, 'grid', 'w-4 h-4')).join('');
   $('distroPills').hidden = state.base !== 'Linux';
+
+  // Authors: most systems first; collapsed to the top few (plus the selected one) until expanded.
+  const shown = state.authorsOpen ? authorNames
+    : authorNames.filter((a, i) => i < AUTHORS_COLLAPSED || a === state.author);
+  $('authorPills').innerHTML =
+    '<span class="text-slate-400 self-center font-medium mr-1">Author:</span>' +
+    pill('author', 'All', 'All Authors', null, 'grid', 'w-4 h-4') +
+    shown.map((a) => pill('author', a, a, authors[a].logo, 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authors[a].type)} · ${authorCount[a]} system${authorCount[a] > 1 ? 's' : ''}" `)).join('') +
+    `<button type="button" class="pill pill-more" data-more-authors>${state.authorsOpen ? 'Show fewer' : `Show all ${authorNames.length}`}</button>`;
 }
 
 function card(os) {
@@ -93,6 +118,7 @@ function renderGrid() {
   const shown = index.filter(({ os, text }) =>
     (state.base === 'All' || os.baseOS === state.base) &&
     (state.base !== 'Linux' || state.distro === 'All' || os.distroBase === state.distro) &&
+    (state.author === 'All' || os.author === state.author) &&
     text.includes(q)).map(({ os }) => os);
 
   $('osGrid').innerHTML = shown.map(card).join('');
@@ -112,6 +138,7 @@ function openModal(id) {
       ${osIcon(os, 'w-16 h-16')}
       <div>
         <h2 class="text-2xl font-bold text-white">${esc(os.name)}</h2>
+        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${logoTile(authors[os.author].logo, 'w-5 h-5', initials(os.author), '#5b6472', 'author')} ${esc(os.author)} <span class="text-slate-500">· ${authors[os.author].type}</span></p>
         <div class="flex flex-wrap gap-x-2 items-center text-sm mt-1">
           <span class="text-slate-400">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''}</span> • ${source}
         </div>
@@ -202,7 +229,9 @@ const actions = {
 $('filters').addEventListener('click', (e) => {
   const btn = e.target.closest('.pill');
   if (!btn) return;
-  if (btn.dataset.base) { state.base = btn.dataset.base; state.distro = 'All'; }
+  if ('moreAuthors' in btn.dataset) state.authorsOpen = !state.authorsOpen;
+  else if (btn.dataset.base) { state.base = btn.dataset.base; state.distro = 'All'; }
+  else if (btn.dataset.author) state.author = btn.dataset.author;
   else state.distro = btn.dataset.distro;
   renderPills();
   renderGrid();
@@ -226,6 +255,7 @@ window.addEventListener('keydown', (e) => {
 
 // ---------- init ----------
 document.querySelectorAll('[data-icon]').forEach((el) => { el.innerHTML = uiIcon(el.dataset.icon, el.dataset.size ?? 'w-4 h-4'); });
+$('asOf').textContent = `Kernel and release versions as of ${DATA_AS_OF}. Systems without a version could not be confirmed.`;
 renderPills();
 renderGrid();
 renderBar();
