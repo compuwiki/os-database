@@ -112,7 +112,6 @@ function renderPills() {
       pill('distro', d, d === 'All' ? 'All Distros' : families[d].label, families[d]?.logo, 'grid', 'w-4 h-4')).join('');
   $('distroPills').hidden = state.base !== 'Linux';
   $('devicePills').innerHTML =
-    '<span class="text-slate-400 self-center font-medium mr-1">Device:</span>' +
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
       .replace('<button ', `<button title="${esc(deviceTypes[d]?.hint ?? '')}${d === 'All' ? '' : ' · '}${deviceCount(d)} systems" `)).join('');
 
