@@ -23,7 +23,7 @@ const COMPARE_ROWS = [
   ['Author', 'user', (os) => joined(os.by)],
   ['Devices', 'smartphone', (os) => joined(os.devices)],
   ['License', 'lock', (os) => os.license],
-  ['Users (est.)', 'users', (os) => os.users],
+  ['Users (est.)', 'users', (os) => userTiers[os.users]],
   ['Repository', 'code', (os) => os.source.url ?? '—', true], // URLs always differ, so don't highlight
   ...SPECS.map(([key, label, icon]) => [label, icon, (os) => joined(os.specs[key])]),
 ];
@@ -40,10 +40,9 @@ const openSource = (os) => os.licenseTags.some((t) => t !== 'Proprietary');
 const licenseMatch = (os, l) => (l === 'All' ? true : l === LICENSE_OPEN ? openSource(os) : os.licenseTags.includes(l));
 const licenseCount = (l, family = 'All') => osData.filter((os) => licenseMatch(os, l) && (family === 'All' || os.licenseTags.includes(family))).length;
 const licenseFamilies = Object.keys(licenseTypes).filter((f) => f !== 'Proprietary' && licenseCount(LICENSE_OPEN, f));
-// User pills: "at least" a tier (estimates)
-const USER_RANK = Object.fromEntries(userTiers.map((t, i) => [t, userTiers.length - i]));
-const usersAtLeast = (os, t) => t === 'All' || (USER_RANK[os.users] ?? 0) >= USER_RANK[t];
-const userCount = (t) => osData.filter((os) => usersAtLeast(os, t)).length;
+// User pills: each system is in exactly one tier (estimates)
+const usersMatch = (os, t) => t === 'All' || os.users === t;
+const userCount = (t) => osData.filter((os) => usersMatch(os, t)).length;
 const authorCount = {};
 osData.forEach((os) => os.by.forEach((a) => { authorCount[a] = (authorCount[a] ?? 0) + 1; }));
 // authorTop first (in that order), then most systems, then companies > organizations > developers, then A-Z
@@ -107,7 +106,7 @@ function renderPills() {
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
       .replace('<button ', `<button title="${deviceCount(d)} systems" `)).join('');
 
-  const hintTitle = (hint, n) => `title="${esc(hint)}${hint ? ' · ' : ''}${n} systems"`;
+  const hintTitle = (hint, n) => `title="${esc(hint)}${hint ? ' · ' : ''}${n} system${n === 1 ? '' : 's'}"`;
   $('licensePills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1">License:</span>' +
     [['All', 'All Licenses', 'grid', ''], ['Proprietary', 'Proprietary', 'lock', licenseTypes.Proprietary.hint], [LICENSE_OPEN, LICENSE_OPEN, 'unlock', 'Anything with an open-source license']]
@@ -119,8 +118,8 @@ function renderPills() {
   $('licenseFamilyPills').hidden = state.license !== LICENSE_OPEN;
   $('userPills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1" title="Rough active users / devices, not measured">Users (est.):</span>' +
-    ['All', ...userTiers].map((t) => pill('users', t, t === 'All' ? 'All Users' : t, null, 'users', 'w-4 h-4')
-      .replace('<button ', `<button ${hintTitle(t === 'All' ? '' : `at least ${t} users`, userCount(t))} `)).join('');
+    ['All', ...Object.keys(userTiers)].map((t) => pill('users', t, t === 'All' ? 'All Users' : t, null, 'users', 'w-4 h-4')
+      .replace('<button ', `<button ${hintTitle(t === 'All' ? '' : `${userTiers[t]} users`, userCount(t))} `)).join('');
 
   // Authors: collapsed to authorTop (plus the selected one) until expanded.
   const shown = state.authorsOpen ? authorNames
@@ -156,7 +155,7 @@ function renderGrid() {
     (state.base !== 'Linux' || state.distro === 'All' || os.distroBase === state.distro) &&
     (state.device === 'All' || os.devices.includes(state.device)) &&
     licenseMatch(os, state.license) && (state.family === 'All' || os.licenseTags.includes(state.family)) &&
-    usersAtLeast(os, state.users) &&
+    usersMatch(os, state.users) &&
     (state.author === 'All' || os.by.includes(state.author)) &&
     text.includes(q)).map(({ os }) => os);
 
@@ -183,7 +182,7 @@ function openModal(id) {
         </div>
         <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${os.devices.map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
         <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('file', 'w-4 h-4 text-sky-400')}${esc(os.license)}</p>
-        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5" title="Rough estimate of active users / devices">${uiIcon('users', 'w-4 h-4 text-sky-400')}Users: ${esc(os.users)} (est.)</p>
+        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5" title="Rough estimate of active users / devices">${uiIcon('users', 'w-4 h-4 text-sky-400')}Users: ${esc(userTiers[os.users])} (est.)</p>
         <button type="button" class="btn mt-3" data-action="toggle" data-id="${os.id}" data-text></button>
       </div>
     </div>

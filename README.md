@@ -12,7 +12,7 @@ No build step and no backend. Open `index.html` in a browser (the page loads Tai
   - **Distro base** (Linux only): Debian, Arch, Red Hat / Fedora, Slackware, Gentoo, SUSE, Alpine, Independent
   - **Device**: Desktop, Server, Mobile, TV, Wearable, Automotive, Embedded
   - **License**: Proprietary or Open Source, with families (GPL, MIT / BSD, Apache, MPL / CDDL) under Open Source
-  - **Users (est.)**: 1B+, 1M+, 100K+, 10K+ (at least that many)
+  - **Users (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)
   - **Author / upstream**: company, organization or developer, including the projects a system is built on
 - **Detail dialog** with CPU support, kernel, bootloader, file systems, graphics and audio stack, desktop, package manager, license and more.
 - **Comparison table**: add up to 10 systems with the `+` button on each card, then compare them in columns. Rows that differ are highlighted.
