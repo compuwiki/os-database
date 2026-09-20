@@ -1,4 +1,4 @@
-// UI logic. Depends on data.js (osData, families, baseTypes, authors, authorTop, deviceTypes, licenseTypes, installTiers, DATA_AS_OF) and icons.js (uiIcon).
+// UI logic. Depends on data.js (osData, families, baseTypes, authors, authorTop, authorGroups, basedOnTypes, deviceTypes, licenseTypes, installTiers, DATA_AS_OF) and icons.js (uiIcon).
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -23,6 +23,7 @@ const COMPARE_ROWS = [
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
   ['Author', 'user', (os) => joined(os.by)],
+  ['Based on', 'layers', (os) => joined(os.basedOn) || '—'],
   ['Devices', 'smartphone', (os) => joined(devicesOf(os))],
   ['License', 'lock', (os) => os.license],
   ['Installs (est.)', 'drive', (os) => installTiers[os.installs]],
@@ -47,29 +48,41 @@ const licenseFamilies = Object.keys(licenseTypes).filter((f) => f !== 'Proprieta
 // User pills: each system is in exactly one tier (estimates)
 const installsMatch = (os, t) => t === 'All' || os.installs === t;
 const installCount = (t) => osData.filter((os) => installsMatch(os, t)).length;
+// Author pills: small authors share a group pill ("Independent developers", "Community projects")
+const authorKey = (a) => authors[a].group ?? a;
+const authorMeta = (k) => authorGroups[k] ?? authors[k];
+const authorKeys = (os) => new Set(os.by.map(authorKey));
 const authorCount = {};
-osData.forEach((os) => os.by.forEach((a) => { authorCount[a] = (authorCount[a] ?? 0) + 1; }));
+osData.forEach((os) => authorKeys(os).forEach((k) => { authorCount[k] = (authorCount[k] ?? 0) + 1; }));
+// "Based on" options that apply to the systems in the selected Base OS (with counts). Empty when none of them narrows the list.
+const basedOnOptions = () => {
+  const pool = osData.filter((os) => state.base === 'All' || os.baseOS === state.base);
+  const n = Object.fromEntries(Object.keys(basedOnTypes).map((b) => [b, pool.filter((os) => os.basedOn.includes(b)).length]));
+  // keep only options that narrow the list (an option matching every system in the Base OS says nothing)
+  // inside Linux the distro-family row (same names) already covers this, so it is not repeated
+  return { n, total: pool.length, options: state.base === 'Linux' ? [] : Object.keys(n).filter((b) => n[b] > 0 && n[b] < pool.length) };
+};
 // authorTop first (in that order), then most systems, then companies > organizations > developers, then A-Z
-const TYPE_RANK = { company: 0, organization: 1, developer: 2 };
+const TYPE_RANK = { company: 0, organization: 1, developer: 2, group: 3 };
 const rank = (a) => (authorTop.includes(a) ? authorTop.indexOf(a) : authorTop.length);
-const authorNames = Object.keys(authors).sort((a, b) =>
-  rank(a) - rank(b) || authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
-const state = { base: 'All', distro: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', author: 'All', authorsOpen: false, query: '' };
+const authorNames = [...new Set(Object.keys(authors).map(authorKey))].sort((a, b) =>
+  rank(a) - rank(b) || authorCount[b] - authorCount[a] || TYPE_RANK[authorMeta(a).type ?? 'group'] - TYPE_RANK[authorMeta(b).type ?? 'group'] || a.localeCompare(b));
+const state = { base: 'All', distro: 'All', based: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', author: 'All', authorsOpen: false, query: '' };
 // Authors that have at least one system in the selected Base OS (with their system count there)
 const authorsInBase = () => {
   const n = {};
-  osData.forEach((os) => { if (state.base === 'All' || os.baseOS === state.base) os.by.forEach((a) => { n[a] = (n[a] ?? 0) + 1; }); });
+  osData.forEach((os) => { if (state.base === 'All' || os.baseOS === state.base) authorKeys(os).forEach((k) => { n[k] = (n[k] ?? 0) + 1; }); });
   return n;
 };
 const AUTHORS_COLLAPSE_OVER = 12; // more authors than this: show only the pinned ones until "Show all"
 // "Red Hat (IBM)": show the owning company next to an author that has one
-const authorLabel = (a) => (authors[a].parent ? `${a} (${authors[a].parent})` : a);
+const authorLabel = (a) => (authors[a]?.parent ? `${a} (${authors[a].parent})` : a);
 const compare = []; // ids, in the order added
 
 // Lowercased searchable text per OS, built once.
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.baseOS, os.distroBase, os.license, ...os.by, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.baseOS, os.distroBase, os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -107,10 +120,14 @@ function renderPills() {
     bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : b, baseTypes[b]?.logo, baseTypes[b]?.icon ?? 'grid', 'w-5 h-5')
       .replace('<button ', `<button title="${esc(baseTypes[b]?.hint ?? 'Grouped by kernel lineage')} · ${baseCount(b)} systems" `)).join('');
   $('distroPills').innerHTML =
-    '<span class="text-slate-400 self-center font-medium mr-1">Distro Base:</span>' +
     distros.map((d) =>
       pill('distro', d, d === 'All' ? 'All Distros' : families[d].label, families[d]?.logo, 'grid', 'w-4 h-4')).join('');
   $('distroPills').hidden = state.base !== 'Linux';
+  const based = basedOnOptions();
+  $('basedPills').innerHTML = ['All', ...based.options].map((b) =>
+    pill('based', b, b === 'All' ? 'Based on: any' : basedOnTypes[b].label, basedOnTypes[b]?.logo, basedOnTypes[b]?.icon ?? 'layers', 'w-4 h-4')
+      .replace('<button ', `<button title="${esc(basedOnTypes[b]?.hint ?? 'Upstream a system is built on')} · ${b === 'All' ? based.total : based.n[b]} systems" `)).join('');
+  $('basedPills').hidden = based.options.length === 0;
   $('devicePills').innerHTML =
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
       .replace('<button ', `<button title="${esc(deviceTypes[d]?.hint ?? '')}${d === 'All' ? '' : ' · '}${deviceCount(d)} systems" `)).join('');
@@ -136,7 +153,7 @@ function renderPills() {
   const shown = state.authorsOpen || !collapsible ? list : pinned.length >= 3 ? pinned : list.slice(0, 8);
   $('authorPills').innerHTML =
     pill('author', 'All', 'All Authors', null, 'grid', 'w-4 h-4').replace('<button ', '<button title="Primary author, plus the upstream projects it is built on" ') +
-    shown.map((a) => pill('author', a, authorLabel(a), authors[a].logo, 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authors[a].type)} · ${inBase[a]} system${inBase[a] > 1 ? 's' : ''}" `)).join('') +
+    shown.map((k) => pill('author', k, authorLabel(k), authorMeta(k).logo, authorMeta(k).icon ?? 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authorMeta(k).hint ?? authorMeta(k).type)} · ${inBase[k]} system${inBase[k] > 1 ? 's' : ''}" `)).join('') +
     (collapsible ? `<button type="button" class="pill pill-more" data-more-authors>${state.authorsOpen ? 'Show fewer' : `Show all ${list.length}`}</button>` : '');
 }
 
@@ -165,7 +182,8 @@ function renderGrid() {
     (state.device === 'All' || os.devices.includes(state.device)) &&
     licenseMatch(os, state.license) && (state.family === 'All' || os.licenseTags.includes(state.family)) &&
     installsMatch(os, state.installs) &&
-    (state.author === 'All' || os.by.includes(state.author)) &&
+    (state.based === 'All' || os.basedOn.includes(state.based)) &&
+    (state.author === 'All' || authorKeys(os).has(state.author)) &&
     text.includes(q)).map(({ os }) => os);
 
   $('osGrid').innerHTML = shown.map(card).join('');
@@ -189,6 +207,7 @@ function openModal(id) {
         <div class="flex flex-wrap gap-x-2 items-center text-sm mt-1">
           <span class="text-slate-400">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''}</span> • ${source}
         </div>
+        ${os.basedOn.length ? `<p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('layers', 'w-4 h-4 text-sky-400')}Based on ${esc(joined(os.basedOn))}</p>` : ''}
         <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${devicesOf(os).map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
         <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('file', 'w-4 h-4 text-sky-400')}${esc(os.license)}</p>
         <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5" title="Rough estimate of active installs: devices, servers and long-lived VMs">${uiIcon('drive', 'w-4 h-4 text-sky-400')}Installs: ${esc(installTiers[os.installs])} (est.)</p>
@@ -284,7 +303,9 @@ $('filters').addEventListener('click', (e) => {
     state.base = btn.dataset.base;
     state.distro = 'All';
     if (state.author !== 'All' && !(state.author in authorsInBase())) state.author = 'All'; // that author has nothing in this Base OS
+    if (state.based !== 'All' && !basedOnOptions().options.includes(state.based)) state.based = 'All';
   }
+  else if (btn.dataset.based) state.based = btn.dataset.based;
   else if (btn.dataset.device) state.device = btn.dataset.device;
   else if (btn.dataset.license) { state.license = btn.dataset.license; state.family = 'All'; }
   else if (btn.dataset.family) state.family = btn.dataset.family;

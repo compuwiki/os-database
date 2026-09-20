@@ -9,11 +9,12 @@ No build step and no backend. Open `index.html` in a browser (the page loads Tai
 - **Search** across names, kernels, desktops, package managers, file systems, licenses and authors (press `/` to focus).
 - **Filters** that combine with each other:
   - **Base OS**: Windows NT, macOS, Linux, Android-based, iOS-based, BSD, UNIX, UNIX-like, Other
-  - **Distro base** (Linux only): Debian, Arch, Red Hat / Fedora, Slackware, Gentoo, SUSE, Alpine, Independent
+  - **Distro family** (Linux only): Debian based, Arch based, Fedora based, Slackware based, Gentoo based, SUSE based, Alpine based, Independent Linux
   - **Device**: Server, Desktop, Mobile, TV, Wearable, Automotive, Embedded, Network (routers and firewalls)
   - **License**: Proprietary or Open Source, with families (GPL, MIT / BSD, Apache, MPL / CDDL) under Open Source
   - **Installs (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)
-  - **Author / upstream**: company, organization or developer, including the projects a system is built on; only authors with systems in the selected Base OS are listed
+  - **Based on**: the upstream a system is built on (Debian, Arch, Fedora, FreeBSD, NetBSD, Windows NT, Android, Darwin, System V...); only options that narrow the selected Base OS are shown, and inside Linux the distro-family row takes over
+  - **Author**: who actually makes a system (company, organization or developer, with owners like Red Hat (IBM)). One-off individuals and small volunteer projects share the "Independent developers" and "Community projects" pills. Only authors with systems in the selected Base OS are listed
 - **Detail dialog** with CPU support, kernel, bootloader, file systems, graphics and audio stack, desktop, package manager, default shell (bash, zsh, PowerShell...), userland / core tools (GNU, BusyBox, BSD...), license and more.
 - **Comparison table**: add up to 10 systems with the `+` button on each card, then compare them in columns. Rows that differ are highlighted.
 
@@ -35,7 +36,8 @@ Everything lives in `js/data.js`. To add a system, append an object to `osData`:
 
 ```js
 { id: "example-os", name: "Example OS", baseOS: "Linux", distroBase: "Debian",
-  by: ["Example Project", "Debian Project", "Linux Foundation"],  // author first, then upstream
+  by: ["Example Project"],                                       // who makes it (owner companies can follow)
+  basedOn: ["Linux kernel", "Debian"],                           // upstream, keys of basedOnTypes
   devices: ["Desktop"], installs: "10K+",
   license: "GPL-2.0", licenseTags: ["GPL"],
   logo: "example-os.svg",                                        // file in assets/logos/, or omit
