@@ -1,4 +1,4 @@
-// UI logic. Depends on data.js (osData, families, baseLogo, baseColor, authors, DATA_AS_OF) and icons.js (uiIcon).
+// UI logic. Depends on data.js (osData, families, baseLogo, baseColor, authors, deviceTypes, DATA_AS_OF) and icons.js (uiIcon).
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -21,6 +21,7 @@ const COMPARE_ROWS = [
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
   ['Author', 'user', (os) => os.author],
+  ['Devices', 'smartphone', (os) => joined(os.devices)],
   ['License', 'lock', (os) => (os.source.type === 'closed' ? 'Proprietary' : 'Open source')],
   ['Repository', 'code', (os) => os.source.url ?? '—', true], // URLs always differ, so don't highlight
   ...SPECS.map(([key, label, icon]) => [label, icon, (os) => joined(os.specs[key])]),
@@ -29,20 +30,21 @@ const COMPARE_ROWS = [
 const byId = new Map(osData.map((os) => [os.id, os]));
 const bases = ['All', ...new Set(osData.map((os) => os.baseOS))];
 const distros = ['All', ...Object.keys(families)];
+const deviceNames = ['All', ...Object.keys(deviceTypes)];
 const authorCount = {};
 osData.forEach((os) => { authorCount[os.author] = (authorCount[os.author] ?? 0) + 1; });
 // most systems first, then companies > organizations > developers, then A-Z
 const TYPE_RANK = { company: 0, organization: 1, developer: 2 };
 const authorNames = Object.keys(authors).sort((a, b) =>
   authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
-const state = { base: 'All', distro: 'All', author: 'All', authorsOpen: false, query: '' };
+const state = { base: 'All', distro: 'All', device: 'All', author: 'All', authorsOpen: false, query: '' };
 const AUTHORS_COLLAPSED = 10; // authors shown before "Show all"
 const compare = []; // ids, in the order added
 
 // Lowercased searchable text per OS, built once.
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.baseOS, os.distroBase, os.author, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.baseOS, os.distroBase, os.author, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -85,6 +87,9 @@ function renderPills() {
     distros.map((d) =>
       pill('distro', d, d === 'All' ? 'All Distros' : families[d].label, families[d]?.logo, 'grid', 'w-4 h-4')).join('');
   $('distroPills').hidden = state.base !== 'Linux';
+  $('devicePills').innerHTML =
+    '<span class="text-slate-400 self-center font-medium mr-1">Device:</span>' +
+    deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')).join('');
 
   // Authors: most systems first; collapsed to the top few (plus the selected one) until expanded.
   const shown = state.authorsOpen ? authorNames
@@ -118,6 +123,7 @@ function renderGrid() {
   const shown = index.filter(({ os, text }) =>
     (state.base === 'All' || os.baseOS === state.base) &&
     (state.base !== 'Linux' || state.distro === 'All' || os.distroBase === state.distro) &&
+    (state.device === 'All' || os.devices.includes(state.device)) &&
     (state.author === 'All' || os.author === state.author) &&
     text.includes(q)).map(({ os }) => os);
 
@@ -142,6 +148,7 @@ function openModal(id) {
         <div class="flex flex-wrap gap-x-2 items-center text-sm mt-1">
           <span class="text-slate-400">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''}</span> • ${source}
         </div>
+        <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${os.devices.map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
         <button type="button" class="btn mt-3" data-action="toggle" data-id="${os.id}" data-text></button>
       </div>
     </div>
@@ -231,6 +238,7 @@ $('filters').addEventListener('click', (e) => {
   if (!btn) return;
   if ('moreAuthors' in btn.dataset) state.authorsOpen = !state.authorsOpen;
   else if (btn.dataset.base) { state.base = btn.dataset.base; state.distro = 'All'; }
+  else if (btn.dataset.device) state.device = btn.dataset.device;
   else if (btn.dataset.author) state.author = btn.dataset.author;
   else state.distro = btn.dataset.distro;
   renderPills();
