@@ -23,7 +23,7 @@ const COMPARE_ROWS = [
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
   ['Author', 'user', (os) => joined(os.by)],
-  ['Devices', 'smartphone', (os) => joined(os.devices)],
+  ['Devices', 'smartphone', (os) => joined(devicesOf(os))],
   ['License', 'lock', (os) => os.license],
   ['Users (est.)', 'users', (os) => userTiers[os.users]],
   ['Repository', 'code', (os) => os.source.url ?? '—', true], // URLs always differ, so don't highlight
@@ -35,6 +35,8 @@ const bases = ['All', ...Object.keys(baseTypes)];
 const baseCount = (b) => (b === 'All' ? osData.length : osData.filter((os) => os.baseOS === b).length);
 const distros = ['All', ...Object.keys(families)];
 const deviceNames = ['All', ...Object.keys(deviceTypes)];
+// Device tags in the order of deviceTypes (Server, Desktop, ...)
+const devicesOf = (os) => Object.keys(deviceTypes).filter((d) => os.devices.includes(d));
 const deviceCount = (d) => (d === 'All' ? osData.length : osData.filter((os) => os.devices.includes(d)).length);
 // License pills: All / Proprietary / Open Source; Open Source reveals a second row with the license families in use
 const LICENSE_OPEN = 'Open Source';
@@ -102,9 +104,8 @@ function pill(kind, value, label, file, fallbackIcon, size, dir) {
 function renderPills() {
   // Pills without a logo file (All, UNIX, ...) get a UI icon instead.
   $('basePills').innerHTML =
-    '<span class="text-slate-400 self-center font-medium mr-1" title="Kernel lineage">Base OS:</span>' +
     bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : b, baseTypes[b]?.logo, baseTypes[b]?.icon ?? 'grid', 'w-5 h-5')
-      .replace('<button ', `<button title="${esc(baseTypes[b]?.hint ?? '')}${b === 'All' ? '' : ' · '}${baseCount(b)} systems" `)).join('');
+      .replace('<button ', `<button title="${esc(baseTypes[b]?.hint ?? 'Grouped by kernel lineage')} · ${baseCount(b)} systems" `)).join('');
   $('distroPills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1">Distro Base:</span>' +
     distros.map((d) =>
@@ -113,11 +114,10 @@ function renderPills() {
   $('devicePills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1">Device:</span>' +
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
-      .replace('<button ', `<button title="${deviceCount(d)} systems" `)).join('');
+      .replace('<button ', `<button title="${esc(deviceTypes[d]?.hint ?? '')}${d === 'All' ? '' : ' · '}${deviceCount(d)} systems" `)).join('');
 
   const hintTitle = (hint, n) => `title="${esc(hint)}${hint ? ' · ' : ''}${n} system${n === 1 ? '' : 's'}"`;
   $('licensePills').innerHTML =
-    '<span class="text-slate-400 self-center font-medium mr-1">License:</span>' +
     [['All', 'All Licenses', 'grid', ''], ['Proprietary', 'Proprietary', 'lock', licenseTypes.Proprietary.hint], [LICENSE_OPEN, LICENSE_OPEN, 'unlock', 'Anything with an open-source license']]
       .map(([l, label, icon, hint]) => pill('license', l, label, null, icon, 'w-4 h-4').replace('<button ', `<button ${hintTitle(hint, licenseCount(l))} `)).join('');
   $('licenseFamilyPills').innerHTML =
@@ -126,9 +126,8 @@ function renderPills() {
       .replace('<button ', `<button ${hintTitle(f === 'All' ? '' : licenseTypes[f].hint, licenseCount(LICENSE_OPEN, f))} `)).join('');
   $('licenseFamilyPills').hidden = state.license !== LICENSE_OPEN;
   $('userPills').innerHTML =
-    '<span class="text-slate-400 self-center font-medium mr-1" title="Rough active users / devices, not measured">Users (est.):</span>' +
     ['All', ...Object.keys(userTiers)].map((t) => pill('users', t, t === 'All' ? 'All Users' : t, null, 'users', 'w-4 h-4')
-      .replace('<button ', `<button ${hintTitle(t === 'All' ? '' : `${userTiers[t]} users`, userCount(t))} `)).join('');
+      .replace('<button ', `<button ${hintTitle(t === 'All' ? 'Rough estimates of active users or devices' : `${userTiers[t]} users (est.)`, userCount(t))} `)).join('');
 
   // Authors: only those inside the selected Base OS; collapsed to the pinned ones (plus the selected) until expanded.
   const inBase = authorsInBase();
@@ -137,8 +136,7 @@ function renderPills() {
   const pinned = list.filter((a) => authorTop.includes(a) || a === state.author);
   const shown = state.authorsOpen || !collapsible ? list : pinned.length >= 3 ? pinned : list.slice(0, 8);
   $('authorPills').innerHTML =
-    '<span class="text-slate-400 self-center font-medium mr-1" title="Primary author, plus the upstream projects it is built on">Author / upstream:</span>' +
-    pill('author', 'All', 'All Authors', null, 'grid', 'w-4 h-4') +
+    pill('author', 'All', 'All Authors', null, 'grid', 'w-4 h-4').replace('<button ', '<button title="Primary author, plus the upstream projects it is built on" ') +
     shown.map((a) => pill('author', a, authorLabel(a), authors[a].logo, 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authors[a].type)} · ${inBase[a]} system${inBase[a] > 1 ? 's' : ''}" `)).join('') +
     (collapsible ? `<button type="button" class="pill pill-more" data-more-authors>${state.authorsOpen ? 'Show fewer' : `Show all ${list.length}`}</button>` : '');
 }
@@ -192,7 +190,7 @@ function openModal(id) {
         <div class="flex flex-wrap gap-x-2 items-center text-sm mt-1">
           <span class="text-slate-400">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''}</span> • ${source}
         </div>
-        <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${os.devices.map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
+        <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${devicesOf(os).map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
         <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('file', 'w-4 h-4 text-sky-400')}${esc(os.license)}</p>
         <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5" title="Rough estimate of active users / devices">${uiIcon('users', 'w-4 h-4 text-sky-400')}Users: ${esc(userTiers[os.users])} (est.)</p>
         <button type="button" class="btn mt-3" data-action="toggle" data-id="${os.id}" data-text></button>
@@ -316,7 +314,7 @@ window.addEventListener('keydown', (e) => {
 
 // ---------- init ----------
 document.querySelectorAll('[data-icon]').forEach((el) => { el.innerHTML = uiIcon(el.dataset.icon, el.dataset.size ?? 'w-4 h-4'); });
-$('asOf').textContent = `Kernel and release versions as of ${DATA_AS_OF}. Systems without a version could not be confirmed.`;
+$('asOf').textContent = `Kernel and release versions as of ${DATA_AS_OF}. Systems without a version could not be confirmed. User counts are rough estimates.`;
 renderPills();
 renderGrid();
 renderBar();

@@ -10,7 +10,7 @@ No build step and no backend. Open `index.html` in a browser (the page loads Tai
 - **Filters** that combine with each other:
   - **Base OS**: Windows NT, macOS, Linux, Android-based, iOS-based, BSD, UNIX, UNIX-like, Other
   - **Distro base** (Linux only): Debian, Arch, Red Hat / Fedora, Slackware, Gentoo, SUSE, Alpine, Independent
-  - **Device**: Desktop, Server, Mobile, TV, Wearable, Automotive, Embedded
+  - **Device**: Server, Desktop, Mobile, TV, Wearable, Automotive, Embedded, Network (routers and firewalls)
   - **License**: Proprietary or Open Source, with families (GPL, MIT / BSD, Apache, MPL / CDDL) under Open Source
   - **Users (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)
   - **Author / upstream**: company, organization or developer, including the projects a system is built on; only authors with systems in the selected Base OS are listed
