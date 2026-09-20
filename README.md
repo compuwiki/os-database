@@ -12,7 +12,7 @@ No build step and no backend. Open `index.html` in a browser (the page loads Tai
   - **Distro base** (Linux only): Debian, Arch, Red Hat / Fedora, Slackware, Gentoo, SUSE, Alpine, Independent
   - **Device**: Server, Desktop, Mobile, TV, Wearable, Automotive, Embedded, Network (routers and firewalls)
   - **License**: Proprietary or Open Source, with families (GPL, MIT / BSD, Apache, MPL / CDDL) under Open Source
-  - **Users (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)
+  - **Installs (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)
   - **Author / upstream**: company, organization or developer, including the projects a system is built on; only authors with systems in the selected Base OS are listed
 - **Detail dialog** with CPU support, kernel, bootloader, file systems, graphics and audio stack, desktop, package manager, default shell (bash, zsh, PowerShell...), userland / core tools (GNU, BusyBox, BSD...), license and more.
 - **Comparison table**: add up to 10 systems with the `+` button on each card, then compare them in columns. Rows that differ are highlighted.
@@ -36,7 +36,7 @@ Everything lives in `js/data.js`. To add a system, append an object to `osData`:
 ```js
 { id: "example-os", name: "Example OS", baseOS: "Linux", distroBase: "Debian",
   by: ["Example Project", "Debian Project", "Linux Foundation"],  // author first, then upstream
-  devices: ["Desktop"], users: "10K+",
+  devices: ["Desktop"], installs: "10K+",
   license: "GPL-2.0", licenseTags: ["GPL"],
   logo: "example-os.svg",                                        // file in assets/logos/, or omit
   source: { type: "open-source", url: "https://example.org/repo" }, // or { type: "closed" }
@@ -54,7 +54,7 @@ To keep logos small, optimize them with [SVGO](https://github.com/svg/svgo): `np
 ## About the data
 
 - Kernel and release versions are as of **September 2026**. Systems without a version could not be confirmed.
-- **User counts are rough estimates** of active users or devices, not measurements.
+- **Install counts are rough estimates**, not measurements. They count active installs: devices, physical servers and long-lived VMs (not short-lived containers), so server distros are counted by machines rather than people.
 - Specs, licenses and authors were compiled by hand and may contain mistakes. Corrections are welcome.
 
 ## Credits

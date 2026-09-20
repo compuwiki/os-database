@@ -1,4 +1,4 @@
-// UI logic. Depends on data.js (osData, families, baseTypes, authors, authorTop, deviceTypes, licenseTypes, userTiers, DATA_AS_OF) and icons.js (uiIcon).
+// UI logic. Depends on data.js (osData, families, baseTypes, authors, authorTop, deviceTypes, licenseTypes, installTiers, DATA_AS_OF) and icons.js (uiIcon).
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -25,7 +25,7 @@ const COMPARE_ROWS = [
   ['Author', 'user', (os) => joined(os.by)],
   ['Devices', 'smartphone', (os) => joined(devicesOf(os))],
   ['License', 'lock', (os) => os.license],
-  ['Users (est.)', 'users', (os) => userTiers[os.users]],
+  ['Installs (est.)', 'drive', (os) => installTiers[os.installs]],
   ['Repository', 'code', (os) => os.source.url ?? '—', true], // URLs always differ, so don't highlight
   ...SPECS.map(([key, label, icon]) => [label, icon, (os) => joined(os.specs[key])]),
 ];
@@ -45,8 +45,8 @@ const licenseMatch = (os, l) => (l === 'All' ? true : l === LICENSE_OPEN ? openS
 const licenseCount = (l, family = 'All') => osData.filter((os) => licenseMatch(os, l) && (family === 'All' || os.licenseTags.includes(family))).length;
 const licenseFamilies = Object.keys(licenseTypes).filter((f) => f !== 'Proprietary' && licenseCount(LICENSE_OPEN, f));
 // User pills: each system is in exactly one tier (estimates)
-const usersMatch = (os, t) => t === 'All' || os.users === t;
-const userCount = (t) => osData.filter((os) => usersMatch(os, t)).length;
+const installsMatch = (os, t) => t === 'All' || os.installs === t;
+const installCount = (t) => osData.filter((os) => installsMatch(os, t)).length;
 const authorCount = {};
 osData.forEach((os) => os.by.forEach((a) => { authorCount[a] = (authorCount[a] ?? 0) + 1; }));
 // authorTop first (in that order), then most systems, then companies > organizations > developers, then A-Z
@@ -54,7 +54,7 @@ const TYPE_RANK = { company: 0, organization: 1, developer: 2 };
 const rank = (a) => (authorTop.includes(a) ? authorTop.indexOf(a) : authorTop.length);
 const authorNames = Object.keys(authors).sort((a, b) =>
   rank(a) - rank(b) || authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
-const state = { base: 'All', distro: 'All', device: 'All', license: 'All', family: 'All', users: 'All', author: 'All', authorsOpen: false, query: '' };
+const state = { base: 'All', distro: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', author: 'All', authorsOpen: false, query: '' };
 // Authors that have at least one system in the selected Base OS (with their system count there)
 const authorsInBase = () => {
   const n = {};
@@ -124,9 +124,9 @@ function renderPills() {
     ['All', ...licenseFamilies].map((f) => pill('family', f, f === 'All' ? 'All open licenses' : licenseTypes[f].label, null, f === 'All' ? 'unlock' : licenseTypes[f].icon, 'w-4 h-4')
       .replace('<button ', `<button ${hintTitle(f === 'All' ? '' : licenseTypes[f].hint, licenseCount(LICENSE_OPEN, f))} `)).join('');
   $('licenseFamilyPills').hidden = state.license !== LICENSE_OPEN;
-  $('userPills').innerHTML =
-    ['All', ...Object.keys(userTiers)].map((t) => pill('users', t, t === 'All' ? 'All Users' : t, null, 'users', 'w-4 h-4')
-      .replace('<button ', `<button ${hintTitle(t === 'All' ? 'Rough estimates of active users or devices' : `${userTiers[t]} users (est.)`, userCount(t))} `)).join('');
+  $('installPills').innerHTML =
+    ['All', ...Object.keys(installTiers)].map((t) => pill('installs', t, t === 'All' ? 'All Installs' : t, null, 'drive', 'w-4 h-4')
+      .replace('<button ', `<button ${hintTitle(t === 'All' ? 'Rough estimates of active installs: devices, servers and long-lived VMs (not short-lived containers)' : `${installTiers[t]} installs (est.)`, installCount(t))} `)).join('');
 
   // Authors: only those inside the selected Base OS; collapsed to the pinned ones (plus the selected) until expanded.
   const inBase = authorsInBase();
@@ -164,7 +164,7 @@ function renderGrid() {
     (state.base !== 'Linux' || state.distro === 'All' || os.distroBase === state.distro) &&
     (state.device === 'All' || os.devices.includes(state.device)) &&
     licenseMatch(os, state.license) && (state.family === 'All' || os.licenseTags.includes(state.family)) &&
-    usersMatch(os, state.users) &&
+    installsMatch(os, state.installs) &&
     (state.author === 'All' || os.by.includes(state.author)) &&
     text.includes(q)).map(({ os }) => os);
 
@@ -191,7 +191,7 @@ function openModal(id) {
         </div>
         <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${devicesOf(os).map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
         <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('file', 'w-4 h-4 text-sky-400')}${esc(os.license)}</p>
-        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5" title="Rough estimate of active users / devices">${uiIcon('users', 'w-4 h-4 text-sky-400')}Users: ${esc(userTiers[os.users])} (est.)</p>
+        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5" title="Rough estimate of active installs: devices, servers and long-lived VMs">${uiIcon('drive', 'w-4 h-4 text-sky-400')}Installs: ${esc(installTiers[os.installs])} (est.)</p>
         <button type="button" class="btn mt-3" data-action="toggle" data-id="${os.id}" data-text></button>
       </div>
     </div>
@@ -288,7 +288,7 @@ $('filters').addEventListener('click', (e) => {
   else if (btn.dataset.device) state.device = btn.dataset.device;
   else if (btn.dataset.license) { state.license = btn.dataset.license; state.family = 'All'; }
   else if (btn.dataset.family) state.family = btn.dataset.family;
-  else if (btn.dataset.users) state.users = btn.dataset.users;
+  else if (btn.dataset.installs) state.installs = btn.dataset.installs;
   else if (btn.dataset.author) state.author = btn.dataset.author;
   else state.distro = btn.dataset.distro;
   renderPills();
@@ -313,7 +313,7 @@ window.addEventListener('keydown', (e) => {
 
 // ---------- init ----------
 document.querySelectorAll('[data-icon]').forEach((el) => { el.innerHTML = uiIcon(el.dataset.icon, el.dataset.size ?? 'w-4 h-4'); });
-$('asOf').textContent = `Kernel and release versions as of ${DATA_AS_OF}. Systems without a version could not be confirmed. User counts are rough estimates.`;
+$('asOf').textContent = `Kernel and release versions as of ${DATA_AS_OF}. Systems without a version could not be confirmed. Install counts are rough estimates of active devices, servers and long-lived VMs.`;
 renderPills();
 renderGrid();
 renderBar();
