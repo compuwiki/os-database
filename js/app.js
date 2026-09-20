@@ -39,6 +39,8 @@ const rank = (a) => (authorTop.includes(a) ? authorTop.indexOf(a) : authorTop.le
 const authorNames = Object.keys(authors).sort((a, b) =>
   rank(a) - rank(b) || authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
 const state = { base: 'All', distro: 'All', device: 'All', author: 'All', authorsOpen: false, query: '' };
+// "Red Hat (IBM)": show the owning company next to an author that has one
+const authorLabel = (a) => (authors[a].parent ? `${a} (${authors[a].parent})` : a);
 const compare = []; // ids, in the order added
 
 // Lowercased searchable text per OS, built once.
@@ -97,7 +99,7 @@ function renderPills() {
   $('authorPills').innerHTML =
     '<span class="text-slate-400 self-center font-medium mr-1" title="Primary author, plus the upstream projects it is built on">Author / upstream:</span>' +
     pill('author', 'All', 'All Authors', null, 'grid', 'w-4 h-4') +
-    shown.map((a) => pill('author', a, a, authors[a].logo, 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authors[a].type)} · ${authorCount[a]} system${authorCount[a] > 1 ? 's' : ''}" `)).join('') +
+    shown.map((a) => pill('author', a, authorLabel(a), authors[a].logo, 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authors[a].type)} · ${authorCount[a]} system${authorCount[a] > 1 ? 's' : ''}" `)).join('') +
     `<button type="button" class="pill pill-more" data-more-authors>${state.authorsOpen ? 'Show fewer' : `Show all ${authorNames.length}`}</button>`;
 }
 
@@ -144,7 +146,7 @@ function openModal(id) {
       ${osIcon(os, 'w-16 h-16')}
       <div>
         <h2 class="text-2xl font-bold text-white">${esc(os.name)}</h2>
-        <p class="text-sm text-slate-400 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">${os.by.map((a, i) => `<span class="flex items-center gap-1.5${i ? '' : ' text-slate-200'}">${logoTile(authors[a].logo, 'w-5 h-5', initials(a), '#5b6472', 'author')}${esc(a)}</span>`).join('')}</p>
+        <p class="text-sm text-slate-400 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">${os.by.filter((a) => !os.by.some((b) => authors[b].parent === a)).map((a, i) => `<span class="flex items-center gap-1.5${i ? '' : ' text-slate-200'}">${logoTile(authors[a].logo, 'w-5 h-5', initials(a), '#5b6472', 'author')}${esc(authorLabel(a))}</span>`).join('')}</p>
         <div class="flex flex-wrap gap-x-2 items-center text-sm mt-1">
           <span class="text-slate-400">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''}</span> • ${source}
         </div>
