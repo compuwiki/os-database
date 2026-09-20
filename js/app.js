@@ -1,4 +1,4 @@
-// UI logic. Depends on data.js (osData, families, baseLogo, baseColor, authors, deviceTypes, DATA_AS_OF) and icons.js (uiIcon).
+// UI logic. Depends on data.js (osData, families, baseLogo, baseColor, authors, authorTop, deviceTypes, DATA_AS_OF) and icons.js (uiIcon).
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -20,7 +20,7 @@ const SPECS = [
 const COMPARE_ROWS = [
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
-  ['Author', 'user', (os) => os.author],
+  ['Author', 'user', (os) => joined(os.by)],
   ['Devices', 'smartphone', (os) => joined(os.devices)],
   ['License', 'lock', (os) => (os.source.type === 'closed' ? 'Proprietary' : 'Open source')],
   ['Repository', 'code', (os) => os.source.url ?? '—', true], // URLs always differ, so don't highlight
@@ -32,19 +32,19 @@ const bases = ['All', ...new Set(osData.map((os) => os.baseOS))];
 const distros = ['All', ...Object.keys(families)];
 const deviceNames = ['All', ...Object.keys(deviceTypes)];
 const authorCount = {};
-osData.forEach((os) => { authorCount[os.author] = (authorCount[os.author] ?? 0) + 1; });
-// most systems first, then companies > organizations > developers, then A-Z
+osData.forEach((os) => os.by.forEach((a) => { authorCount[a] = (authorCount[a] ?? 0) + 1; }));
+// authorTop first (in that order), then most systems, then companies > organizations > developers, then A-Z
 const TYPE_RANK = { company: 0, organization: 1, developer: 2 };
+const rank = (a) => (authorTop.includes(a) ? authorTop.indexOf(a) : authorTop.length);
 const authorNames = Object.keys(authors).sort((a, b) =>
-  authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
+  rank(a) - rank(b) || authorCount[b] - authorCount[a] || TYPE_RANK[authors[a].type] - TYPE_RANK[authors[b].type] || a.localeCompare(b));
 const state = { base: 'All', distro: 'All', device: 'All', author: 'All', authorsOpen: false, query: '' };
-const AUTHORS_COLLAPSED = 10; // authors shown before "Show all"
 const compare = []; // ids, in the order added
 
 // Lowercased searchable text per OS, built once.
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.baseOS, os.distroBase, os.author, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.baseOS, os.distroBase, ...os.by, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -91,11 +91,11 @@ function renderPills() {
     '<span class="text-slate-400 self-center font-medium mr-1">Device:</span>' +
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')).join('');
 
-  // Authors: most systems first; collapsed to the top few (plus the selected one) until expanded.
+  // Authors: collapsed to authorTop (plus the selected one) until expanded.
   const shown = state.authorsOpen ? authorNames
-    : authorNames.filter((a, i) => i < AUTHORS_COLLAPSED || a === state.author);
+    : authorNames.filter((a) => authorTop.includes(a) || a === state.author);
   $('authorPills').innerHTML =
-    '<span class="text-slate-400 self-center font-medium mr-1">Author:</span>' +
+    '<span class="text-slate-400 self-center font-medium mr-1" title="Primary author, plus the upstream projects it is built on">Author / upstream:</span>' +
     pill('author', 'All', 'All Authors', null, 'grid', 'w-4 h-4') +
     shown.map((a) => pill('author', a, a, authors[a].logo, 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authors[a].type)} · ${authorCount[a]} system${authorCount[a] > 1 ? 's' : ''}" `)).join('') +
     `<button type="button" class="pill pill-more" data-more-authors>${state.authorsOpen ? 'Show fewer' : `Show all ${authorNames.length}`}</button>`;
@@ -124,7 +124,7 @@ function renderGrid() {
     (state.base === 'All' || os.baseOS === state.base) &&
     (state.base !== 'Linux' || state.distro === 'All' || os.distroBase === state.distro) &&
     (state.device === 'All' || os.devices.includes(state.device)) &&
-    (state.author === 'All' || os.author === state.author) &&
+    (state.author === 'All' || os.by.includes(state.author)) &&
     text.includes(q)).map(({ os }) => os);
 
   $('osGrid').innerHTML = shown.map(card).join('');
@@ -144,7 +144,7 @@ function openModal(id) {
       ${osIcon(os, 'w-16 h-16')}
       <div>
         <h2 class="text-2xl font-bold text-white">${esc(os.name)}</h2>
-        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${logoTile(authors[os.author].logo, 'w-5 h-5', initials(os.author), '#5b6472', 'author')} ${esc(os.author)} <span class="text-slate-500">· ${authors[os.author].type}</span></p>
+        <p class="text-sm text-slate-400 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">${os.by.map((a, i) => `<span class="flex items-center gap-1.5${i ? '' : ' text-slate-200'}">${logoTile(authors[a].logo, 'w-5 h-5', initials(a), '#5b6472', 'author')}${esc(a)}</span>`).join('')}</p>
         <div class="flex flex-wrap gap-x-2 items-center text-sm mt-1">
           <span class="text-slate-400">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''}</span> • ${source}
         </div>
