@@ -33,6 +33,8 @@ const SPECS = [
 
 // Comparison table rows: [label, icon, value(os) -> text, skipDiff?]
 const COMPARE_ROWS = [
+  ['Known for', 'compass', (os) => os.knownFor],
+  ['Pitch', 'feather', (os) => os.pitch ?? '—'],
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
   ['UNIX heritage', 'terminal', (os) => unixStatus[os.unix].label],
@@ -94,7 +96,7 @@ const compare = []; // ids, in the order added
 // Lowercased searchable text per OS, built once.
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.knownFor, os.pitch ?? '', os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -210,27 +212,44 @@ function renderGrid() {
 
 function openModal(id) {
   const os = byId.get(id);
+  const chip = (inner, hint = '') => `<span class="info-chip"${hint ? ` title="${esc(hint)}"` : ''}>${inner}</span>`;
+  // an owner already shown inside its child's label (Red Hat (IBM)) is not repeated
+  const owners = os.by.filter((a) => !os.by.some((b) => authors[b].parent === a));
   const source = os.source.type === 'closed'
-    ? `<span class="text-rose-400 font-semibold flex items-center gap-1">${uiIcon('lock')} Proprietary / Closed Source</span>`
-    : `<a href="${esc(os.source.url)}" target="_blank" rel="noopener" class="text-emerald-400 hover:underline flex items-center gap-1">${uiIcon('branch')} Open Source Repository</a>`;
+    ? chip(`${uiIcon('lock', 'w-3.5 h-3.5')}Proprietary / closed source`, 'No public source code')
+    : `<a href="${esc(os.source.url)}" target="_blank" rel="noopener" class="info-link">${uiIcon('branch', 'w-4 h-4')}${esc(os.source.url.replace(/^https?:\/\//, ''))}</a>`;
+
+  // label -> value (falsy rows are skipped)
+  const facts = [
+    ['Author', owners.map((a) => chip(`${logoTile(authors[a].logo, 'w-4 h-4', initials(a), '#5b6472', 'author')}${esc(authorLabel(a))}`)).join('')],
+    ['Base', chip(esc(os.baseOS + (os.distroBase ? ` · ${os.distroBase}` : ''))) +
+      (os.generation ? chip(esc(generations[os.generation].label), generations[os.generation].hint) : '') +
+      chip(esc(unixStatus[os.unix].label), unixStatus[os.unix].hint)],
+    os.basedOn.length && ['Based on', os.basedOn.map((b) => chip(
+      `${basedOnTypes[b].logo ? logoTile(basedOnTypes[b].logo, 'w-4 h-4') : uiIcon(basedOnTypes[b].icon, 'w-3.5 h-3.5')}${esc(b)}`, basedOnTypes[b].hint)).join('')],
+    ['Devices', devicesOf(os).map((d) => chip(`${uiIcon(deviceTypes[d].icon, 'w-3.5 h-3.5 text-sky-400')}${d}`, deviceTypes[d].hint)).join('')],
+    ['License', esc(os.license)],
+    ['Installs', `<span title="Rough estimate of active installs: devices, servers and long-lived VMs">${esc(installTiers[os.installs])} <span class="text-slate-500">(est.)</span></span>`],
+    ['Source', source],
+  ].filter(Boolean);
 
   $('modalContent').innerHTML = `
-    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-slate-800">
+    <header class="flex items-start gap-4 pr-10">
       ${osIcon(os, 'w-16 h-16')}
-      <div>
-        <h2 class="text-2xl font-bold text-white">${esc(os.name)}</h2>
-        <p class="text-sm text-slate-400 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">${os.by.filter((a) => !os.by.some((b) => authors[b].parent === a)).map((a, i) => `<span class="flex items-center gap-1.5${i ? '' : ' text-slate-200'}">${logoTile(authors[a].logo, 'w-5 h-5', initials(a), '#5b6472', 'author')}${esc(authorLabel(a))}</span>`).join('')}</p>
-        <div class="flex flex-wrap gap-x-2 items-center text-sm mt-1">
-          <span class="text-slate-400" title="${esc(unixStatus[os.unix].hint)}">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''} ${os.generation ? ` · ${esc(generations[os.generation].label)}` : ''} · ${esc(unixStatus[os.unix].label)}</span> • ${source}
-        </div>
-        ${os.basedOn.length ? `<p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('layers', 'w-4 h-4 text-sky-400')}Based on ${esc(joined(os.basedOn))}</p>` : ''}
-        <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${devicesOf(os).map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
-        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('file', 'w-4 h-4 text-sky-400')}${esc(os.license)}</p>
-        <p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5" title="Rough estimate of active installs: devices, servers and long-lived VMs">${uiIcon('drive', 'w-4 h-4 text-sky-400')}Installs: ${esc(installTiers[os.installs])} (est.)</p>
-        <button type="button" class="btn mt-3" data-action="toggle" data-id="${os.id}" data-text></button>
+      <div class="min-w-0">
+        <h2 class="text-2xl font-bold text-white leading-tight">${esc(os.name)}</h2>
+        <p class="text-sm font-semibold text-sky-300 mt-1">${esc(os.knownFor)}</p>
+        ${os.pitch ? `<p class="text-sm italic text-slate-400 mt-1">“${esc(os.pitch)}”</p>` : ''}
       </div>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+    </header>
+
+    <dl class="facts mt-5 pt-5 border-t border-slate-800">
+      ${facts.map(([label, value]) => `<dt>${label}</dt><dd>${value}</dd>`).join('')}
+    </dl>
+    <button type="button" class="btn mt-5" data-action="toggle" data-id="${os.id}" data-text></button>
+
+    <h3 class="mt-6 pt-5 border-t border-slate-800 mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Specifications</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
       ${SPECS.map(([key, label, icon]) => `
         <div class="bg-slate-800/50 p-3 rounded-lg">
           <strong class="text-slate-200 flex items-center gap-1.5">${uiIcon(icon, 'w-4 h-4 text-sky-400')} ${label}</strong>
@@ -239,6 +258,7 @@ function openModal(id) {
     </div>`;
   syncToggles($('modalContent'));
   $('detailModal').showModal();
+  $('detailScroll').scrollTop = 0; // reopened dialogs start at the top
 }
 
 // ---------- comparison (add / remove / clear / view) ----------

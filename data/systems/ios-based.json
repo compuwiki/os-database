@@ -2,6 +2,8 @@
   {
     "id": "ios",
     "name": "iOS",
+    "knownFor": "A polished phone experience",
+    "pitch": "Give me a phone and I'll make it just work.",
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
@@ -29,6 +31,8 @@
   {
     "id": "watchos",
     "name": "watchOS",
+    "knownFor": "Health on your wrist",
+    "pitch": "Give me a wrist and I'll watch your heartbeat.",
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
@@ -56,6 +60,8 @@
   {
     "id": "tvos",
     "name": "tvOS",
+    "knownFor": "The living-room Apple",
+    "pitch": "Give me a TV and I'll bring the App Store to it.",
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
@@ -83,6 +89,8 @@
   {
     "id": "ipados",
     "name": "iPadOS",
+    "knownFor": "Tablet with desktop ambitions",
+    "pitch": "Give me a tablet and I'll try to replace your laptop.",
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
@@ -109,6 +117,8 @@
   {
     "id": "visionos",
     "name": "visionOS",
+    "knownFor": "Spatial computing",
+    "pitch": "Give me a room and I'll fill it with windows.",
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],

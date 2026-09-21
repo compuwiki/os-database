@@ -2,6 +2,8 @@
   {
     "id": "nixos",
     "name": "NixOS",
+    "knownFor": "Reproducibility",
+    "pitch": "Give me a machine and I'll make it reproducible.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["NixOS Foundation"],
@@ -29,6 +31,8 @@
   {
     "id": "void-linux",
     "name": "Void Linux",
+    "knownFor": "Simplicity & independence",
+    "pitch": "Give me Linux without the usual baggage.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Void Linux"],
@@ -56,6 +60,8 @@
   {
     "id": "solus",
     "name": "Solus",
+    "knownFor": "Home-grown, polished desktop",
+    "pitch": "Give me a desktop and I'll build everything myself.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Solus Project"],
@@ -83,6 +89,8 @@
   {
     "id": "rosa-linux",
     "name": "ROSA Linux",
+    "knownFor": "Independent RPM distro",
+    "pitch": "Give me an RPM distro and I'll keep it independent.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["ROSA"],
@@ -110,6 +118,8 @@
   {
     "id": "knoppix",
     "name": "Knoppix",
+    "knownFor": "The original live CD",
+    "pitch": "Give me a CD and I'll run Linux from it.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Klaus Knopper"],
@@ -137,6 +147,8 @@
   {
     "id": "puppy-linux",
     "name": "Puppy Linux",
+    "knownFor": "Tiny and runs in RAM",
+    "pitch": "Give me a small USB stick and I'll load everything in memory.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Puppy Linux Community"],
@@ -164,6 +176,8 @@
   {
     "id": "mageia",
     "name": "Mageia",
+    "knownFor": "Community Mandriva heir",
+    "pitch": "Give me a community and I'll keep the Mandriva spirit alive.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Mageia.Org"],
@@ -191,6 +205,8 @@
   {
     "id": "sailfish-os",
     "name": "Sailfish OS",
+    "knownFor": "Gesture-based mobile Linux",
+    "pitch": "Give me a phone and I'll swipe instead of tap.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Jolla"],
@@ -218,6 +234,8 @@
   {
     "id": "kaios",
     "name": "KaiOS",
+    "knownFor": "Smart feature phones",
+    "pitch": "Give me a keypad phone and I'll give it apps.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["KaiOS Technologies"],
@@ -245,6 +263,8 @@
   {
     "id": "tizen",
     "name": "Tizen",
+    "knownFor": "Samsung screens",
+    "pitch": "Give me a Samsung TV or watch and I'll run its screen.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Samsung"],
@@ -271,6 +291,8 @@
   {
     "id": "webos",
     "name": "webOS",
+    "knownFor": "LG smart TVs",
+    "pitch": "Give me a TV and I'll make it smart with a magic remote.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["LG Electronics"],
@@ -297,6 +319,8 @@
   {
     "id": "agl",
     "name": "Automotive Grade Linux",
+    "knownFor": "Open-source car software",
+    "pitch": "Give me a dashboard and I'll run it on open source.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Linux Foundation"],
@@ -323,6 +347,8 @@
   {
     "id": "openwrt",
     "name": "OpenWrt",
+    "knownFor": "Router firmware",
+    "pitch": "Give me a cheap router and I'll make it a proper Linux box.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["OpenWrt Project"],
@@ -350,6 +376,8 @@
   {
     "id": "routeros",
     "name": "RouterOS",
+    "knownFor": "MikroTik routing",
+    "pitch": "Give me a MikroTik box and I'll run an ISP on it.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["MikroTik"],
@@ -377,6 +405,8 @@
   {
     "id": "lfs",
     "name": "Linux From Scratch",
+    "knownFor": "Learning by building",
+    "pitch": "Give me source tarballs and I'll teach you how Linux is made.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["LFS Project"],
@@ -404,6 +434,8 @@
   {
     "id": "slitaz",
     "name": "SliTaz",
+    "knownFor": "Featherweight desktop",
+    "pitch": "Give me a few dozen MB and I'll boot a desktop.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["SliTaz Association"],
@@ -431,6 +463,8 @@
   {
     "id": "clear-linux",
     "name": "Clear Linux (discontinued)",
+    "knownFor": "Intel-tuned speed (discontinued)",
+    "pitch": "Give me an Intel CPU and I'll optimize every binary for it.",
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Intel"],

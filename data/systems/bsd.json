@@ -2,6 +2,8 @@
   {
     "id": "freebsd",
     "name": "FreeBSD",
+    "knownFor": "Integrated Unix system",
+    "pitch": "Give me a system and I'll make every layer coherent.",
     "baseOS": "BSD",
     "distroBase": null,
     "by": ["FreeBSD Project"],
@@ -29,6 +31,8 @@
   {
     "id": "openbsd",
     "name": "OpenBSD",
+    "knownFor": "Security",
+    "pitch": "Give me code and I'll scrutinize every assumption.",
     "baseOS": "BSD",
     "distroBase": null,
     "by": ["OpenBSD Project"],
@@ -56,6 +60,8 @@
   {
     "id": "netbsd",
     "name": "NetBSD",
+    "knownFor": "Portability",
+    "pitch": "Give me hardware and I'll try to run on it.",
     "baseOS": "BSD",
     "distroBase": null,
     "by": ["NetBSD Foundation"],
@@ -83,6 +89,8 @@
   {
     "id": "dragonflybsd",
     "name": "DragonFly BSD",
+    "knownFor": "HAMMER2 & scalability",
+    "pitch": "Give me a big filesystem and I'll scale it.",
     "baseOS": "BSD",
     "distroBase": null,
     "by": ["Matthew Dillon"],
@@ -109,6 +117,8 @@
   {
     "id": "ghostbsd",
     "name": "GhostBSD",
+    "knownFor": "FreeBSD for the desktop",
+    "pitch": "Give me FreeBSD and I'll give it a desktop.",
     "baseOS": "BSD",
     "distroBase": null,
     "by": ["Eric Turgeon"],
@@ -135,6 +145,8 @@
   {
     "id": "pfsense",
     "name": "pfSense",
+    "knownFor": "Firewall appliance",
+    "pitch": "Give me a network edge and I'll defend it.",
     "baseOS": "BSD",
     "distroBase": null,
     "by": ["Netgate"],
@@ -162,6 +174,8 @@
   {
     "id": "opnsense",
     "name": "OPNsense",
+    "knownFor": "Open, regularly updated firewall",
+    "pitch": "Give me a firewall and I'll update it on schedule.",
     "baseOS": "BSD",
     "distroBase": null,
     "by": ["Deciso"],
@@ -189,6 +203,8 @@
   {
     "id": "junos",
     "name": "Junos OS",
+    "knownFor": "Carrier-grade routing",
+    "pitch": "Give me a backbone and I'll keep packets moving.",
     "baseOS": "BSD",
     "distroBase": null,
     "by": ["Juniper Networks"],

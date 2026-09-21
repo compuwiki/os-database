@@ -2,6 +2,8 @@
   {
     "id": "slackware",
     "name": "Slackware",
+    "knownFor": "Traditional Unix simplicity",
+    "pitch": "Give me Unix and I'll keep it Unix.",
     "baseOS": "Linux",
     "distroBase": "Slackware",
     "by": ["Patrick Volkerding"],
@@ -29,6 +31,8 @@
   {
     "id": "slax",
     "name": "Slax",
+    "knownFor": "Pocket live system",
+    "pitch": "Give me a USB stick and I'll boot anywhere.",
     "baseOS": "Linux",
     "distroBase": "Slackware",
     "by": ["Tomáš Matějíček"],
@@ -56,6 +60,8 @@
   {
     "id": "absolute-linux",
     "name": "Absolute Linux",
+    "knownFor": "Light Slackware",
+    "pitch": "Give me Slackware and I'll make it small and friendly.",
     "baseOS": "Linux",
     "distroBase": "Slackware",
     "by": ["Absolute Linux"],
@@ -83,6 +89,8 @@
   {
     "id": "porteus",
     "name": "Porteus",
+    "knownFor": "Portable and modular",
+    "pitch": "Give me a USB stick and I'll load fast into RAM.",
     "baseOS": "Linux",
     "distroBase": "Slackware",
     "by": ["Porteus Project"],

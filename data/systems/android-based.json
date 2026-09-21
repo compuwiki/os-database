@@ -2,6 +2,8 @@
   {
     "id": "android",
     "name": "Android",
+    "knownFor": "Mobile ecosystem",
+    "pitch": "Give me hardware and I'll put computing in your pocket.",
     "baseOS": "Android-based",
     "distroBase": null,
     "by": ["Google"],
@@ -29,6 +31,8 @@
   {
     "id": "wear-os",
     "name": "Wear OS",
+    "knownFor": "Android on the wrist",
+    "pitch": "Give me a wrist and I'll put Android on it.",
     "baseOS": "Android-based",
     "distroBase": null,
     "by": ["Google"],
@@ -56,6 +60,8 @@
   {
     "id": "grapheneos",
     "name": "GrapheneOS",
+    "knownFor": "Hardened mobile privacy",
+    "pitch": "Give me a Pixel and I'll lock it down.",
     "baseOS": "Android-based",
     "distroBase": null,
     "by": ["GrapheneOS Foundation"],
@@ -83,6 +89,8 @@
   {
     "id": "lineageos",
     "name": "LineageOS",
+    "knownFor": "New life for old phones",
+    "pitch": "Give me an old phone and I'll give it updates.",
     "baseOS": "Android-based",
     "distroBase": null,
     "by": ["LineageOS"],
@@ -110,6 +118,8 @@
   {
     "id": "omnirom",
     "name": "OmniROM",
+    "knownFor": "Clean, close-to-AOSP ROM",
+    "pitch": "Give me a phone and I'll keep Android close to stock.",
     "baseOS": "Android-based",
     "distroBase": null,
     "by": ["OmniROM"],
@@ -137,6 +147,8 @@
   {
     "id": "e-os",
     "name": "/e/OS",
+    "knownFor": "De-Googled Android",
+    "pitch": "Give me Android and I'll take Google out of it.",
     "baseOS": "Android-based",
     "distroBase": null,
     "by": ["Murena"],
@@ -164,6 +176,8 @@
   {
     "id": "meta-horizon-os",
     "name": "Meta Horizon OS",
+    "knownFor": "Standalone VR",
+    "pitch": "Give me a headset and I'll put a whole world in it.",
     "baseOS": "Android-based",
     "distroBase": null,
     "by": ["Meta"],

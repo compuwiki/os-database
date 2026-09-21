@@ -2,6 +2,8 @@
   {
     "id": "haiku",
     "name": "Haiku",
+    "knownFor": "BeOS spirit, revived",
+    "pitch": "Give me a desktop and I'll keep it responsive.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Haiku, Inc."],
@@ -29,6 +31,8 @@
   {
     "id": "reactos",
     "name": "ReactOS",
+    "knownFor": "Free Windows-compatible OS",
+    "pitch": "Give me Windows apps and I'll try to run them free.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["ReactOS Project"],
@@ -56,6 +60,8 @@
   {
     "id": "ms-dos",
     "name": "MS-DOS",
+    "knownFor": "Where the PC began",
+    "pitch": "Give me 640 KB and I'll give you a prompt.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Microsoft"],
@@ -83,6 +89,8 @@
   {
     "id": "freedos",
     "name": "FreeDOS",
+    "knownFor": "DOS lives on",
+    "pitch": "Give me an old game and I'll run it on real DOS.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["FreeDOS Project"],
@@ -109,6 +117,8 @@
   {
     "id": "risc-os",
     "name": "RISC OS",
+    "knownFor": "The first ARM desktop",
+    "pitch": "Give me an ARM chip and I'll boot a desktop from ROM.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["RISC OS Open Ltd"],
@@ -135,6 +145,8 @@
   {
     "id": "amigaos-4",
     "name": "AmigaOS 4",
+    "knownFor": "Amiga on PowerPC",
+    "pitch": "Give me a PowerPC and I'll bring the Amiga back.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Hyperion Entertainment"],
@@ -162,6 +174,8 @@
   {
     "id": "morphos",
     "name": "MorphOS",
+    "knownFor": "Amiga-style desktop on PowerPC",
+    "pitch": "Give me a PowerPC Mac and I'll run Amiga apps.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["MorphOS Team"],
@@ -189,6 +203,8 @@
   {
     "id": "aros",
     "name": "AROS",
+    "knownFor": "Open-source Amiga clone",
+    "pitch": "Give me almost any CPU and I'll reimplement the Amiga.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["AROS Development Team"],
@@ -215,6 +231,8 @@
   {
     "id": "openvms",
     "name": "OpenVMS",
+    "knownFor": "Clusters that never go down",
+    "pitch": "Give me a cluster and I'll keep it up for decades.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["VMS Software Inc."],
@@ -241,6 +259,8 @@
   {
     "id": "fuchsia",
     "name": "Fuchsia",
+    "knownFor": "A fresh start without Linux",
+    "pitch": "Give me a clean slate and I'll skip Linux.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Google"],
@@ -268,6 +288,8 @@
   {
     "id": "harmonyos",
     "name": "HarmonyOS",
+    "knownFor": "One ecosystem across devices",
+    "pitch": "Give me one account and I'll link every device.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Huawei"],
@@ -295,6 +317,8 @@
   {
     "id": "openharmony",
     "name": "OpenHarmony",
+    "knownFor": "Open all-scenario OS",
+    "pitch": "Give me any device and I'll give it a shared base.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["OpenAtom Foundation", "Huawei"],
@@ -321,6 +345,8 @@
   {
     "id": "zephyr",
     "name": "Zephyr",
+    "knownFor": "RTOS for IoT",
+    "pitch": "Give me a microcontroller and I'll give it a real OS.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Linux Foundation"],
@@ -348,6 +374,8 @@
   {
     "id": "templeos",
     "name": "TempleOS",
+    "knownFor": "Solo-built hobby OS",
+    "pitch": "Give me 16 colors and I'll give you HolyC.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Terry A. Davis"],
@@ -374,6 +402,8 @@
   {
     "id": "kolibrios",
     "name": "KolibriOS",
+    "knownFor": "An OS on a floppy",
+    "pitch": "Give me a floppy and I'll fit an OS on it.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["KolibriOS Team"],
@@ -400,6 +430,8 @@
   {
     "id": "arcaos",
     "name": "ArcaOS (OS/2)",
+    "knownFor": "OS/2 revival",
+    "pitch": "Give me OS/2 and I'll keep it alive on modern PCs.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Arca Noae"],
@@ -426,6 +458,8 @@
   {
     "id": "vxworks",
     "name": "VxWorks",
+    "knownFor": "Spacecraft & industrial RTOS",
+    "pitch": "Give me a Mars rover and I'll keep it deterministic.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Wind River"],
@@ -452,6 +486,8 @@
   {
     "id": "freertos",
     "name": "FreeRTOS",
+    "knownFor": "RTOS for microcontrollers",
+    "pitch": "Give me 10 KB and I'll schedule your tasks.",
     "baseOS": "Other",
     "distroBase": null,
     "by": ["Amazon Web Services"],

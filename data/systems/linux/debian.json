@@ -2,6 +2,8 @@
   {
     "id": "debian",
     "name": "Debian",
+    "knownFor": "Stability & universality",
+    "pitch": "Give me a system and I'll keep it running.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Debian Project"],
@@ -29,6 +31,8 @@
   {
     "id": "ubuntu",
     "name": "Ubuntu",
+    "knownFor": "Accessibility & ecosystem",
+    "pitch": "Give me Linux and I'll make it easy to use.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Canonical"],
@@ -56,6 +60,8 @@
   {
     "id": "kali",
     "name": "Kali Linux",
+    "knownFor": "Security testing",
+    "pitch": "Give me a network and I'll find what's exposed.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Offensive Security"],
@@ -83,6 +89,8 @@
   {
     "id": "proxmox",
     "name": "Proxmox VE",
+    "knownFor": "Virtualization host",
+    "pitch": "Give me a server and I'll turn it into a small data center.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Proxmox Server Solutions"],
@@ -110,6 +118,8 @@
   {
     "id": "parrotos",
     "name": "ParrotOS",
+    "knownFor": "Security plus privacy",
+    "pitch": "Give me a pentest and I'll bring anonymity too.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Parrot Security"],
@@ -137,6 +147,8 @@
   {
     "id": "deepin",
     "name": "Deepin",
+    "knownFor": "Polished desktop",
+    "pitch": "Give me a desktop and I'll make it beautiful.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["UnionTech"],
@@ -164,6 +176,8 @@
   {
     "id": "peppermint",
     "name": "Peppermint OS",
+    "knownFor": "Light, web-app focused",
+    "pitch": "Give me a browser and I'll build a desktop around it.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Peppermint OS Team"],
@@ -191,6 +205,8 @@
   {
     "id": "tails",
     "name": "Tails",
+    "knownFor": "Privacy",
+    "pitch": "Give me a computer and leave no trace.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Tails Project"],
@@ -218,6 +234,8 @@
   {
     "id": "linux-mint",
     "name": "Linux Mint",
+    "knownFor": "Familiar and calm",
+    "pitch": "Give me a Windows user and I'll make them comfortable.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Linux Mint Team"],
@@ -245,6 +263,8 @@
   {
     "id": "pop-os",
     "name": "Pop!_OS",
+    "knownFor": "Developer & gamer friendly",
+    "pitch": "Give me a workstation and I'll tile it for you.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["System76"],
@@ -272,6 +292,8 @@
   {
     "id": "kde-neon",
     "name": "KDE Neon",
+    "knownFor": "Latest KDE Plasma",
+    "pitch": "Give me KDE and I'll give it to you fresh.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["KDE"],
@@ -299,6 +321,8 @@
   {
     "id": "elementary-os",
     "name": "elementary OS",
+    "knownFor": "Cohesive, simple design",
+    "pitch": "Give me a desktop and I'll make every app look like it belongs.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["elementary, Inc."],
@@ -326,6 +350,8 @@
   {
     "id": "qubes-os",
     "name": "Qubes OS",
+    "knownFor": "Isolation",
+    "pitch": "Assume everything is compromised; isolate it.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Qubes OS Project"],
@@ -353,6 +379,8 @@
   {
     "id": "zorin-os",
     "name": "Zorin OS",
+    "knownFor": "Familiar layouts",
+    "pitch": "Give me a Windows or macOS habit and I'll match it.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Zorin Group"],
@@ -380,6 +408,8 @@
   {
     "id": "devuan",
     "name": "Devuan",
+    "knownFor": "Debian without systemd",
+    "pitch": "Give me Debian and I'll let you choose your init.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Devuan Project"],
@@ -407,6 +437,8 @@
   {
     "id": "raspberry-pi-os",
     "name": "Raspberry Pi OS",
+    "knownFor": "The Raspberry Pi default",
+    "pitch": "Give me a tiny board and I'll make it a computer.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Raspberry Pi Ltd"],
@@ -434,6 +466,8 @@
   {
     "id": "kubuntu",
     "name": "Kubuntu",
+    "knownFor": "Ubuntu with KDE Plasma",
+    "pitch": "Give me Ubuntu and I'll dress it in Plasma.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Kubuntu Council", "Canonical"],
@@ -461,6 +495,8 @@
   {
     "id": "ubuntu-touch",
     "name": "Ubuntu Touch",
+    "knownFor": "Community mobile Linux",
+    "pitch": "Give me a phone and I'll run real Linux on it.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["UBports Foundation"],
@@ -487,6 +523,8 @@
   {
     "id": "linux-lite",
     "name": "Linux Lite",
+    "knownFor": "Easy on old PCs",
+    "pitch": "Give me an old PC and I'll give it a friendly second life.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Jerry Bezencon"],
@@ -514,6 +552,8 @@
   {
     "id": "vanilla-os",
     "name": "Vanilla OS",
+    "knownFor": "Immutable, rollback-safe",
+    "pitch": "Give me a system and I'll make updates safe to undo.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Vanilla OS Team"],
@@ -541,6 +581,8 @@
   {
     "id": "mx-linux",
     "name": "MX Linux",
+    "knownFor": "Stable, practical desktop",
+    "pitch": "Give me a working desktop and I'll keep it lean and tidy.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["MX Linux Community"],
@@ -568,6 +610,8 @@
   {
     "id": "antix",
     "name": "antiX",
+    "knownFor": "Runs on ancient hardware",
+    "pitch": "Give me a 15-year-old PC and I'll boot it.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["antiX Community"],
@@ -594,6 +638,8 @@
   {
     "id": "lmde",
     "name": "LMDE (Linux Mint Debian Edition)",
+    "knownFor": "Mint without Ubuntu",
+    "pitch": "Give me Mint and I'll build it on Debian.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Linux Mint Team"],
@@ -621,6 +667,8 @@
   {
     "id": "xubuntu",
     "name": "Xubuntu",
+    "knownFor": "Light Ubuntu with Xfce",
+    "pitch": "Give me Ubuntu and I'll make it lighter.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Xubuntu Team", "Canonical"],
@@ -648,6 +696,8 @@
   {
     "id": "lubuntu",
     "name": "Lubuntu",
+    "knownFor": "Ultra-light Ubuntu",
+    "pitch": "Give me modest hardware and I'll give you LXQt.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Lubuntu Team", "Canonical"],
@@ -675,6 +725,8 @@
   {
     "id": "ubuntu-mate",
     "name": "Ubuntu MATE",
+    "knownFor": "The classic desktop",
+    "pitch": "Give me Ubuntu and I'll keep the traditional layout.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Ubuntu MATE Team", "Canonical"],
@@ -702,6 +754,8 @@
   {
     "id": "armbian",
     "name": "Armbian",
+    "knownFor": "Linux for ARM boards",
+    "pitch": "Give me an odd ARM board and I'll boot a real Linux on it.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Armbian"],
@@ -729,6 +783,8 @@
   {
     "id": "pureos",
     "name": "PureOS",
+    "knownFor": "Ethical, FSF-endorsed",
+    "pitch": "Give me a device and I'll keep it free of proprietary blobs.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Purism"],
@@ -755,6 +811,8 @@
   {
     "id": "trisquel",
     "name": "Trisquel",
+    "knownFor": "100% free software",
+    "pitch": "Give me a computer and I'll run only free software.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Trisquel Project"],
@@ -782,6 +840,8 @@
   {
     "id": "truenas-scale",
     "name": "TrueNAS SCALE",
+    "knownFor": "ZFS storage appliance",
+    "pitch": "Give me disks and I'll keep your data safe with ZFS.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["iXsystems"],
@@ -809,6 +869,8 @@
   {
     "id": "openmediavault",
     "name": "OpenMediaVault",
+    "knownFor": "Home NAS",
+    "pitch": "Give me a spare PC and I'll make it a NAS.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["OpenMediaVault Project"],
@@ -836,6 +898,8 @@
   {
     "id": "vyos",
     "name": "VyOS",
+    "knownFor": "Open-source router OS",
+    "pitch": "Give me a network and I'll route it from the command line.",
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["VyOS Project"],

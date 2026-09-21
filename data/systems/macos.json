@@ -2,6 +2,8 @@
   {
     "id": "macos",
     "name": "macOS",
+    "knownFor": "Integrated hardware/software",
+    "pitch": "Give me hardware and software I control, and I'll integrate them.",
     "baseOS": "macOS",
     "distroBase": null,
     "by": ["Apple"],

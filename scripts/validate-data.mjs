@@ -83,6 +83,8 @@ for (const f of meta.systemFiles) {
     checkRefs(o, at);
     checkSource(o, at);
     if (!o.name) at('no name');
+    if (!o.knownFor) at('no knownFor');
+    if (o.pitch != null && typeof o.pitch !== 'string') at('pitch must be a string');
     if (!o.license) at('no license text');
     if (o.logo && !exists(`assets/logos/${o.logo}`)) at(`missing logo file: ${o.logo}`);
     for (const k of SPEC_KEYS) {

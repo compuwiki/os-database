@@ -2,6 +2,8 @@
   {
     "id": "alpine",
     "name": "Alpine Linux",
+    "knownFor": "Minimalism & security",
+    "pitch": "Give me 20 MB and I'll run a server.",
     "baseOS": "Linux",
     "distroBase": "Alpine",
     "by": ["Alpine Linux"],
@@ -29,6 +31,8 @@
   {
     "id": "postmarketos",
     "name": "postmarketOS",
+    "knownFor": "Phones as real computers",
+    "pitch": "Give me an old phone and I'll make it a Linux computer.",
     "baseOS": "Linux",
     "distroBase": "Alpine",
     "by": ["postmarketOS"],

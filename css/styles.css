@@ -46,12 +46,26 @@ body:has(#compareBar:not([hidden])) { padding-bottom: 6rem; }
 .cmp td { color: #cbd5e1; }
 
 /* detail dialog */
-dialog { margin: auto; padding: 0; color: inherit; background: #0f172a; border: 1px solid #334155; border-radius: .75rem; width: min(42rem, calc(100vw - 2rem)); max-height: 90vh; }
+dialog { margin: auto; padding: 0; color: inherit; background: #0f172a; border: 1px solid #334155; border-radius: .75rem; width: min(42rem, calc(100vw - 2rem)); max-height: 90vh; overflow: hidden; }
 #compareModal { width: min(72rem, calc(100vw - 2rem)); }
 #compareModal[open] { display: flex; flex-direction: column; }
+/* the dialog itself never scrolls (overflow hidden); the one scrollbar is this inner box, 2px shorter for the dialog border */
+.dialog-scroll { overflow-y: auto; max-height: calc(90vh - 2px); }
 dialog::backdrop { background: rgba(0, 0, 0, .8); backdrop-filter: blur(4px); }
 body:has(dialog[open]) { overflow: hidden; }
 
 /* logo tile: logos are designed for light backgrounds */
 .logo { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 22%; background: #f1f5f9; }
 .logo img, .logo svg { width: 78%; height: 78%; object-fit: contain; }
+
+/* detail dialog: facts list (label / value rows) and small chips */
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: .625rem 1.25rem; align-items: start; font-size: .875rem; }
+.facts dt { padding-top: .25rem; font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #64748b; }
+.facts dd { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem; margin: 0; min-height: 1.75rem; color: #cbd5e1; }
+.info-chip { display: inline-flex; align-items: center; gap: .375rem; padding: .1875rem .625rem; border-radius: 9999px; background: #1e293b; border: 1px solid #334155; font-size: .8125rem; color: #e2e8f0; }
+.info-link { display: inline-flex; align-items: center; gap: .375rem; color: #6ee7b7; word-break: break-all; }
+.info-link:hover { text-decoration: underline; }
+@media (max-width: 30rem) {
+  .facts { grid-template-columns: 1fr; gap: .125rem; }
+  .facts dt { padding-top: .5rem; }
+}

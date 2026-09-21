@@ -2,6 +2,8 @@
   {
     "id": "gentoo",
     "name": "Gentoo Linux",
+    "knownFor": "Compilation & customization",
+    "pitch": "Give me the source and I'll build it my way.",
     "baseOS": "Linux",
     "distroBase": "Gentoo",
     "by": ["Gentoo Foundation"],
@@ -29,6 +31,8 @@
   {
     "id": "calculate-linux",
     "name": "Calculate Linux",
+    "knownFor": "Gentoo with batteries",
+    "pitch": "Give me Gentoo and I'll ship it prebuilt with a control panel.",
     "baseOS": "Linux",
     "distroBase": "Gentoo",
     "by": ["Calculate Linux"],
@@ -56,6 +60,8 @@
   {
     "id": "redcore",
     "name": "Redcore Linux",
+    "knownFor": "Gentoo, ready to use",
+    "pitch": "Give me Gentoo and I'll prebuild it for the desktop.",
     "baseOS": "Linux",
     "distroBase": "Gentoo",
     "by": ["Redcore Linux"],
@@ -83,6 +89,8 @@
   {
     "id": "chromeos",
     "name": "ChromeOS",
+    "knownFor": "Simplicity / cloud",
+    "pitch": "Give me a browser and I'll make the computer disappear.",
     "baseOS": "Linux",
     "distroBase": "Gentoo",
     "by": ["Google"],

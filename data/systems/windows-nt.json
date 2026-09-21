@@ -2,6 +2,8 @@
   {
     "id": "windows-xp",
     "name": "Windows XP",
+    "knownFor": "Longevity & nostalgia",
+    "pitch": "Give me a green Start button and I'll refuse to retire.",
     "baseOS": "Windows NT",
     "distroBase": null,
     "by": ["Microsoft"],
@@ -30,6 +32,8 @@
   {
     "id": "windows-7",
     "name": "Windows 7",
+    "knownFor": "The beloved desktop",
+    "pitch": "Give me a clean taskbar and I'll never go out of style.",
     "baseOS": "Windows NT",
     "distroBase": null,
     "by": ["Microsoft"],
@@ -58,6 +62,8 @@
   {
     "id": "windows-10",
     "name": "Windows 10",
+    "knownFor": "A decade of compatibility",
+    "pitch": "Give me a PC from almost any year and I'll keep it useful.",
     "baseOS": "Windows NT",
     "distroBase": null,
     "by": ["Microsoft"],
@@ -86,6 +92,8 @@
   {
     "id": "windows-11",
     "name": "Windows 11",
+    "knownFor": "Compatibility & software ecosystem",
+    "pitch": "Give me almost any mainstream software and I'll run it.",
     "baseOS": "Windows NT",
     "distroBase": null,
     "by": ["Microsoft"],
@@ -114,6 +122,8 @@
   {
     "id": "windows-server",
     "name": "Windows Server",
+    "knownFor": "Enterprise infrastructure",
+    "pitch": "Give me a company and I'll run its directory, files and databases.",
     "baseOS": "Windows NT",
     "distroBase": null,
     "by": ["Microsoft"],

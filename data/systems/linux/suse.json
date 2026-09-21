@@ -2,6 +2,8 @@
   {
     "id": "sles",
     "name": "SUSE Linux Enterprise",
+    "knownFor": "Enterprise & SAP workloads",
+    "pitch": "Give me a mission-critical workload and I'll keep it supported.",
     "baseOS": "Linux",
     "distroBase": "SUSE",
     "by": ["SUSE"],
@@ -29,6 +31,8 @@
   {
     "id": "opensuse",
     "name": "openSUSE (Tumbleweed/Leap)",
+    "knownFor": "Administration & tooling",
+    "pitch": "Give me a complex system and I'll make it manageable.",
     "baseOS": "Linux",
     "distroBase": "SUSE",
     "by": ["openSUSE Project"],

@@ -2,6 +2,8 @@
   {
     "id": "solaris",
     "name": "Oracle Solaris",
+    "knownFor": "ZFS & DTrace pioneer",
+    "pitch": "Give me a big server and I'll give it filesystems and tracing before anyone else.",
     "baseOS": "UNIX",
     "distroBase": null,
     "by": ["Oracle"],
@@ -28,6 +30,8 @@
   {
     "id": "aix",
     "name": "IBM AIX",
+    "knownFor": "Power systems UNIX",
+    "pitch": "Give me a Power server and I'll keep it running for decades.",
     "baseOS": "UNIX",
     "distroBase": null,
     "by": ["IBM"],
@@ -55,6 +59,8 @@
   {
     "id": "hp-ux",
     "name": "HP-UX",
+    "knownFor": "Enterprise UNIX on Itanium",
+    "pitch": "Give me a data center and I'll run it on PA-RISC and Itanium.",
     "baseOS": "UNIX",
     "distroBase": null,
     "by": ["Hewlett Packard Enterprise"],
@@ -81,6 +87,8 @@
   {
     "id": "zos",
     "name": "IBM z/OS",
+    "knownFor": "Mainframe workloads",
+    "pitch": "Give me a billion transactions and I'll run them on a mainframe.",
     "baseOS": "UNIX",
     "distroBase": null,
     "by": ["IBM"],
@@ -107,6 +115,8 @@
   {
     "id": "openindiana",
     "name": "OpenIndiana (illumos)",
+    "knownFor": "Solaris heritage, open",
+    "pitch": "Give me Solaris heritage and I'll keep it open.",
     "baseOS": "UNIX",
     "distroBase": null,
     "by": ["OpenIndiana Project"],

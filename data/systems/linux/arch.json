@@ -2,6 +2,8 @@
   {
     "id": "arch-linux",
     "name": "Arch Linux",
+    "knownFor": "Freedom & control",
+    "pitch": "Give me Linux and I'll make it do anything.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Arch Linux"],
@@ -29,6 +31,8 @@
   {
     "id": "artix",
     "name": "Artix Linux",
+    "knownFor": "Arch without systemd",
+    "pitch": "Give me Arch and I'll let you pick another init.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Artix Linux"],
@@ -56,6 +60,8 @@
   {
     "id": "arcolinux",
     "name": "ArcoLinux",
+    "knownFor": "Learning by tweaking",
+    "pitch": "Give me a desktop and I'll teach you how it works.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Erik Dubois"],
@@ -83,6 +89,8 @@
   {
     "id": "archcraft",
     "name": "Archcraft",
+    "knownFor": "Pretty, light window managers",
+    "pitch": "Give me a window manager and I'll make it beautiful.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Archcraft"],
@@ -110,6 +118,8 @@
   {
     "id": "blackarch",
     "name": "BlackArch",
+    "knownFor": "Penetration-testing toolbox",
+    "pitch": "Give me a target and I'll bring a few thousand tools.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["BlackArch"],
@@ -137,6 +147,8 @@
   {
     "id": "endeavouros",
     "name": "EndeavourOS",
+    "knownFor": "Friendly Arch",
+    "pitch": "Give me Arch and I'll make the install painless.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["EndeavourOS"],
@@ -164,6 +176,8 @@
   {
     "id": "garuda",
     "name": "Garuda Linux",
+    "knownFor": "Fast, flashy Arch",
+    "pitch": "Give me a gaming rig and I'll make Arch look and feel quick.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Garuda Linux"],
@@ -191,6 +205,8 @@
   {
     "id": "cachyos",
     "name": "CachyOS",
+    "knownFor": "Performance tuning",
+    "pitch": "Give me a CPU and I'll squeeze every cycle out of it.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["CachyOS"],
@@ -218,6 +234,8 @@
   {
     "id": "manjaro",
     "name": "Manjaro",
+    "knownFor": "Approachable Arch",
+    "pitch": "Give me Arch and I'll put a graphical installer in front of it.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Manjaro GmbH"],
@@ -245,6 +263,8 @@
   {
     "id": "mabox",
     "name": "Mabox Linux",
+    "knownFor": "Openbox, ready to go",
+    "pitch": "Give me Openbox and I'll pre-configure everything else.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Mabox Linux"],
@@ -272,6 +292,8 @@
   {
     "id": "rebornos",
     "name": "RebornOS",
+    "knownFor": "Arch with many desktops",
+    "pitch": "Give me a desktop preference and I'll have an Arch image for it.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["RebornOS"],
@@ -299,6 +321,8 @@
   {
     "id": "omarchy",
     "name": "Omarchy",
+    "knownFor": "Opinionated Hyprland setup",
+    "pitch": "Give me a fresh Arch and I'll give it strong opinions.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["David Heinemeier Hansson"],
@@ -326,6 +350,8 @@
   {
     "id": "steamos",
     "name": "SteamOS",
+    "knownFor": "Handheld gaming",
+    "pitch": "Give me a game library and I'll fit it in your hands.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Valve"],
@@ -353,6 +379,8 @@
   {
     "id": "athena-os",
     "name": "Athena OS",
+    "knownFor": "Security with style",
+    "pitch": "Give me a hacking lab and I'll make it look good.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Athena OS Team"],
@@ -380,6 +408,8 @@
   {
     "id": "parabola",
     "name": "Parabola GNU/Linux-libre",
+    "knownFor": "Free software only",
+    "pitch": "Give me Arch and I'll strip out the non-free parts.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Parabola Project"],
@@ -407,6 +437,8 @@
   {
     "id": "arch-linux-arm",
     "name": "Arch Linux ARM",
+    "knownFor": "Arch on ARM boards",
+    "pitch": "Give me a small board and I'll run Arch on it.",
     "baseOS": "Linux",
     "distroBase": "Arch",
     "by": ["Arch Linux ARM Team"],

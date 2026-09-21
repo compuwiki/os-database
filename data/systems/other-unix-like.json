@@ -2,6 +2,8 @@
   {
     "id": "redox",
     "name": "Redox OS",
+    "knownFor": "Unix-like microkernel in Rust",
+    "pitch": "Give me a kernel and I'll write it in Rust.",
     "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["Redox OS Project"],
@@ -29,6 +31,8 @@
   {
     "id": "serenityos",
     "name": "SerenityOS",
+    "knownFor": "From-scratch 90s-style desktop",
+    "pitch": "Give me nostalgia and I'll write the whole system myself.",
     "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["Andreas Kling"],
@@ -55,6 +59,8 @@
   {
     "id": "vinix",
     "name": "Vinix",
+    "knownFor": "An OS in the V language",
+    "pitch": "Give me V and I'll write a kernel with it.",
     "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["V Language Project", "Alexander Medvednikov"],
@@ -81,6 +87,8 @@
   {
     "id": "plan9",
     "name": "Plan 9 (9front)",
+    "knownFor": "UNIX successor by its authors",
+    "pitch": "Give me everything as a file, and this time I mean everything.",
     "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["9front Project"],
@@ -107,6 +115,8 @@
   {
     "id": "minix",
     "name": "MINIX 3",
+    "knownFor": "Teaching microkernel",
+    "pitch": "Give me a student and I'll show them a microkernel.",
     "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["Andrew S. Tanenbaum"],
@@ -133,6 +143,8 @@
   {
     "id": "hurd",
     "name": "GNU Hurd",
+    "knownFor": "The GNU kernel",
+    "pitch": "Give me servers and I'll run the kernel in user space.",
     "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["GNU Project"],
@@ -159,6 +171,8 @@
   {
     "id": "toaruos",
     "name": "ToaruOS",
+    "knownFor": "One-person hobby OS",
+    "pitch": "Give me a hobby and I'll write an OS.",
     "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["K. Lange"],
@@ -185,6 +199,8 @@
   {
     "id": "qnx",
     "name": "QNX",
+    "knownFor": "Cars & safety-critical",
+    "pitch": "Give me a car and I'll keep it deterministic.",
     "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["BlackBerry"],

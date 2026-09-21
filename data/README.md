@@ -30,6 +30,10 @@ data/
 
 Adding a whole new Base OS or family means adding its key to `taxonomy/`, creating the matching systems file, and listing that file in `meta.json`.
 
+## Editorial fields
+
+`knownFor` (2 to 4 words, required) and `pitch` (one sentence, optional) are opinion, not specification: what each system is best known for, in the voice "Give me X and I'll Y". Keep `knownFor` neutral and factual in spirit ("Immutable, rollback-safe"), and use `pitch` for personality. They are shown in the detail dialog and the comparison, and are searchable.
+
 ## How systems are classified
 
 Three independent facts, so nothing has to be squeezed into one label:

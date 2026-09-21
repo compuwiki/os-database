@@ -2,6 +2,8 @@
   {
     "id": "rhel",
     "name": "Red Hat Enterprise Linux",
+    "knownFor": "Enterprise support & certification",
+    "pitch": "Give me a company and I'll keep its servers supported for a decade.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Red Hat", "IBM"],
@@ -29,6 +31,8 @@
   {
     "id": "fedora",
     "name": "Fedora",
+    "knownFor": "Modern Linux",
+    "pitch": "Give me Linux and I'll give you what's next.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Red Hat", "IBM"],
@@ -56,6 +60,8 @@
   {
     "id": "centos-stream",
     "name": "CentOS Stream",
+    "knownFor": "RHEL preview",
+    "pitch": "Give me a preview and I'll show you the next RHEL.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Red Hat", "IBM"],
@@ -83,6 +89,8 @@
   {
     "id": "almalinux",
     "name": "AlmaLinux",
+    "knownFor": "Community-owned RHEL clone",
+    "pitch": "Give me RHEL compatibility and I'll keep it in community hands.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["AlmaLinux OS Foundation"],
@@ -110,6 +118,8 @@
   {
     "id": "rocky-linux",
     "name": "Rocky Linux",
+    "knownFor": "CentOS spirit, continued",
+    "pitch": "Give me the CentOS way and I'll carry it on.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Rocky Enterprise Software Foundation"],
@@ -137,6 +147,8 @@
   {
     "id": "nobara",
     "name": "Nobara Project",
+    "knownFor": "Fedora tuned for games",
+    "pitch": "Give me Fedora and I'll make games and codecs just work.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Thomas Crider (GloriousEggroll)"],
@@ -164,6 +176,8 @@
   {
     "id": "asahi-linux",
     "name": "Asahi Linux",
+    "knownFor": "Linux on Apple Silicon",
+    "pitch": "Give me a Mac and I'll run Linux on it.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Asahi Linux"],
@@ -191,6 +205,8 @@
   {
     "id": "ultramarine",
     "name": "Ultramarine Linux",
+    "knownFor": "Fedora with polish",
+    "pitch": "Give me Fedora and I'll ship it ready to use.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Fyra Labs"],
@@ -218,6 +234,8 @@
   {
     "id": "oracle-linux",
     "name": "Oracle Linux",
+    "knownFor": "RHEL-compatible for Oracle stacks",
+    "pitch": "Give me an Oracle database and I'll run it on a tuned kernel.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Oracle"],
@@ -244,6 +262,8 @@
   {
     "id": "amazon-linux",
     "name": "Amazon Linux",
+    "knownFor": "Tuned for AWS",
+    "pitch": "Give me an EC2 instance and I'll boot ready for the cloud.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Amazon Web Services"],
@@ -270,6 +290,8 @@
   {
     "id": "bazzite",
     "name": "Bazzite",
+    "knownFor": "Console-like gaming PC",
+    "pitch": "Give me a gaming PC and I'll make it as easy as a console.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Universal Blue"],
@@ -296,6 +318,8 @@
   {
     "id": "fedora-coreos",
     "name": "Fedora CoreOS",
+    "knownFor": "Self-updating container host",
+    "pitch": "Give me containers and I'll update myself.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["Red Hat", "IBM"],
@@ -323,6 +347,8 @@
   {
     "id": "openeuler",
     "name": "openEuler",
+    "knownFor": "Multi-architecture server OS",
+    "pitch": "Give me almost any CPU and I'll run a server on it.",
     "baseOS": "Linux",
     "distroBase": "Red Hat",
     "by": ["OpenAtom Foundation", "Huawei"],
