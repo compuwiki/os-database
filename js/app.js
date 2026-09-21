@@ -1,4 +1,4 @@
-// UI logic. Depends on data.js (osData, families, baseTypes, authors, authorTop, authorGroups, basedOnTypes, deviceTypes, licenseTypes, installTiers, DATA_AS_OF) and icons.js (uiIcon).
+// UI logic. Depends on data.js (osData, families, baseTypes, authors, authorKinds, basedOnTypes, deviceTypes, licenseTypes, installTiers, DATA_AS_OF) and icons.js (uiIcon).
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -48,12 +48,6 @@ const licenseFamilies = Object.keys(licenseTypes).filter((f) => f !== 'Proprieta
 // User pills: each system is in exactly one tier (estimates)
 const installsMatch = (os, t) => t === 'All' || os.installs === t;
 const installCount = (t) => osData.filter((os) => installsMatch(os, t)).length;
-// Author pills: small authors share a group pill ("Independent developers", "Community projects")
-const authorKey = (a) => authors[a].group ?? a;
-const authorMeta = (k) => authorGroups[k] ?? authors[k];
-const authorKeys = (os) => new Set(os.by.map(authorKey));
-const authorCount = {};
-osData.forEach((os) => authorKeys(os).forEach((k) => { authorCount[k] = (authorCount[k] ?? 0) + 1; }));
 // "Based on" options that apply to the systems in the selected Base OS (with counts). Empty when none of them narrows the list.
 const basedOnOptions = () => {
   const pool = osData.filter((os) => state.base === 'All' || os.baseOS === state.base);
@@ -62,19 +56,17 @@ const basedOnOptions = () => {
   // inside Linux the distro-family row (same names) already covers this, so it is not repeated
   return { n, total: pool.length, options: state.base === 'Linux' ? [] : Object.keys(n).filter((b) => n[b] > 0 && n[b] < pool.length) };
 };
-// authorTop first (in that order), then most systems, then companies > organizations > developers, then A-Z
-const TYPE_RANK = { company: 0, organization: 1, developer: 2, group: 3 };
-const rank = (a) => (authorTop.includes(a) ? authorTop.indexOf(a) : authorTop.length);
-const authorNames = [...new Set(Object.keys(authors).map(authorKey))].sort((a, b) =>
-  rank(a) - rank(b) || authorCount[b] - authorCount[a] || TYPE_RANK[authorMeta(a).type ?? 'group'] - TYPE_RANK[authorMeta(b).type ?? 'group'] || a.localeCompare(b));
-const state = { base: 'All', distro: 'All', based: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', author: 'All', authorsOpen: false, query: '' };
-// Authors that have at least one system in the selected Base OS (with their system count there)
-const authorsInBase = () => {
-  const n = {};
-  osData.forEach((os) => { if (state.base === 'All' || os.baseOS === state.base) authorKeys(os).forEach((k) => { n[k] = (n[k] ?? 0) + 1; }); });
-  return n;
+const state = { base: 'All', distro: 'All', based: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', kind: 'All', author: 'All', query: '' };
+// Author counts inside the selected Base OS: per author and per category
+const authorStats = () => {
+  const author = {}, kind = {};
+  osData.forEach((os) => {
+    if (state.base !== 'All' && os.baseOS !== state.base) return;
+    new Set(os.by).forEach((a) => { author[a] = (author[a] ?? 0) + 1; });
+    new Set(os.by.map((a) => authors[a].type)).forEach((k) => { kind[k] = (kind[k] ?? 0) + 1; });
+  });
+  return { author, kind };
 };
-const AUTHORS_COLLAPSE_OVER = 12; // more authors than this: show only the pinned ones until "Show all"
 // "Red Hat (IBM)": show the owning company next to an author that has one
 const authorLabel = (a) => (authors[a]?.parent ? `${a} (${authors[a].parent})` : a);
 const compare = []; // ids, in the order added
@@ -145,16 +137,19 @@ function renderPills() {
     ['All', ...Object.keys(installTiers)].map((t) => pill('installs', t, t === 'All' ? 'All Installs' : t, null, 'drive', 'w-4 h-4')
       .replace('<button ', `<button ${hintTitle(t === 'All' ? 'Rough estimates of active installs: devices, servers and long-lived VMs (not short-lived containers)' : `${installTiers[t]} installs (est.)`, installCount(t))} `)).join('');
 
-  // Authors: only those inside the selected Base OS; collapsed to the pinned ones (plus the selected) until expanded.
-  const inBase = authorsInBase();
-  const list = authorNames.filter((a) => a in inBase);
-  const collapsible = list.length > AUTHORS_COLLAPSE_OVER;
-  const pinned = list.filter((a) => authorTop.includes(a) || a === state.author);
-  const shown = state.authorsOpen || !collapsible ? list : pinned.length >= 3 ? pinned : list.slice(0, 8);
+  // Authors: category pills; picking one lists its authors below (only those with systems in the selected Base OS).
+  const stats = authorStats();
   $('authorPills').innerHTML =
-    pill('author', 'All', 'All Authors', null, 'grid', 'w-4 h-4').replace('<button ', '<button title="Primary author, plus the upstream projects it is built on" ') +
-    shown.map((k) => pill('author', k, authorLabel(k), authorMeta(k).logo, authorMeta(k).icon ?? 'user', 'w-4 h-4', 'author').replace('<button ', `<button title="${esc(authorMeta(k).hint ?? authorMeta(k).type)} · ${inBase[k]} system${inBase[k] > 1 ? 's' : ''}" `)).join('') +
-    (collapsible ? `<button type="button" class="pill pill-more" data-more-authors>${state.authorsOpen ? 'Show fewer' : `Show all ${list.length}`}</button>` : '');
+    pill('kind', 'All', 'All Authors', null, 'grid', 'w-4 h-4').replace('<button ', '<button title="Who makes a system (the upstream it is built on is under Based on)" ') +
+    Object.keys(authorKinds).filter((k) => stats.kind[k]).map((k) => pill('kind', k, authorKinds[k].label, null, authorKinds[k].icon, 'w-4 h-4')
+      .replace('<button ', `<button title="${esc(authorKinds[k].hint)} · ${stats.kind[k]} systems" `)).join('');
+  const kind = authorKinds[state.kind];
+  $('authorSubPills').innerHTML = !kind ? '' :
+    pill('author', 'All', `All ${kind.label.toLowerCase()}`, null, kind.icon, 'w-4 h-4') +
+    Object.keys(stats.author).filter((a) => authors[a].type === state.kind).sort((a, b) => stats.author[b] - stats.author[a] || a.localeCompare(b))
+      .map((a) => pill('author', a, authorLabel(a), authors[a].logo, kind.icon, 'w-4 h-4', 'author')
+        .replace('<button ', `<button title="${stats.author[a]} system${stats.author[a] > 1 ? 's' : ''}" `)).join('');
+  $('authorSubPills').hidden = !kind;
 }
 
 function card(os) {
@@ -183,7 +178,7 @@ function renderGrid() {
     licenseMatch(os, state.license) && (state.family === 'All' || os.licenseTags.includes(state.family)) &&
     installsMatch(os, state.installs) &&
     (state.based === 'All' || os.basedOn.includes(state.based)) &&
-    (state.author === 'All' || authorKeys(os).has(state.author)) &&
+    (state.kind === 'All' || os.by.some((a) => authors[a].type === state.kind && (state.author === 'All' || a === state.author))) &&
     text.includes(q)).map(({ os }) => os);
 
   $('osGrid').innerHTML = shown.map(card).join('');
@@ -298,11 +293,12 @@ const actions = {
 $('filters').addEventListener('click', (e) => {
   const btn = e.target.closest('.pill');
   if (!btn) return;
-  if ('moreAuthors' in btn.dataset) state.authorsOpen = !state.authorsOpen;
-  else if (btn.dataset.base) {
+  if (btn.dataset.base) {
     state.base = btn.dataset.base;
     state.distro = 'All';
-    if (state.author !== 'All' && !(state.author in authorsInBase())) state.author = 'All'; // that author has nothing in this Base OS
+    const st = authorStats(); // drop an author / category that has nothing in this Base OS
+    if (state.kind !== 'All' && !st.kind[state.kind]) { state.kind = 'All'; state.author = 'All'; }
+    else if (state.author !== 'All' && !(state.author in st.author)) state.author = 'All';
     if (state.based !== 'All' && !basedOnOptions().options.includes(state.based)) state.based = 'All';
   }
   else if (btn.dataset.based) state.based = btn.dataset.based;
@@ -310,6 +306,7 @@ $('filters').addEventListener('click', (e) => {
   else if (btn.dataset.license) { state.license = btn.dataset.license; state.family = 'All'; }
   else if (btn.dataset.family) state.family = btn.dataset.family;
   else if (btn.dataset.installs) state.installs = btn.dataset.installs;
+  else if (btn.dataset.kind) { state.kind = btn.dataset.kind; state.author = 'All'; }
   else if (btn.dataset.author) state.author = btn.dataset.author;
   else state.distro = btn.dataset.distro;
   renderPills();

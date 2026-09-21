@@ -14,7 +14,7 @@ No build step and no backend. Open `index.html` in a browser (the page loads Tai
   - **License**: Proprietary or Open Source, with families (GPL, MIT / BSD, Apache, MPL / CDDL) under Open Source
   - **Installs (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)
   - **Based on**: the upstream a system is built on (Debian, Arch, Fedora, FreeBSD, NetBSD, Windows NT, Android, Darwin, System V...); only options that narrow the selected Base OS are shown, and inside Linux the distro-family row takes over
-  - **Author**: who actually makes a system (company, organization or developer, with owners like Red Hat (IBM)). One-off individuals and small volunteer projects share the "Independent developers" and "Community projects" pills. Only authors with systems in the selected Base OS are listed
+  - **Author**: who actually makes a system, in four categories (Companies, Foundations & non-profits, Community projects, Independent developers); picking a category lists its authors. Owners are shown, for example Red Hat (IBM). Only categories and authors with systems in the selected Base OS are listed
 - **Detail dialog** with CPU support, kernel, bootloader, file systems, graphics and audio stack, desktop, package manager, default shell (bash, zsh, PowerShell...), userland / core tools (GNU, BusyBox, BSD...), license and more.
 - **Comparison table**: add up to 10 systems with the `+` button on each card, then compare them in columns. Rows that differ are highlighted.
 
