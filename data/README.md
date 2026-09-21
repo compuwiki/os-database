@@ -24,6 +24,7 @@ data/
 
 1. Add an object to the right file in `systems/` (see `schema/systems.schema.json` for every field).
 2. Every name you use in `by`, `basedOn`, `unix`, `devices`, `licenseTags`, `installs`, `baseOS` and `distroBase` must exist in `authors.json` or `taxonomy/`; add it there first if it is new.
+   Open vs proprietary is one or the other (the validator enforces it): `source` `closed` means `licenseTags` is exactly `["Proprietary"]`, `open-source` means it has license families and no `Proprietary`. Mixed products (RHEL binaries under a subscription, KaiOS with proprietary services, Junos with BSD parts) go by their main nature, and the nuance goes into the `license` text.
 3. Drop the logo into `assets/logos/` (optimize with `npx svgo -f assets/logos --multipass`) and set `"logo"`, or omit it for an initials tile.
 4. Run `node scripts/validate-data.mjs`.
 

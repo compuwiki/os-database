@@ -62,10 +62,10 @@
     "basedOn": [],
     "devices": ["Desktop"],
     "installs": "10K+",
-    "license": "MIT (MS-DOS 1.25 / 2.0 / 4.0 source); later versions proprietary",
-    "licenseTags": ["MIT", "Proprietary"],
+    "license": "Proprietary (Microsoft); MS-DOS 1.25, 2.0 and 4.0 sources are MIT-licensed on GitHub",
+    "licenseTags": ["Proprietary"],
     "logo": "ms-dos.svg",
-    "source": { "type": "open-source", "url": "https://github.com/microsoft/MS-DOS" },
+    "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["x86 (16-bit)"],
       "kernel": "MS-DOS 6.22 (single-tasking, real mode)",

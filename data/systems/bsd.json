@@ -196,7 +196,7 @@
     "devices": ["Network"],
     "installs": "1M+",
     "license": "Proprietary (Juniper), BSD-2-Clause (FreeBSD base)",
-    "licenseTags": ["Proprietary", "MIT"],
+    "licenseTags": ["Proprietary"],
     "logo": "junos.svg",
     "source": { "type": "closed" },
     "specs": {

@@ -225,7 +225,7 @@
     "devices": ["Mobile"],
     "installs": "100M+",
     "license": "MPL-2.0 (Gecko), GPL-2.0 (kernel), proprietary components",
-    "licenseTags": ["MPL", "GPL", "Proprietary"],
+    "licenseTags": ["MPL", "GPL"],
     "logo": "kaios.svg",
     "source": { "type": "open-source", "url": "https://github.com/kaiostech" },
     "specs": {

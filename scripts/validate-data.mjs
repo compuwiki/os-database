@@ -49,8 +49,19 @@ for (const f of meta.systemFiles) {
     for (const l of o.licenseTags ?? []) if (!t['license-types'][l]) at('unknown license tag ' + l);
     if (!(o.installs in t['install-tiers'])) at('unknown installs tier ' + o.installs);
     if (o.logo && !exists(`assets/logos/${o.logo}`)) at('missing logo file ' + o.logo);
-    if (!['open-source', 'closed'].includes(o.source?.type)) at('bad source');
-    if (o.source?.type === 'open-source' && !/^https?:\/\//.test(o.source.url ?? '')) at('bad source url');
+    // the Proprietary / Open Source filters must agree with the card badge: closed <=> tags are exactly ['Proprietary']
+    const propTag = o.licenseTags?.includes('Proprietary');
+    switch (o.source?.type) {
+      case 'open-source':
+        if (!/^https?:\/\//.test(o.source.url ?? '')) at('bad source url');
+        if (propTag) at("open source: licenseTags must not contain 'Proprietary' (note proprietary parts in the license text)");
+        break;
+      case 'closed':
+        if (o.licenseTags?.length !== 1 || !propTag) at("closed source: licenseTags must be exactly ['Proprietary']");
+        break;
+      default:
+        at('bad source type ' + o.source?.type);
+    }
     for (const k of SPEC_KEYS) {
       const v = o.specs?.[k];
       if (v == null || (Array.isArray(v) && !v.length) || (!Array.isArray(v) && typeof v !== 'string')) at('missing or malformed spec ' + k);

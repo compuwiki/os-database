@@ -9,9 +9,9 @@
     "devices": ["Desktop", "Server"],
     "installs": "1M+",
     "license": "GPL and other FOSS licenses; binaries under subscription EULA",
-    "licenseTags": ["GPL", "Proprietary"],
+    "licenseTags": ["GPL"],
     "logo": "sles.svg",
-    "source": { "type": "closed" },
+    "source": { "type": "open-source", "url": "https://github.com/SUSE" },
     "specs": {
       "cpuCompatibility": ["x86_64", "s390x", "ppc64le", "ARM64"],
       "kernel": "Linux 6.12 (SLE 16)",
