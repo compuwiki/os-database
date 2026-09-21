@@ -5,7 +5,7 @@
     "baseOS": "Linux",
     "distroBase": "Gentoo",
     "by": ["Gentoo Foundation"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Gentoo"],
     "devices": ["Desktop", "Server"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -23,7 +23,8 @@
       "packageManager": ["portage (emerge)"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "calculate-linux",
@@ -31,7 +32,7 @@
     "baseOS": "Linux",
     "distroBase": "Gentoo",
     "by": ["Calculate Linux"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Gentoo"],
     "devices": ["Desktop", "Server"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -49,7 +50,8 @@
       "packageManager": ["cl-core / emerge"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "redcore",
@@ -57,7 +59,7 @@
     "baseOS": "Linux",
     "distroBase": "Gentoo",
     "by": ["Redcore Linux"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Gentoo"],
     "devices": ["Desktop"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -75,7 +77,8 @@
       "packageManager": ["sisyphus / emerge"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "chromeos",
@@ -83,7 +86,7 @@
     "baseOS": "Linux",
     "distroBase": "Gentoo",
     "by": ["Google"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Gentoo"],
     "devices": ["Desktop"],
     "installs": "100M+",
     "license": "Proprietary (ChromiumOS: BSD-3-Clause)",
@@ -101,6 +104,7 @@
       "packageManager": ["Crostini (apt) / Android"],
       "defaultShell": ["crosh", "bash (developer mode)"],
       "userland": ["GNU (Gentoo-based)", "Chrome OS system tools"]
-    }
+    },
+    "unix": "like"
   }
 ]

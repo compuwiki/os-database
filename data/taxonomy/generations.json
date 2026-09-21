@@ -1,0 +1,5 @@
+{
+  "NT 5": { "label": "NT 5 (XP)", "hint": "Windows NT 5.x: 2000, XP, Server 2003" },
+  "NT 6": { "label": "NT 6 (7)", "hint": "Windows NT 6.x: Vista, 7, 8, 8.1, Server 2008 to 2012 R2" },
+  "NT 10": { "label": "NT 10 (10, 11, Server)", "hint": "Windows NT 10.0: Windows 10, 11 and Server 2016 to 2025" }
+}

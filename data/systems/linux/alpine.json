@@ -5,7 +5,7 @@
     "baseOS": "Linux",
     "distroBase": "Alpine",
     "by": ["Alpine Linux"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Alpine"],
     "devices": ["Server", "Embedded"],
     "installs": "10M+",
     "license": "MIT (musl, apk), GPL-2.0 (kernel)",
@@ -23,7 +23,8 @@
       "packageManager": ["apk"],
       "defaultShell": ["ash (BusyBox)"],
       "userland": ["BusyBox", "musl libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "postmarketos",
@@ -31,7 +32,7 @@
     "baseOS": "Linux",
     "distroBase": "Alpine",
     "by": ["postmarketOS"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Alpine"],
     "devices": ["Mobile"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -49,6 +50,7 @@
       "packageManager": ["apk"],
       "defaultShell": ["ash (BusyBox)"],
       "userland": ["BusyBox", "musl libc"]
-    }
+    },
+    "unix": "like"
   }
 ]

@@ -5,7 +5,7 @@
     "baseOS": "macOS",
     "distroBase": null,
     "by": ["Apple"],
-    "basedOn": ["Darwin (XNU)"],
+    "basedOn": ["FreeBSD", "Darwin (XNU)"],
     "devices": ["Desktop"],
     "installs": "100M+",
     "license": "Proprietary (Apple EULA); Darwin core under APSL-2.0",
@@ -23,6 +23,7 @@
       "packageManager": ["Mac App Store", "Homebrew"],
       "defaultShell": ["zsh", "bash 3.2"],
       "userland": ["BSD userland (FreeBSD-derived)", "libSystem"]
-    }
+    },
+    "unix": "certified"
   }
 ]

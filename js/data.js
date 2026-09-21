@@ -9,7 +9,7 @@ const json = async (path) => {
 
 export async function loadData() {
   const meta = await json('meta.json');
-  const [baseTypes, families, basedOnTypes, deviceTypes, licenseTypes, installTiers, authorKinds, authors, ...systemFiles] =
+  const [baseTypes, families, basedOnTypes, deviceTypes, licenseTypes, installTiers, unixStatus, generations, authorKinds, authors, ...systemFiles] =
     await Promise.all([
       json('taxonomy/base-types.json'),
       json('taxonomy/families.json'),
@@ -17,13 +17,15 @@ export async function loadData() {
       json('taxonomy/device-types.json'),
       json('taxonomy/license-types.json'),
       json('taxonomy/install-tiers.json'),
+      json('taxonomy/unix-status.json'),
+      json('taxonomy/generations.json'),
       json('taxonomy/author-kinds.json'),
       json('authors.json'),
       ...meta.systemFiles.map(json),
     ]);
   return {
     dataAsOf: meta.dataAsOf,
-    baseTypes, families, basedOnTypes, deviceTypes, licenseTypes, installTiers, authorKinds, authors,
+    baseTypes, families, basedOnTypes, deviceTypes, licenseTypes, installTiers, unixStatus, generations, authorKinds, authors,
     osData: systemFiles.flat(), // in the order of meta.systemFiles
   };
 }

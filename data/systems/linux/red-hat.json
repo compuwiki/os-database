@@ -23,7 +23,8 @@
       "packageManager": ["dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "fedora",
@@ -49,7 +50,8 @@
       "packageManager": ["dnf", "flatpak"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "centos-stream",
@@ -75,7 +77,8 @@
       "packageManager": ["dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "almalinux",
@@ -101,7 +104,8 @@
       "packageManager": ["dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "rocky-linux",
@@ -127,7 +131,8 @@
       "packageManager": ["dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "nobara",
@@ -153,7 +158,8 @@
       "packageManager": ["dnf", "flatpak"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "asahi-linux",
@@ -179,7 +185,8 @@
       "packageManager": ["dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "ultramarine",
@@ -205,7 +212,8 @@
       "packageManager": ["dnf", "flatpak"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "oracle-linux",
@@ -230,7 +238,8 @@
       "packageManager": ["dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "amazon-linux",
@@ -255,7 +264,8 @@
       "packageManager": ["dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "bazzite",
@@ -280,7 +290,8 @@
       "packageManager": ["rpm-ostree", "flatpak", "Homebrew"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "fedora-coreos",
@@ -306,7 +317,8 @@
       "packageManager": ["rpm-ostree"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "openeuler",
@@ -331,6 +343,7 @@
       "packageManager": ["dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   }
 ]

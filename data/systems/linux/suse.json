@@ -5,7 +5,7 @@
     "baseOS": "Linux",
     "distroBase": "SUSE",
     "by": ["SUSE"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "SUSE"],
     "devices": ["Desktop", "Server"],
     "installs": "1M+",
     "license": "GPL and other FOSS licenses; binaries under subscription EULA",
@@ -23,7 +23,8 @@
       "packageManager": ["zypper"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "opensuse",
@@ -31,7 +32,7 @@
     "baseOS": "Linux",
     "distroBase": "SUSE",
     "by": ["openSUSE Project"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "SUSE"],
     "devices": ["Desktop", "Server"],
     "installs": "1M+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -49,6 +50,7 @@
       "packageManager": ["zypper"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   }
 ]

@@ -1,31 +1,47 @@
 {
-  "Windows NT": { "logo": "windows-11.svg", "color": "#0078d4", "hint": "Windows XP, 7, 10, 11" },
+  "Windows NT": {
+    "logo": "windows-11.svg",
+    "color": "#0078d4",
+    "hint": "Windows XP, 7, 10, 11 and Windows Server (NT kernel, not UNIX)"
+  },
   "macOS": {
     "logo": "macos-mini.svg",
     "color": "#475569",
-    "hint": "macOS (Apple): UNIX 03 certified, XNU / Darwin kernel"
+    "hint": "macOS: Apple Darwin (XNU = Mach + BSD kernel) with a FreeBSD-derived userland; certified UNIX (UNIX 03)"
   },
-  "Linux": { "logo": "linux.svg", "color": "#b45309", "hint": "Linux-kernel distributions and embedded Linux" },
-  "Android-based": { "logo": "android.svg", "color": "#1f9d55", "hint": "AOSP-derived: Android, LineageOS, GrapheneOS, Wear OS" },
+  "Linux": {
+    "logo": "linux.svg",
+    "color": "#b45309",
+    "hint": "Everything with the Linux kernel and a GNU or BusyBox userland (UNIX-like)"
+  },
+  "Android-based": {
+    "logo": "android.svg",
+    "color": "#1f9d55",
+    "hint": "Android and its forks: Linux kernel with the AOSP userland (Bionic, Toybox)"
+  },
   "iOS-based": {
     "logo": "ios-mini.svg",
     "color": "#475569",
-    "hint": "Apple mobile, TV and watch: iOS, iPadOS, watchOS, tvOS"
+    "hint": "Apple mobile, TV, watch and headset systems: Darwin with the iOS frameworks"
   },
-  "BSD": { "logo": "freebsd.svg", "color": "#ab2b28", "hint": "FreeBSD, OpenBSD, NetBSD and derivatives" },
+  "BSD": {
+    "logo": "freebsd.svg",
+    "color": "#ab2b28",
+    "hint": "FreeBSD, OpenBSD, NetBSD, DragonFly and derivatives (UNIX-like, descended from Berkeley UNIX)"
+  },
   "UNIX": {
     "icon": "terminal",
     "color": "#6d28d9",
-    "hint": "Certified or System V-lineage UNIX: Solaris, AIX, HP-UX, illumos"
+    "hint": "Certified or System V-lineage UNIX: Solaris, AIX, HP-UX, z/OS, illumos"
   },
-  "UNIX-like": {
+  "Other UNIX-like": {
     "icon": "code",
     "color": "#0f766e",
-    "hint": "Unix-like systems written from scratch: Redox, SerenityOS, Vinix, QNX"
+    "hint": "UNIX-like systems written from scratch or in their own lineage (Redox, SerenityOS, Plan 9, MINIX...)"
   },
   "Other": {
     "icon": "compass",
     "color": "#5b6472",
-    "hint": "Everything else: DOS, Amiga family, Haiku, Fuchsia, HarmonyOS, ..."
+    "hint": "Not UNIX: DOS, Amiga family, Haiku, Fuchsia, HarmonyOS, RTOSes..."
   }
 }

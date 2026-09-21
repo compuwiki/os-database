@@ -5,7 +5,7 @@
     "baseOS": "Linux",
     "distroBase": "Slackware",
     "by": ["Patrick Volkerding"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Slackware"],
     "devices": ["Desktop", "Server"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -23,7 +23,8 @@
       "packageManager": ["pkgtools", "slackpkg"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "slax",
@@ -31,7 +32,7 @@
     "baseOS": "Linux",
     "distroBase": "Slackware",
     "by": ["Tomáš Matějíček"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Slackware"],
     "devices": ["Desktop"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -49,7 +50,8 @@
       "packageManager": ["apt / slackpkg"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "absolute-linux",
@@ -57,7 +59,7 @@
     "baseOS": "Linux",
     "distroBase": "Slackware",
     "by": ["Absolute Linux"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Slackware"],
     "devices": ["Desktop"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -75,7 +77,8 @@
       "packageManager": ["installpkg"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "porteus",
@@ -83,7 +86,7 @@
     "baseOS": "Linux",
     "distroBase": "Slackware",
     "by": ["Porteus Project"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Slackware"],
     "devices": ["Desktop"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -101,6 +104,7 @@
       "packageManager": ["usm / slackpkg"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   }
 ]

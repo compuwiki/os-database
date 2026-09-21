@@ -5,7 +5,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["NixOS Foundation"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop", "Server"],
     "installs": "100K+",
     "license": "MIT (nixpkgs), LGPL-2.1 (Nix), GPL-2.0 (kernel)",
@@ -23,7 +23,8 @@
       "packageManager": ["nix"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "void-linux",
@@ -31,7 +32,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Void Linux"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop", "Server"],
     "installs": "100K+",
     "license": "BSD-2-Clause (xbps), GPL-2.0 (kernel)",
@@ -49,7 +50,8 @@
       "packageManager": ["xbps"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc) or musl variant"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "solus",
@@ -57,7 +59,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Solus Project"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -75,7 +77,8 @@
       "packageManager": ["eopkg"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "rosa-linux",
@@ -83,7 +86,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["ROSA"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop", "Server"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -101,7 +104,8 @@
       "packageManager": ["urpmi / dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "knoppix",
@@ -109,7 +113,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Klaus Knopper"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -127,7 +131,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "puppy-linux",
@@ -135,7 +140,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Puppy Linux Community"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -153,7 +158,8 @@
       "packageManager": ["ppm / pet"],
       "defaultShell": ["bash", "ash (BusyBox)"],
       "userland": ["BusyBox", "GNU tools"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "mageia",
@@ -161,7 +167,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Mageia.Org"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop", "Server"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -179,7 +185,8 @@
       "packageManager": ["urpmi", "dnf"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "sailfish-os",
@@ -187,7 +194,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Jolla"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Mobile"],
     "installs": "100K+",
     "license": "GPL / LGPL / BSD core; proprietary UI",
@@ -205,7 +212,8 @@
       "packageManager": ["Jolla Store", "zypper / RPM"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "kaios",
@@ -213,7 +221,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["KaiOS Technologies"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Mobile"],
     "installs": "100M+",
     "license": "MPL-2.0 (Gecko), GPL-2.0 (kernel), proprietary components",
@@ -231,7 +239,8 @@
       "packageManager": ["KaiStore"],
       "defaultShell": ["adb shell (mksh)"],
       "userland": ["Toybox", "Bionic libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "tizen",
@@ -239,7 +248,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Samsung"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["TV", "Wearable"],
     "installs": "100M+",
     "license": "Flora / Apache-2.0 / BSD / GPL mix",
@@ -256,7 +265,8 @@
       "packageManager": ["Tizen Store", "RPM"],
       "defaultShell": ["bash or BusyBox ash (image dependent)"],
       "userland": ["GNU or BusyBox (Yocto / image dependent)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "webos",
@@ -264,7 +274,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["LG Electronics"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["TV"],
     "installs": "100M+",
     "license": "Apache-2.0, GPL-2.0 (kernel)",
@@ -281,7 +291,8 @@
       "packageManager": ["LG Content Store (IPK)"],
       "defaultShell": ["bash or BusyBox ash (image dependent)"],
       "userland": ["GNU or BusyBox (Yocto / image dependent)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "agl",
@@ -289,7 +300,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Linux Foundation"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Automotive"],
     "installs": "1M+",
     "license": "Apache-2.0, GPL-2.0 (kernel)",
@@ -306,7 +317,8 @@
       "packageManager": ["Yocto / RPM"],
       "defaultShell": ["bash or BusyBox ash (image dependent)"],
       "userland": ["GNU or BusyBox (Yocto / image dependent)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "openwrt",
@@ -314,7 +326,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["OpenWrt Project"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Network", "Embedded"],
     "installs": "1M+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -332,7 +344,8 @@
       "packageManager": ["apk (opkg in older releases)"],
       "defaultShell": ["ash (BusyBox)"],
       "userland": ["BusyBox", "musl libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "routeros",
@@ -340,7 +353,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["MikroTik"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Network", "Embedded"],
     "installs": "10M+",
     "license": "Proprietary (MikroTik)",
@@ -358,7 +371,8 @@
       "packageManager": ["RouterOS packages (.npk)"],
       "defaultShell": ["RouterOS CLI"],
       "userland": ["RouterOS tools (proprietary)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "lfs",
@@ -366,7 +380,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["LFS Project"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -384,7 +398,8 @@
       "packageManager": ["None (manual builds)"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc) built from source"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "slitaz",
@@ -392,7 +407,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["SliTaz Association"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Desktop"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -410,7 +425,8 @@
       "packageManager": ["tazpkg"],
       "defaultShell": ["ash (BusyBox)"],
       "userland": ["BusyBox", "GNU tools"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "clear-linux",
@@ -418,7 +434,7 @@
     "baseOS": "Linux",
     "distroBase": "Independent",
     "by": ["Intel"],
-    "basedOn": ["Linux kernel"],
+    "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Server", "Desktop"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -436,6 +452,7 @@
       "packageManager": ["swupd (bundles)"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   }
 ]

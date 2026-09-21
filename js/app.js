@@ -15,7 +15,7 @@ try {
     Serve this folder over HTTP (GitHub Pages, <code>python -m http.server</code> or Live Server) instead of opening index.html directly.</p>`;
   throw err;
 }
-const { osData, families, baseTypes, authors, authorKinds, basedOnTypes, deviceTypes, licenseTypes, installTiers, dataAsOf } = data;
+const { osData, families, baseTypes, authors, authorKinds, basedOnTypes, deviceTypes, licenseTypes, installTiers, unixStatus, generations, dataAsOf } = data;
 
 // [key in os.specs, label, icon]
 const SPECS = [
@@ -35,6 +35,8 @@ const SPECS = [
 const COMPARE_ROWS = [
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
+  ['UNIX heritage', 'terminal', (os) => unixStatus[os.unix].label],
+  ['Generation', 'layers', (os) => generations[os.generation]?.label ?? '—'],
   ['Author', 'user', (os) => joined(os.by)],
   ['Based on', 'layers', (os) => joined(os.basedOn) || '—'],
   ['Devices', 'smartphone', (os) => joined(devicesOf(os))],
@@ -47,7 +49,6 @@ const COMPARE_ROWS = [
 const byId = new Map(osData.map((os) => [os.id, os]));
 const bases = ['All', ...Object.keys(baseTypes)];
 const baseCount = (b) => (b === 'All' ? osData.length : osData.filter((os) => os.baseOS === b).length);
-const distros = ['All', ...Object.keys(families)];
 const deviceNames = ['All', ...Object.keys(deviceTypes)];
 // Device tags in the order of deviceTypes (Server, Desktop, ...)
 const devicesOf = (os) => Object.keys(deviceTypes).filter((d) => os.devices.includes(d));
@@ -66,10 +67,16 @@ const basedOnOptions = () => {
   const pool = osData.filter((os) => state.base === 'All' || os.baseOS === state.base);
   const n = Object.fromEntries(Object.keys(basedOnTypes).map((b) => [b, pool.filter((os) => os.basedOn.includes(b)).length]));
   // keep only options that narrow the list (an option matching every system in the Base OS says nothing)
-  // inside Linux the distro-family row (same names) already covers this, so it is not repeated
-  return { n, total: pool.length, options: state.base === 'Linux' ? [] : Object.keys(n).filter((b) => n[b] > 0 && n[b] < pool.length) };
+  return { n, total: pool.length, options: Object.keys(n).filter((b) => n[b] > 0 && n[b] < pool.length) };
 };
-const state = { base: 'All', distro: 'All', based: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', kind: 'All', author: 'All', query: '' };
+// "Generation" options (e.g. NT 5 / NT 6 / NT 10) when a Base OS is selected and its systems span several generations
+const generationOptions = () => {
+  const pool = osData.filter((os) => state.base !== 'All' && os.baseOS === state.base);
+  const n = Object.fromEntries(Object.keys(generations).map((g) => [g, pool.filter((os) => os.generation === g).length]));
+  const options = Object.keys(n).filter((g) => n[g] > 0);
+  return { n, total: pool.length, options: options.length > 1 ? options : [] };
+};
+const state = { base: 'All', based: 'All', generation: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', kind: 'All', author: 'All', query: '' };
 // Author counts inside the selected Base OS: per author and per category
 const authorStats = () => {
   const author = {}, kind = {};
@@ -87,7 +94,7 @@ const compare = []; // ids, in the order added
 // Lowercased searchable text per OS, built once.
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.baseOS, os.distroBase, os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -124,15 +131,16 @@ function renderPills() {
   $('basePills').innerHTML =
     bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : b, baseTypes[b]?.logo, baseTypes[b]?.icon ?? 'grid', 'w-5 h-5')
       .replace('<button ', `<button title="${esc(baseTypes[b]?.hint ?? 'Grouped by kernel lineage')} · ${baseCount(b)} systems" `)).join('');
-  $('distroPills').innerHTML =
-    distros.map((d) =>
-      pill('distro', d, d === 'All' ? 'All Distros' : families[d].label, families[d]?.logo, 'grid', 'w-4 h-4')).join('');
-  $('distroPills').hidden = state.base !== 'Linux';
   const based = basedOnOptions();
   $('basedPills').innerHTML = ['All', ...based.options].map((b) =>
     pill('based', b, b === 'All' ? 'Based on: any' : basedOnTypes[b].label, basedOnTypes[b]?.logo, basedOnTypes[b]?.icon ?? 'layers', 'w-4 h-4')
       .replace('<button ', `<button title="${esc(basedOnTypes[b]?.hint ?? 'Upstream a system is built on')} · ${b === 'All' ? based.total : based.n[b]} systems" `)).join('');
   $('basedPills').hidden = based.options.length === 0;
+  const gen = generationOptions();
+  $('generationPills').innerHTML = ['All', ...gen.options].map((g) =>
+    pill('generation', g, g === 'All' ? 'Generation: any' : generations[g].label, null, 'layers', 'w-4 h-4')
+      .replace('<button ', `<button title="${esc(generations[g]?.hint ?? 'Kernel generation')} · ${g === 'All' ? gen.total : gen.n[g]} systems" `)).join('');
+  $('generationPills').hidden = gen.options.length === 0;
   $('devicePills').innerHTML =
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
       .replace('<button ', `<button title="${esc(deviceTypes[d]?.hint ?? '')}${d === 'All' ? '' : ' · '}${deviceCount(d)} systems" `)).join('');
@@ -186,11 +194,11 @@ function renderGrid() {
   const q = state.query.trim().toLowerCase();
   const shown = index.filter(({ os, text }) =>
     (state.base === 'All' || os.baseOS === state.base) &&
-    (state.base !== 'Linux' || state.distro === 'All' || os.distroBase === state.distro) &&
     (state.device === 'All' || os.devices.includes(state.device)) &&
     licenseMatch(os, state.license) && (state.family === 'All' || os.licenseTags.includes(state.family)) &&
     installsMatch(os, state.installs) &&
     (state.based === 'All' || os.basedOn.includes(state.based)) &&
+    (state.generation === 'All' || os.generation === state.generation) &&
     (state.kind === 'All' || os.by.some((a) => authors[a].type === state.kind && (state.author === 'All' || a === state.author))) &&
     text.includes(q)).map(({ os }) => os);
 
@@ -213,7 +221,7 @@ function openModal(id) {
         <h2 class="text-2xl font-bold text-white">${esc(os.name)}</h2>
         <p class="text-sm text-slate-400 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">${os.by.filter((a) => !os.by.some((b) => authors[b].parent === a)).map((a, i) => `<span class="flex items-center gap-1.5${i ? '' : ' text-slate-200'}">${logoTile(authors[a].logo, 'w-5 h-5', initials(a), '#5b6472', 'author')}${esc(authorLabel(a))}</span>`).join('')}</p>
         <div class="flex flex-wrap gap-x-2 items-center text-sm mt-1">
-          <span class="text-slate-400">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''}</span> • ${source}
+          <span class="text-slate-400" title="${esc(unixStatus[os.unix].hint)}">Base: ${esc(os.baseOS)}${os.distroBase ? ` (${esc(os.distroBase)})` : ''} ${os.generation ? ` · ${esc(generations[os.generation].label)}` : ''} · ${esc(unixStatus[os.unix].label)}</span> • ${source}
         </div>
         ${os.basedOn.length ? `<p class="text-sm text-slate-400 mt-1 flex items-center gap-1.5">${uiIcon('layers', 'w-4 h-4 text-sky-400')}Based on ${esc(joined(os.basedOn))}</p>` : ''}
         <p class="text-sm text-slate-400 mt-1 flex flex-wrap gap-x-3 items-center">${devicesOf(os).map((d) => `<span class="flex items-center gap-1">${uiIcon(deviceTypes[d].icon, 'w-4 h-4 text-sky-400')}${d}</span>`).join('')}</p>
@@ -308,20 +316,20 @@ $('filters').addEventListener('click', (e) => {
   if (!btn) return;
   if (btn.dataset.base) {
     state.base = btn.dataset.base;
-    state.distro = 'All';
     const st = authorStats(); // drop an author / category that has nothing in this Base OS
     if (state.kind !== 'All' && !st.kind[state.kind]) { state.kind = 'All'; state.author = 'All'; }
     else if (state.author !== 'All' && !(state.author in st.author)) state.author = 'All';
     if (state.based !== 'All' && !basedOnOptions().options.includes(state.based)) state.based = 'All';
+    if (state.generation !== 'All' && !generationOptions().options.includes(state.generation)) state.generation = 'All';
   }
   else if (btn.dataset.based) state.based = btn.dataset.based;
+  else if (btn.dataset.generation) state.generation = btn.dataset.generation;
   else if (btn.dataset.device) state.device = btn.dataset.device;
   else if (btn.dataset.license) { state.license = btn.dataset.license; state.family = 'All'; }
   else if (btn.dataset.family) state.family = btn.dataset.family;
   else if (btn.dataset.installs) state.installs = btn.dataset.installs;
   else if (btn.dataset.kind) { state.kind = btn.dataset.kind; state.author = 'All'; }
   else if (btn.dataset.author) state.author = btn.dataset.author;
-  else state.distro = btn.dataset.distro;
   renderPills();
   renderGrid();
 });

@@ -14,14 +14,14 @@ It also loads Tailwind from its CDN, so it needs an internet connection.
 
 - **Search** across names, kernels, desktops, package managers, file systems, licenses and authors (press `/` to focus).
 - **Filters** that combine with each other:
-  - **Base OS**: Windows NT, macOS, Linux, Android-based, iOS-based, BSD, UNIX, UNIX-like, Other
-  - **Distro family** (Linux only): Debian based, Arch based, Fedora based, Slackware based, Gentoo based, SUSE based, Alpine based, Independent Linux
+  - **Base OS**: Windows NT, macOS, Linux, Android-based, iOS-based, BSD, UNIX, Other UNIX-like, Other
+  - **Generation**: kernel generation for versioned families, for example Windows NT 5 (XP), NT 6 (7) and NT 10 (10, 11, Server); shown when the selected Base OS has several
   - **Device**: Server, Desktop, Mobile, TV, Wearable, Automotive, Embedded, Network (routers and firewalls)
   - **License**: Proprietary or Open Source, with families (GPL, MIT / BSD, Apache, MPL / CDDL) under Open Source
   - **Installs (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)
-  - **Based on**: the upstream a system is built on (Debian, Arch, Fedora, FreeBSD, NetBSD, Windows NT, Android, Darwin, System V...); only options that narrow the selected Base OS are shown, and inside Linux the distro-family row takes over
+  - **Based on**: every upstream a system descends from, so a system can match several: Linux kernel, Debian, Ubuntu, Arch, Fedora, Slackware, Gentoo, SUSE, Alpine (Linux families), FreeBSD, NetBSD, Darwin, Windows NT, Android, System V. Only options that narrow the selected Base OS are shown
   - **Author**: who actually makes a system, in four categories (Companies, Foundations & non-profits, Community projects, Independent developers); picking a category lists its authors. Owners are shown, for example Red Hat (IBM). Only categories and authors with systems in the selected Base OS are listed
-- **Detail dialog** with CPU support, kernel, bootloader, file systems, graphics and audio stack, desktop, package manager, default shell (bash, zsh, PowerShell...), userland / core tools (GNU, BusyBox, BSD...), license and more.
+- **Detail dialog** with UNIX heritage (certified UNIX / UNIX-like / not UNIX), CPU support, kernel, bootloader, file systems, graphics and audio stack, desktop, package manager, default shell (bash, zsh, PowerShell...), userland / core tools (GNU, BusyBox, BSD...), license and more.
 - **Comparison table**: add up to 10 systems with the `+` button on each card, then compare them in columns. Rows that differ are highlighted.
 
 ## Project layout

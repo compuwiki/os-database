@@ -23,7 +23,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "ubuntu",
@@ -31,7 +32,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Canonical"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop", "Server"],
     "installs": "100M+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -49,7 +50,8 @@
       "packageManager": ["apt", "snap"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)", "uutils coreutils (Rust)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "kali",
@@ -75,7 +77,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["zsh", "bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "proxmox",
@@ -101,7 +104,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "parrotos",
@@ -127,7 +131,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "zsh", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "deepin",
@@ -153,7 +158,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "peppermint",
@@ -179,7 +185,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "tails",
@@ -205,7 +212,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "linux-mint",
@@ -213,7 +221,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Linux Mint Team"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "10M+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -231,7 +239,8 @@
       "packageManager": ["apt", "flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "pop-os",
@@ -239,7 +248,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["System76"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -257,7 +266,8 @@
       "packageManager": ["apt", "flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "kde-neon",
@@ -265,7 +275,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["KDE"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -283,7 +293,8 @@
       "packageManager": ["apt", "pkcon"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "elementary-os",
@@ -291,7 +302,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["elementary, Inc."],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -309,7 +320,8 @@
       "packageManager": ["apt", "flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "qubes-os",
@@ -335,7 +347,8 @@
       "packageManager": ["dom0 dnf / vm apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "zorin-os",
@@ -343,7 +356,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Zorin Group"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "1M+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -361,7 +374,8 @@
       "packageManager": ["apt", "flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "devuan",
@@ -387,7 +401,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "raspberry-pi-os",
@@ -413,7 +428,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "kubuntu",
@@ -421,7 +437,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Kubuntu Council", "Canonical"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -439,7 +455,8 @@
       "packageManager": ["apt", "snap"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)", "uutils coreutils (Rust)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "ubuntu-touch",
@@ -447,7 +464,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["UBports Foundation"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Mobile"],
     "installs": "10K+",
     "license": "GPL / LGPL",
@@ -464,7 +481,8 @@
       "packageManager": ["OpenStore (click)"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "linux-lite",
@@ -472,7 +490,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Jerry Bezencon"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -490,7 +508,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "vanilla-os",
@@ -516,7 +535,8 @@
       "packageManager": ["apx", "Flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "mx-linux",
@@ -542,7 +562,8 @@
       "packageManager": ["apt", "flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "antix",
@@ -567,7 +588,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "lmde",
@@ -593,7 +615,8 @@
       "packageManager": ["apt", "flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "xubuntu",
@@ -601,7 +624,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Xubuntu Team", "Canonical"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -619,7 +642,8 @@
       "packageManager": ["apt", "snap"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)", "uutils coreutils (Rust)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "lubuntu",
@@ -627,7 +651,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Lubuntu Team", "Canonical"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -645,7 +669,8 @@
       "packageManager": ["apt", "snap"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)", "uutils coreutils (Rust)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "ubuntu-mate",
@@ -653,7 +678,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Ubuntu MATE Team", "Canonical"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
@@ -671,7 +696,8 @@
       "packageManager": ["apt", "snap"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)", "uutils coreutils (Rust)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "armbian",
@@ -697,7 +723,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "pureos",
@@ -722,7 +749,8 @@
       "packageManager": ["apt", "flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "trisquel",
@@ -730,7 +758,7 @@
     "baseOS": "Linux",
     "distroBase": "Debian",
     "by": ["Trisquel Project"],
-    "basedOn": ["Linux kernel", "Debian"],
+    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
     "devices": ["Desktop"],
     "installs": "10K+",
     "license": "GPL-2.0 (Linux-libre), free-software-only licenses",
@@ -748,7 +776,8 @@
       "packageManager": ["apt"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "truenas-scale",
@@ -774,7 +803,8 @@
       "packageManager": ["TrueNAS apps (containers)"],
       "defaultShell": ["zsh", "bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "openmediavault",
@@ -800,7 +830,8 @@
       "packageManager": ["apt", "OMV plugins"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "vyos",
@@ -825,6 +856,7 @@
       "packageManager": ["apt (Debian base)"],
       "defaultShell": ["vbash (Vyatta bash)"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   }
 ]

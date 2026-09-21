@@ -10,7 +10,7 @@ const errors = [];
 const err = (msg) => errors.push(msg);
 
 const meta = read('meta.json');
-const t = Object.fromEntries(['base-types', 'families', 'based-on', 'device-types', 'license-types', 'install-tiers', 'author-kinds'].map((n) => [n, read(`taxonomy/${n}.json`)]));
+const t = Object.fromEntries(['base-types', 'families', 'based-on', 'device-types', 'license-types', 'install-tiers', 'unix-status', 'generations', 'author-kinds'].map((n) => [n, read(`taxonomy/${n}.json`)]));
 const authors = read('authors.json');
 
 // systems: every listed file exists, every file under data/systems is listed
@@ -40,6 +40,9 @@ for (const f of meta.systemFiles) {
     for (const a of o.by ?? []) if (!authors[a]) at('unknown author ' + a);
     for (const b of o.basedOn ?? []) if (!t['based-on'][b]) at('unknown basedOn ' + b);
     if (!Array.isArray(o.basedOn)) at('basedOn must be an array (can be empty)');
+    if (!t['unix-status'][o.unix]) at('unknown unix status ' + o.unix);
+    if (o.generation != null && !t.generations[o.generation]) at('unknown generation ' + o.generation);
+    if (o.baseOS === 'Linux' && !o.basedOn?.includes('Linux kernel')) at('a Linux system should be based on the Linux kernel');
     if (!o.devices?.length) at('no devices');
     for (const d of o.devices ?? []) if (!t['device-types'][d]) at('unknown device ' + d);
     if (!o.license || !o.licenseTags?.length) at('no license');
@@ -61,10 +64,10 @@ for (const [name, a] of Object.entries(authors)) {
   if (a.parent && !authors[a.parent]) err(`author ${name}: unknown parent ${a.parent}`);
   if (!systems.some((o) => o.by.includes(name))) err(`author ${name}: not used by any system`);
 }
-for (const [group, list] of [['families', t.families], ['base-types', t['base-types']], ['based-on', t['based-on']]])
+for (const [group, list] of [['base-types', t['base-types']], ['based-on', t['based-on']]])
   for (const [k, v] of Object.entries(list)) if (v.logo && !exists(`assets/logos/${v.logo}`)) err(`${group} > ${k}: missing logo ${v.logo}`);
 
-const usedLogos = new Set([...systems.map((o) => o.logo), ...Object.values(t.families).map((v) => v.logo), ...Object.values(t['base-types']).map((v) => v.logo), ...Object.values(t['based-on']).map((v) => v.logo)]);
+const usedLogos = new Set([...systems.map((o) => o.logo), ...Object.values(t['base-types']).map((v) => v.logo), ...Object.values(t['based-on']).map((v) => v.logo)]);
 const usedAuthorLogos = new Set(Object.values(authors).map((a) => a.logo));
 const unused = [
   ...fs.readdirSync(path.join(root, 'assets/logos')).filter((f) => !usedLogos.has(f)).map((f) => `assets/logos/${f}`),

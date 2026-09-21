@@ -23,7 +23,8 @@
       "packageManager": ["pkg", "ports"],
       "defaultShell": ["sh (FreeBSD sh)", "tcsh"],
       "userland": ["BSD userland (FreeBSD base)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "openbsd",
@@ -49,7 +50,8 @@
       "packageManager": ["pkg_add", "ports"],
       "defaultShell": ["ksh (OpenBSD ksh)"],
       "userland": ["BSD userland (OpenBSD base)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "netbsd",
@@ -75,7 +77,8 @@
       "packageManager": ["pkgsrc", "pkgin"],
       "defaultShell": ["sh (NetBSD sh)"],
       "userland": ["BSD userland (NetBSD base)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "dragonflybsd",
@@ -100,7 +103,8 @@
       "packageManager": ["pkg", "dports"],
       "defaultShell": ["sh", "csh"],
       "userland": ["BSD userland (DragonFly base)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "ghostbsd",
@@ -125,7 +129,8 @@
       "packageManager": ["pkg"],
       "defaultShell": ["zsh", "sh"],
       "userland": ["BSD userland (FreeBSD base)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "pfsense",
@@ -151,7 +156,8 @@
       "packageManager": ["pkg (pfSense packages)"],
       "defaultShell": ["pfSense console menu (sh / tcsh)"],
       "userland": ["BSD userland (FreeBSD base)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "opnsense",
@@ -177,7 +183,8 @@
       "packageManager": ["pkg", "OPNsense plugins"],
       "defaultShell": ["sh", "tcsh"],
       "userland": ["BSD userland (FreeBSD base)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "junos",
@@ -203,6 +210,7 @@
       "packageManager": ["Junos packages"],
       "defaultShell": ["Junos CLI", "csh"],
       "userland": ["BSD userland (FreeBSD base)"]
-    }
+    },
+    "unix": "like"
   }
 ]

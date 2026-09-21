@@ -1,4 +1,4 @@
 {
   "dataAsOf": "September 2026",
-  "systemFiles": ["systems/windows-nt.json", "systems/macos.json", "systems/linux/arch.json", "systems/linux/debian.json", "systems/linux/red-hat.json", "systems/linux/slackware.json", "systems/linux/gentoo.json", "systems/linux/suse.json", "systems/linux/alpine.json", "systems/linux/independent.json", "systems/android-based.json", "systems/ios-based.json", "systems/bsd.json", "systems/unix.json", "systems/unix-like.json", "systems/other.json"]
+  "systemFiles": ["systems/windows-nt.json", "systems/macos.json", "systems/linux/arch.json", "systems/linux/debian.json", "systems/linux/red-hat.json", "systems/linux/slackware.json", "systems/linux/gentoo.json", "systems/linux/suse.json", "systems/linux/alpine.json", "systems/linux/independent.json", "systems/android-based.json", "systems/ios-based.json", "systems/bsd.json", "systems/unix.json", "systems/other-unix-like.json", "systems/other.json"]
 }

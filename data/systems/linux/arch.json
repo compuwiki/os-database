@@ -23,7 +23,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "artix",
@@ -49,7 +50,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "arcolinux",
@@ -75,7 +77,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "archcraft",
@@ -101,7 +104,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["zsh", "bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "blackarch",
@@ -127,7 +131,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "endeavouros",
@@ -153,7 +158,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "garuda",
@@ -179,7 +185,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["fish", "bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "cachyos",
@@ -205,7 +212,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["fish", "bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "manjaro",
@@ -231,7 +239,8 @@
       "packageManager": ["pacman", "pamac"],
       "defaultShell": ["zsh", "bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "mabox",
@@ -257,7 +266,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "rebornos",
@@ -283,7 +293,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "omarchy",
@@ -309,7 +320,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "steamos",
@@ -335,7 +347,8 @@
       "packageManager": ["Flatpak", "pacman (read-only root)"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "athena-os",
@@ -361,7 +374,8 @@
       "packageManager": ["pacman", "Nix"],
       "defaultShell": ["bash", "zsh"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "parabola",
@@ -387,7 +401,8 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "arch-linux-arm",
@@ -412,6 +427,7 @@
       "packageManager": ["pacman"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   }
 ]

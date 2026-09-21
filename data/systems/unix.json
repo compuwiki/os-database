@@ -22,7 +22,8 @@
       "packageManager": ["IPS (pkg)"],
       "defaultShell": ["bash", "ksh93"],
       "userland": ["Solaris userland (SVR4) with GNU tools"]
-    }
+    },
+    "unix": "certified"
   },
   {
     "id": "aix",
@@ -48,7 +49,8 @@
       "packageManager": ["installp", "RPM"],
       "defaultShell": ["ksh"],
       "userland": ["AIX userland (GNU tools via AIX Toolbox)"]
-    }
+    },
+    "unix": "certified"
   },
   {
     "id": "hp-ux",
@@ -73,7 +75,8 @@
       "packageManager": ["swinstall (SD-UX)"],
       "defaultShell": ["POSIX sh (ksh)"],
       "userland": ["HP-UX userland (GNU tools via ports)"]
-    }
+    },
+    "unix": "certified"
   },
   {
     "id": "zos",
@@ -98,7 +101,8 @@
       "packageManager": ["SMP/E (system)", "zopen (open tools)"],
       "defaultShell": ["TSO/E", "sh (z/OS UNIX)"],
       "userland": ["z/OS UNIX System Services utilities"]
-    }
+    },
+    "unix": "certified"
   },
   {
     "id": "openindiana",
@@ -123,6 +127,7 @@
       "packageManager": ["IPS (pkg)"],
       "defaultShell": ["bash", "ksh93"],
       "userland": ["illumos userland with GNU coreutils"]
-    }
+    },
+    "unix": "like"
   }
 ]

@@ -23,7 +23,8 @@
       "packageManager": ["Google Play", "APK / pm"],
       "defaultShell": ["mksh (adb shell)"],
       "userland": ["Toybox", "Bionic libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "wear-os",
@@ -49,7 +50,8 @@
       "packageManager": ["Google Play"],
       "defaultShell": ["mksh (adb shell)"],
       "userland": ["Toybox", "Bionic libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "grapheneos",
@@ -75,7 +77,8 @@
       "packageManager": ["GrapheneOS App Store", "APK"],
       "defaultShell": ["mksh (adb shell)"],
       "userland": ["Toybox", "Bionic libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "lineageos",
@@ -101,7 +104,8 @@
       "packageManager": ["F-Droid", "APK"],
       "defaultShell": ["mksh (adb shell)"],
       "userland": ["Toybox", "Bionic libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "omnirom",
@@ -127,7 +131,8 @@
       "packageManager": ["APK"],
       "defaultShell": ["mksh (adb shell)"],
       "userland": ["Toybox", "Bionic libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "e-os",
@@ -153,7 +158,8 @@
       "packageManager": ["App Lounge", "F-Droid", "APK"],
       "defaultShell": ["mksh (adb shell)"],
       "userland": ["Toybox", "Bionic libc"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "meta-horizon-os",
@@ -179,6 +185,7 @@
       "packageManager": ["Meta Horizon Store", "APK sideload"],
       "defaultShell": ["mksh (adb shell)"],
       "userland": ["Toybox", "Bionic libc"]
-    }
+    },
+    "unix": "like"
   }
 ]

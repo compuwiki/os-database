@@ -1,0 +1,5 @@
+{
+  "certified": { "label": "Certified UNIX", "hint": "Passed The Open Group UNIX certification (for example UNIX 03)" },
+  "like": { "label": "UNIX-like", "hint": "Behaves like UNIX (POSIX-style) without being certified" },
+  "none": { "label": "Not UNIX", "hint": "A different lineage (it may still offer a POSIX layer)" }
+}

@@ -5,7 +5,7 @@
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
-    "basedOn": ["Darwin (XNU)"],
+    "basedOn": ["FreeBSD", "Darwin (XNU)"],
     "devices": ["Mobile"],
     "installs": "1B+",
     "license": "Proprietary (Apple EULA)",
@@ -23,7 +23,8 @@
       "packageManager": ["App Store"],
       "defaultShell": ["None (no user shell)"],
       "userland": ["Apple system frameworks (no user-accessible tools)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "watchos",
@@ -31,7 +32,7 @@
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
-    "basedOn": ["Darwin (XNU)"],
+    "basedOn": ["FreeBSD", "Darwin (XNU)"],
     "devices": ["Wearable"],
     "installs": "100M+",
     "license": "Proprietary (Apple EULA)",
@@ -49,7 +50,8 @@
       "packageManager": ["App Store"],
       "defaultShell": ["None (no user shell)"],
       "userland": ["Apple system frameworks (no user-accessible tools)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "tvos",
@@ -57,7 +59,7 @@
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
-    "basedOn": ["Darwin (XNU)"],
+    "basedOn": ["FreeBSD", "Darwin (XNU)"],
     "devices": ["TV"],
     "installs": "10M+",
     "license": "Proprietary (Apple EULA)",
@@ -75,7 +77,8 @@
       "packageManager": ["App Store"],
       "defaultShell": ["None (no user shell)"],
       "userland": ["Apple system frameworks (no user-accessible tools)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "ipados",
@@ -83,7 +86,7 @@
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
-    "basedOn": ["Darwin (XNU)"],
+    "basedOn": ["FreeBSD", "Darwin (XNU)"],
     "devices": ["Mobile"],
     "installs": "100M+",
     "license": "Proprietary (Apple EULA)",
@@ -100,7 +103,8 @@
       "packageManager": ["App Store"],
       "defaultShell": ["None (no user shell)"],
       "userland": ["Apple system frameworks (no user-accessible tools)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "visionos",
@@ -108,7 +112,7 @@
     "baseOS": "iOS-based",
     "distroBase": null,
     "by": ["Apple"],
-    "basedOn": ["Darwin (XNU)"],
+    "basedOn": ["FreeBSD", "Darwin (XNU)"],
     "devices": ["Wearable"],
     "installs": "1M+",
     "license": "Proprietary (Apple EULA)",
@@ -125,6 +129,7 @@
       "packageManager": ["App Store"],
       "defaultShell": ["None (no user shell)"],
       "userland": ["Apple system frameworks (no user-accessible tools)"]
-    }
+    },
+    "unix": "like"
   }
 ]

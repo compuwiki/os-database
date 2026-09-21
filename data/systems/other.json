@@ -23,7 +23,8 @@
       "packageManager": ["HaikuDepot", "pkgman"],
       "defaultShell": ["bash"],
       "userland": ["GNU tools (coreutils ports)", "Haiku libroot"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "reactos",
@@ -49,7 +50,8 @@
       "packageManager": ["RAPPS"],
       "defaultShell": ["cmd.exe"],
       "userland": ["ReactOS built-in tools (Win32)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "ms-dos",
@@ -75,7 +77,8 @@
       "packageManager": ["None"],
       "defaultShell": ["COMMAND.COM"],
       "userland": ["DOS internal and external commands"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "freedos",
@@ -100,7 +103,8 @@
       "packageManager": ["FDNPKG", "FDIMPLES"],
       "defaultShell": ["FreeCOM"],
       "userland": ["FreeDOS utilities"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "risc-os",
@@ -125,7 +129,8 @@
       "packageManager": ["PackMan"],
       "defaultShell": ["RISC OS command line (*commands)"],
       "userland": ["RISC OS utilities (!Apps, *commands)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "amigaos-4",
@@ -151,7 +156,8 @@
       "packageManager": ["AmiUpdate"],
       "defaultShell": ["AmigaShell (CLI)"],
       "userland": ["AmigaDOS commands (C:)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "morphos",
@@ -177,7 +183,8 @@
       "packageManager": ["Installer (Amiga-style)"],
       "defaultShell": ["AmigaShell (CLI)"],
       "userland": ["AmigaDOS commands (C:)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "aros",
@@ -202,7 +209,8 @@
       "packageManager": ["None (archives / Installer)"],
       "defaultShell": ["AROS Shell (AmigaShell-compatible)"],
       "userland": ["AmigaDOS-compatible commands (C:)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "openvms",
@@ -227,7 +235,8 @@
       "packageManager": ["PCSI (PRODUCT INSTALL)"],
       "defaultShell": ["DCL"],
       "userland": ["DCL commands (optional GNV: GNU on VMS)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "fuchsia",
@@ -253,7 +262,8 @@
       "packageManager": ["Fuchsia packages (components)"],
       "defaultShell": ["None by default (ffx / fx on host)"],
       "userland": ["libc (musl-derived)", "Fuchsia tools"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "harmonyos",
@@ -279,7 +289,8 @@
       "packageManager": ["AppGallery (HAP)"],
       "defaultShell": ["None (developer hdc shell only)"],
       "userland": ["None user-accessible"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "openharmony",
@@ -304,7 +315,8 @@
       "packageManager": ["HAP bundles", "hpm"],
       "defaultShell": ["hdc shell (developer only)"],
       "userland": ["musl libc", "OpenHarmony toolset"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "zephyr",
@@ -330,7 +342,8 @@
       "packageManager": ["west"],
       "defaultShell": ["Zephyr shell (subsystem)"],
       "userland": ["Minimal libc (newlib / picolibc)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "templeos",
@@ -355,7 +368,8 @@
       "packageManager": ["None"],
       "defaultShell": ["HolyC shell"],
       "userland": ["TempleOS built-ins (HolyC)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "kolibrios",
@@ -380,7 +394,8 @@
       "packageManager": ["None"],
       "defaultShell": ["Shell (CMD)"],
       "userland": ["KolibriOS utilities (assembly)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "arcaos",
@@ -405,7 +420,8 @@
       "packageManager": ["ANPM"],
       "defaultShell": ["CMD.EXE", "4OS2"],
       "userland": ["OS/2 utilities (GNU ports via ANPM)"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "vxworks",
@@ -430,7 +446,8 @@
       "packageManager": ["Wind River Helix packages"],
       "defaultShell": ["VxWorks kernel shell"],
       "userland": ["POSIX / VxWorks libraries"]
-    }
+    },
+    "unix": "none"
   },
   {
     "id": "freertos",
@@ -455,6 +472,7 @@
       "packageManager": ["None (libraries via vendor SDK)"],
       "defaultShell": ["FreeRTOS+CLI"],
       "userland": ["Minimal libc (newlib)"]
-    }
+    },
+    "unix": "none"
   }
 ]

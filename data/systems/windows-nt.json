@@ -23,7 +23,9 @@
       "packageManager": ["Windows Installer (MSI)"],
       "defaultShell": ["cmd.exe"],
       "userland": ["Windows built-in tools (Win32)"]
-    }
+    },
+    "unix": "none",
+    "generation": "NT 5"
   },
   {
     "id": "windows-7",
@@ -49,7 +51,9 @@
       "packageManager": ["Windows Installer (MSI)"],
       "defaultShell": ["cmd.exe", "PowerShell 2.0"],
       "userland": ["Windows built-in tools (Win32)"]
-    }
+    },
+    "unix": "none",
+    "generation": "NT 6"
   },
   {
     "id": "windows-10",
@@ -75,7 +79,9 @@
       "packageManager": ["winget", "MS Store"],
       "defaultShell": ["PowerShell", "cmd.exe"],
       "userland": ["Windows built-in tools (Win32)", "WSL (optional GNU userland)"]
-    }
+    },
+    "unix": "none",
+    "generation": "NT 10"
   },
   {
     "id": "windows-11",
@@ -101,7 +107,9 @@
       "packageManager": ["winget", "MS Store"],
       "defaultShell": ["PowerShell", "cmd.exe"],
       "userland": ["Windows built-in tools (Win32)", "WSL (optional GNU userland)"]
-    }
+    },
+    "unix": "none",
+    "generation": "NT 10"
   },
   {
     "id": "windows-server",
@@ -127,6 +135,8 @@
       "packageManager": ["winget", "Windows Installer (MSI)"],
       "defaultShell": ["PowerShell", "cmd.exe"],
       "userland": ["Windows built-in tools (Win32)", "WSL (optional GNU userland)"]
-    }
+    },
+    "unix": "none",
+    "generation": "NT 10"
   }
 ]

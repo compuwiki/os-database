@@ -1,10 +1,10 @@
 {
-  "Arch": { "label": "Arch based", "color": "#1793d1", "logo": "arch-linux.svg" },
-  "Debian": { "label": "Debian based", "color": "#a81d33", "logo": "debian.svg" },
-  "Red Hat": { "label": "Fedora based", "color": "#c8102e", "logo": "fedora.svg" },
-  "Slackware": { "label": "Slackware based", "color": "#2f4d91", "logo": "slackware.svg" },
-  "Gentoo": { "label": "Gentoo based", "color": "#54487a", "logo": "gentoo.svg" },
-  "SUSE": { "label": "SUSE based", "color": "#4f8a10", "logo": "opensuse.svg" },
-  "Alpine": { "label": "Alpine based", "color": "#0d597f", "logo": "alpine.svg" },
-  "Independent": { "label": "Independent Linux", "color": "#5b6472", "logo": "linux.svg" }
+  "Arch": { "color": "#1793d1" },
+  "Debian": { "color": "#a81d33" },
+  "Red Hat": { "color": "#c8102e" },
+  "Slackware": { "color": "#2f4d91" },
+  "Gentoo": { "color": "#54487a" },
+  "SUSE": { "color": "#4f8a10" },
+  "Alpine": { "color": "#0d597f" },
+  "Independent": { "color": "#5b6472" }
 }

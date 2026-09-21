@@ -2,23 +2,45 @@
   "Linux kernel": {
     "label": "Linux kernel based",
     "logo": "linux.svg",
-    "hint": "Uses the Linux kernel (developed with the Linux Foundation)"
+    "hint": "Uses the Linux kernel (developed with the Linux Foundation): every Linux distribution, Android and other Linux-based systems"
   },
   "Debian": {
     "label": "Debian based",
     "logo": "debian.svg",
     "hint": "Debian and everything built on it, including Ubuntu-based systems"
   },
+  "Ubuntu": {
+    "label": "Ubuntu based",
+    "logo": "ubuntu.svg",
+    "hint": "Ubuntu (itself Debian-based) and its flavors and derivatives"
+  },
   "Arch Linux": { "label": "Arch based", "logo": "arch-linux.svg", "hint": "Arch and Arch-based systems" },
   "Red Hat": { "label": "Fedora based", "logo": "fedora.svg", "hint": "Fedora, RHEL and their rebuilds and derivatives" },
-  "FreeBSD": { "label": "FreeBSD based", "logo": "freebsd.svg", "hint": "FreeBSD and systems forked or built from it" },
+  "Slackware": { "label": "Slackware based", "logo": "slackware.svg", "hint": "Slackware and its derivatives" },
+  "Gentoo": { "label": "Gentoo based", "logo": "gentoo.svg", "hint": "Gentoo and its derivatives (including ChromeOS)" },
+  "SUSE": { "label": "SUSE based", "logo": "opensuse.svg", "hint": "SUSE / openSUSE" },
+  "Alpine": { "label": "Alpine based", "logo": "alpine.svg", "hint": "Alpine and its derivatives (musl + BusyBox)" },
+  "Independent Linux": {
+    "label": "Independent Linux",
+    "logo": "linux.svg",
+    "hint": "Linux systems with their own base, not derived from another distribution"
+  },
+  "FreeBSD": {
+    "label": "FreeBSD based",
+    "logo": "freebsd.svg",
+    "hint": "FreeBSD and systems forked or built from it, including the FreeBSD-derived userland of macOS and iOS"
+  },
   "NetBSD": { "label": "NetBSD based", "logo": "netbsd.svg", "hint": "NetBSD and OpenBSD (forked from NetBSD)" },
   "Windows NT": { "label": "Windows NT based", "logo": "windows-11.svg", "hint": "Built on the Windows NT kernel" },
-  "Android (AOSP)": { "label": "Android based", "logo": "android.svg", "hint": "Built on the Android Open Source Project" },
+  "Android (AOSP)": {
+    "label": "Android based",
+    "logo": "android.svg",
+    "hint": "Built on the Android Open Source Project (Linux kernel underneath)"
+  },
   "Darwin (XNU)": {
     "label": "Darwin based",
     "logo": "macos-mini.svg",
-    "hint": "Apple's Darwin / XNU core: macOS, iOS, iPadOS, watchOS, tvOS"
+    "hint": "Apple's Darwin: the XNU kernel (Mach + BSD) under macOS, iOS, iPadOS, watchOS, tvOS and visionOS"
   },
   "UNIX System V": { "label": "System V based", "icon": "terminal", "hint": "System V lineage: Solaris / illumos, AIX, HP-UX" }
 }

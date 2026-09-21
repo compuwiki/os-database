@@ -2,7 +2,7 @@
   {
     "id": "redox",
     "name": "Redox OS",
-    "baseOS": "UNIX-like",
+    "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["Redox OS Project"],
     "basedOn": [],
@@ -23,12 +23,13 @@
       "packageManager": ["pkg"],
       "defaultShell": ["Ion"],
       "userland": ["relibc", "Rust coreutils (uutils)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "serenityos",
     "name": "SerenityOS",
-    "baseOS": "UNIX-like",
+    "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["Andreas Kling"],
     "basedOn": [],
@@ -48,12 +49,13 @@
       "packageManager": ["Ports"],
       "defaultShell": ["Shell (SerenityOS shell)"],
       "userland": ["SerenityOS LibC", "SerenityOS userland utilities"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "vinix",
     "name": "Vinix",
-    "baseOS": "UNIX-like",
+    "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["V Language Project", "Alexander Medvednikov"],
     "basedOn": [],
@@ -73,12 +75,13 @@
       "packageManager": ["pkg (Alpine repositories)"],
       "defaultShell": ["bash", "zsh"],
       "userland": ["Alpine userland (musl, BusyBox / GNU)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "plan9",
     "name": "Plan 9 (9front)",
-    "baseOS": "UNIX-like",
+    "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["9front Project"],
     "basedOn": [],
@@ -98,12 +101,13 @@
       "packageManager": ["None (mk / source builds)"],
       "defaultShell": ["rc"],
       "userland": ["Plan 9 userland (own libc, POSIX via APE)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "minix",
     "name": "MINIX 3",
-    "baseOS": "UNIX-like",
+    "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["Andrew S. Tanenbaum"],
     "basedOn": [],
@@ -123,12 +127,13 @@
       "packageManager": ["pkgin (NetBSD pkgsrc)"],
       "defaultShell": ["ash"],
       "userland": ["NetBSD userland (pkgsrc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "hurd",
     "name": "GNU Hurd",
-    "baseOS": "UNIX-like",
+    "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["GNU Project"],
     "basedOn": [],
@@ -148,12 +153,13 @@
       "packageManager": ["apt (Debian GNU/Hurd)"],
       "defaultShell": ["bash"],
       "userland": ["GNU (coreutils, glibc)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "toaruos",
     "name": "ToaruOS",
-    "baseOS": "UNIX-like",
+    "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["K. Lange"],
     "basedOn": [],
@@ -173,12 +179,13 @@
       "packageManager": ["msk"],
       "defaultShell": ["esh"],
       "userland": ["ToaruOS userland (Kuroko, Bim)"]
-    }
+    },
+    "unix": "like"
   },
   {
     "id": "qnx",
     "name": "QNX",
-    "baseOS": "UNIX-like",
+    "baseOS": "Other UNIX-like",
     "distroBase": null,
     "by": ["BlackBerry"],
     "basedOn": [],
@@ -198,6 +205,7 @@
       "packageManager": ["QNX Software Center"],
       "defaultShell": ["ksh"],
       "userland": ["QNX POSIX utilities", "GNU tools via ports"]
-    }
+    },
+    "unix": "like"
   }
 ]
