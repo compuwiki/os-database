@@ -1,8 +1,21 @@
-// UI logic. Depends on data.js (osData, families, baseTypes, authors, authorKinds, basedOnTypes, deviceTypes, licenseTypes, installTiers, DATA_AS_OF) and icons.js (uiIcon).
+// UI logic: loads the data (js/data.js), then renders the filters, the grid, the detail dialog and the comparison.
+import { loadData } from './data.js';
+import { uiIcon } from './icons.js';
+
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
 const MAX_COMPARE = 10;
+
+let data;
+try {
+  data = await loadData();
+} catch (err) {
+  $('osGrid').innerHTML = `<p class="col-span-full text-center text-rose-300 py-16">Could not load the data (${esc(err.message)}).<br>
+    Serve this folder over HTTP (GitHub Pages, <code>python -m http.server</code> or Live Server) instead of opening index.html directly.</p>`;
+  throw err;
+}
+const { osData, families, baseTypes, authors, authorKinds, basedOnTypes, deviceTypes, licenseTypes, installTiers, dataAsOf } = data;
 
 // [key in os.specs, label, icon]
 const SPECS = [
@@ -331,7 +344,7 @@ window.addEventListener('keydown', (e) => {
 
 // ---------- init ----------
 document.querySelectorAll('[data-icon]').forEach((el) => { el.innerHTML = uiIcon(el.dataset.icon, el.dataset.size ?? 'w-4 h-4'); });
-$('asOf').textContent = `Kernel and release versions as of ${DATA_AS_OF}. Systems without a version could not be confirmed. Install counts are rough estimates of active devices, servers and long-lived VMs.`;
+$('asOf').textContent = `Kernel and release versions as of ${dataAsOf}. Systems without a version could not be confirmed. Install counts are rough estimates of active devices, servers and long-lived VMs.`;
 renderPills();
 renderGrid();
 renderBar();

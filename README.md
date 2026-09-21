@@ -2,7 +2,13 @@
 
 A static, single-page directory of operating systems: Windows, macOS, Linux distributions, BSDs, mobile, TV, automotive, embedded and retro systems. Browse, filter, and compare up to 10 systems side by side.
 
-No build step and no backend. Open `index.html` in a browser (the page loads Tailwind from its CDN, so it needs an internet connection).
+No build step and no backend, just static files. The page loads its data from JSON, so it has to be served over HTTP (it does not work when `index.html` is opened directly from disk):
+
+```
+python -m http.server     # then open http://localhost:8000
+```
+
+It also loads Tailwind from its CDN, so it needs an internet connection.
 
 ## Features
 
@@ -23,33 +29,26 @@ No build step and no backend. Open `index.html` in a browser (the page loads Tai
 ```
 index.html        page markup
 css/styles.css    styles (Tailwind handles the rest)
-js/data.js        all the data: systems, authors, filter definitions
-js/app.js         filtering, rendering, comparison
+js/app.js         entry point: filtering, rendering, detail dialog, comparison
+js/data.js        loads everything under data/ and returns it as one object
 js/icons.js       UI icons (stroke SVG paths)
+data/             all the content as JSON (see data/README.md)
 assets/logos/     logo of each system
 assets/author/    logo of each author
+scripts/          validate-data.mjs: consistency check for data/
 ```
 
 ## Editing the data
 
-Everything lives in `js/data.js`. To add a system, append an object to `osData`:
+All content is JSON under `data/`: systems (one file per Base OS, Linux split by family), authors and the filter definitions. See [data/README.md](data/README.md) for the layout and the steps to add a system, and `data/schema/systems.schema.json` for every field (VS Code validates and autocompletes it).
 
-```js
-{ id: "example-os", name: "Example OS", baseOS: "Linux", distroBase: "Debian",
-  by: ["Example Project"],                                       // who makes it (owner companies can follow)
-  basedOn: ["Linux kernel", "Debian"],                           // upstream, keys of basedOnTypes
-  devices: ["Desktop"], installs: "10K+",
-  license: "GPL-2.0", licenseTags: ["GPL"],
-  logo: "example-os.svg",                                        // file in assets/logos/, or omit
-  source: { type: "open-source", url: "https://example.org/repo" }, // or { type: "closed" }
-  specs: { cpuCompatibility: ["x86_64"], kernel: "Linux", bootloader: ["GRUB2"], fileSystems: ["ext4"],
-           graphicServer: ["Wayland"], audioServer: ["PipeWire"], desktopEnvironment: ["GNOME"], packageManager: ["apt"] } }
+After editing, run the consistency check (Node 18+, no dependencies):
+
+```
+node scripts/validate-data.mjs
 ```
 
-- `baseOS` must be a key of `baseTypes`; `distroBase` (Linux only) a key of `families`.
-- Every name in `by` must exist in `authors`. Add a new author there if needed.
-- Without a `logo`, the card shows the system's initials.
-- Filter pills are generated from the data, so new values appear automatically.
+It verifies that every author, filter key and logo file a system refers to exists, that each system sits in the right file, and lists unused logo files.
 
 To keep logos small, optimize them with [SVGO](https://github.com/svg/svgo): `npx svgo -f assets/logos --multipass`.
 

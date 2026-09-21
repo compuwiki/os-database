@@ -1,0 +1,24 @@
+{
+  "Linux kernel": {
+    "label": "Linux kernel based",
+    "logo": "linux.svg",
+    "hint": "Uses the Linux kernel (developed with the Linux Foundation)"
+  },
+  "Debian": {
+    "label": "Debian based",
+    "logo": "debian.svg",
+    "hint": "Debian and everything built on it, including Ubuntu-based systems"
+  },
+  "Arch Linux": { "label": "Arch based", "logo": "arch-linux.svg", "hint": "Arch and Arch-based systems" },
+  "Red Hat": { "label": "Fedora based", "logo": "fedora.svg", "hint": "Fedora, RHEL and their rebuilds and derivatives" },
+  "FreeBSD": { "label": "FreeBSD based", "logo": "freebsd.svg", "hint": "FreeBSD and systems forked or built from it" },
+  "NetBSD": { "label": "NetBSD based", "logo": "netbsd.svg", "hint": "NetBSD and OpenBSD (forked from NetBSD)" },
+  "Windows NT": { "label": "Windows NT based", "logo": "windows-11.svg", "hint": "Built on the Windows NT kernel" },
+  "Android (AOSP)": { "label": "Android based", "logo": "android.svg", "hint": "Built on the Android Open Source Project" },
+  "Darwin (XNU)": {
+    "label": "Darwin based",
+    "logo": "macos-mini.svg",
+    "hint": "Apple's Darwin / XNU core: macOS, iOS, iPadOS, watchOS, tvOS"
+  },
+  "UNIX System V": { "label": "System V based", "icon": "terminal", "hint": "System V lineage: Solaris / illumos, AIX, HP-UX" }
+}

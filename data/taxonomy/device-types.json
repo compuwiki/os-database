@@ -1,0 +1,10 @@
+{
+  "Server": { "icon": "server", "hint": "Servers and data centers" },
+  "Desktop": { "icon": "monitor", "hint": "Desktops, laptops and workstations" },
+  "Mobile": { "icon": "smartphone", "hint": "Phones and tablets" },
+  "TV": { "icon": "tv", "hint": "Smart TVs and set-top boxes" },
+  "Wearable": { "icon": "watch", "hint": "Watches, smart glasses and headsets" },
+  "Automotive": { "icon": "car", "hint": "Car infotainment and vehicle systems" },
+  "Embedded": { "icon": "cpu", "hint": "Embedded and IoT: kiosks, digital signage, POS, ATMs, smart devices" },
+  "Network": { "icon": "wifi", "hint": "Routers, firewalls and network appliances" }
+}

@@ -1,0 +1,31 @@
+{
+  "Windows NT": { "logo": "windows-11.svg", "color": "#0078d4", "hint": "Windows XP, 7, 10, 11" },
+  "macOS": {
+    "logo": "macos-mini.svg",
+    "color": "#475569",
+    "hint": "macOS (Apple): UNIX 03 certified, XNU / Darwin kernel"
+  },
+  "Linux": { "logo": "linux.svg", "color": "#b45309", "hint": "Linux-kernel distributions and embedded Linux" },
+  "Android-based": { "logo": "android.svg", "color": "#1f9d55", "hint": "AOSP-derived: Android, LineageOS, GrapheneOS, Wear OS" },
+  "iOS-based": {
+    "logo": "ios-mini.svg",
+    "color": "#475569",
+    "hint": "Apple mobile, TV and watch: iOS, iPadOS, watchOS, tvOS"
+  },
+  "BSD": { "logo": "freebsd.svg", "color": "#ab2b28", "hint": "FreeBSD, OpenBSD, NetBSD and derivatives" },
+  "UNIX": {
+    "icon": "terminal",
+    "color": "#6d28d9",
+    "hint": "Certified or System V-lineage UNIX: Solaris, AIX, HP-UX, illumos"
+  },
+  "UNIX-like": {
+    "icon": "code",
+    "color": "#0f766e",
+    "hint": "Unix-like systems written from scratch: Redox, SerenityOS, Vinix, QNX"
+  },
+  "Other": {
+    "icon": "compass",
+    "color": "#5b6472",
+    "hint": "Everything else: DOS, Amiga family, Haiku, Fuchsia, HarmonyOS, ..."
+  }
+}

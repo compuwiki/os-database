@@ -1,0 +1,54 @@
+[
+  {
+    "id": "alpine",
+    "name": "Alpine Linux",
+    "baseOS": "Linux",
+    "distroBase": "Alpine",
+    "by": ["Alpine Linux"],
+    "basedOn": ["Linux kernel"],
+    "devices": ["Server", "Embedded"],
+    "installs": "10M+",
+    "license": "MIT (musl, apk), GPL-2.0 (kernel)",
+    "licenseTags": ["MIT", "GPL"],
+    "logo": "alpine.svg",
+    "source": { "type": "open-source", "url": "https://gitlab.alpinelinux.org" },
+    "specs": {
+      "cpuCompatibility": ["x86_64", "ARM64", "x86", "s390x"],
+      "kernel": "Linux 6.18 LTS (musl libc)",
+      "bootloader": ["syslinux", "GRUB2"],
+      "fileSystems": ["ext4", "tmpfs"],
+      "graphicServer": ["Wayland", "X11"],
+      "audioServer": ["PipeWire"],
+      "desktopEnvironment": ["Xfce", "Sway"],
+      "packageManager": ["apk"],
+      "defaultShell": ["ash (BusyBox)"],
+      "userland": ["BusyBox", "musl libc"]
+    }
+  },
+  {
+    "id": "postmarketos",
+    "name": "postmarketOS",
+    "baseOS": "Linux",
+    "distroBase": "Alpine",
+    "by": ["postmarketOS"],
+    "basedOn": ["Linux kernel"],
+    "devices": ["Mobile"],
+    "installs": "10K+",
+    "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
+    "licenseTags": ["GPL"],
+    "logo": "postmarketos.svg",
+    "source": { "type": "open-source", "url": "https://gitlab.com/postmarketOS" },
+    "specs": {
+      "cpuCompatibility": ["ARM64", "armhf", "x86_64"],
+      "kernel": "Linux",
+      "bootloader": ["lk2nd / U-Boot"],
+      "fileSystems": ["ext4"],
+      "graphicServer": ["Wayland"],
+      "audioServer": ["PipeWire"],
+      "desktopEnvironment": ["Phosh", "Plasma Mobile"],
+      "packageManager": ["apk"],
+      "defaultShell": ["ash (BusyBox)"],
+      "userland": ["BusyBox", "musl libc"]
+    }
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Systems file",
+  "description": "A file under data/systems/: a list of operating systems. Cross-references (authors, taxonomy keys, logo files) are checked by `node scripts/validate-data.mjs`.",
+  "type": "array",
+  "items": { "$ref": "#/definitions/system" },
+  "definitions": {
+    "strings": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "baseOS", "distroBase", "by", "basedOn", "devices", "installs", "license", "licenseTags", "source", "specs"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "Unique, lowercase, dashes." },
+        "name": { "type": "string", "minLength": 1 },
+        "baseOS": { "type": "string", "description": "Key of taxonomy/base-types.json (kernel lineage)." },
+        "distroBase": { "type": ["string", "null"], "description": "Key of taxonomy/families.json for Linux systems, null otherwise." },
+        "by": { "$ref": "#/definitions/strings", "description": "Who makes it: keys of authors.json, primary author first." },
+        "basedOn": { "type": "array", "items": { "type": "string" }, "description": "Keys of taxonomy/based-on.json (can be empty)." },
+        "devices": { "$ref": "#/definitions/strings", "description": "Keys of taxonomy/device-types.json." },
+        "installs": { "type": "string", "description": "Key of taxonomy/install-tiers.json (rough estimate)." },
+        "license": { "type": "string", "description": "Readable license summary." },
+        "licenseTags": { "$ref": "#/definitions/strings", "description": "Keys of taxonomy/license-types.json." },
+        "logo": { "type": "string", "description": "File in assets/logos/; omit for a generated initials tile." },
+        "source": {
+          "oneOf": [
+            { "type": "object", "additionalProperties": false, "required": ["type", "url"], "properties": { "type": { "const": "open-source" }, "url": { "type": "string", "format": "uri" } } },
+            { "type": "object", "additionalProperties": false, "required": ["type"], "properties": { "type": { "const": "closed" } } }
+          ]
+        },
+        "specs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["cpuCompatibility", "kernel", "bootloader", "fileSystems", "graphicServer", "audioServer", "desktopEnvironment", "packageManager", "defaultShell", "userland"],
+          "properties": {
+            "cpuCompatibility": { "$ref": "#/definitions/strings" },
+            "kernel": { "type": "string", "minLength": 1, "description": "Kernel name with the latest version when it could be confirmed." },
+            "bootloader": { "$ref": "#/definitions/strings" },
+            "fileSystems": { "$ref": "#/definitions/strings" },
+            "graphicServer": { "$ref": "#/definitions/strings" },
+            "audioServer": { "$ref": "#/definitions/strings" },
+            "desktopEnvironment": { "$ref": "#/definitions/strings" },
+            "packageManager": { "$ref": "#/definitions/strings" },
+            "defaultShell": { "$ref": "#/definitions/strings", "description": "The default shell first, then alternatives." },
+            "userland": { "$ref": "#/definitions/strings", "description": "Core tools / libc: GNU, BusyBox, BSD userland..." }
+          }
+        }
+      }
+    }
+  }
+}

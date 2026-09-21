@@ -1,0 +1,9 @@
+{
+  "1B+": "1B or more",
+  "100M+": "100M to under 1B",
+  "10M+": "10M to under 100M",
+  "1M+": "1M to under 10M",
+  "100K+": "100K to under 1M",
+  "10K+": "10K to under 100K",
+  "<10K": "under 10K"
+}

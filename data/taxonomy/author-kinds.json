@@ -1,0 +1,14 @@
+{
+  "company": { "label": "Companies", "icon": "briefcase", "hint": "Commercial companies" },
+  "foundation": {
+    "label": "Foundations & non-profits",
+    "icon": "heart",
+    "hint": "Foundations, non-profits and foundation-run projects"
+  },
+  "community": { "label": "Community projects", "icon": "users", "hint": "Volunteer-run projects and small teams" },
+  "developer": {
+    "label": "Independent developers",
+    "icon": "user",
+    "hint": "Individual people who started or lead a system"
+  }
+}

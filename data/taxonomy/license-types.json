@@ -1,0 +1,9 @@
+{
+  "Proprietary": { "label": "Proprietary", "icon": "lock", "hint": "Closed source / commercial EULA" },
+  "Apache": { "label": "Apache", "icon": "feather", "hint": "Apache-2.0" },
+  "GPL": { "label": "GPL family", "icon": "shield", "hint": "GPL, LGPL, AGPL (copyleft)" },
+  "MIT": { "label": "MIT / BSD", "icon": "file", "hint": "MIT, BSD-2/3-Clause, ISC, Zlib (permissive)" },
+  "MPL": { "label": "MPL / CDDL", "icon": "layers", "hint": "MPL, CDDL, EPL (weak copyleft)" },
+  "Public Domain": { "label": "Public Domain", "icon": "globe", "hint": "Unlicense, CC0" },
+  "Source Available": { "label": "Source Available", "icon": "eye", "hint": "Source visible, restricted use (BUSL, Elastic, ...)" }
+}

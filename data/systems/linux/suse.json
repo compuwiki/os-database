@@ -1,0 +1,54 @@
+[
+  {
+    "id": "sles",
+    "name": "SUSE Linux Enterprise",
+    "baseOS": "Linux",
+    "distroBase": "SUSE",
+    "by": ["SUSE"],
+    "basedOn": ["Linux kernel"],
+    "devices": ["Desktop", "Server"],
+    "installs": "1M+",
+    "license": "GPL and other FOSS licenses; binaries under subscription EULA",
+    "licenseTags": ["GPL", "Proprietary"],
+    "logo": "sles.svg",
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["x86_64", "s390x", "ppc64le", "ARM64"],
+      "kernel": "Linux 6.12 (SLE 16)",
+      "bootloader": ["GRUB2"],
+      "fileSystems": ["Btrfs", "XFS"],
+      "graphicServer": ["Wayland", "X11"],
+      "audioServer": ["PipeWire"],
+      "desktopEnvironment": ["GNOME"],
+      "packageManager": ["zypper"],
+      "defaultShell": ["bash"],
+      "userland": ["GNU (coreutils, glibc)"]
+    }
+  },
+  {
+    "id": "opensuse",
+    "name": "openSUSE (Tumbleweed/Leap)",
+    "baseOS": "Linux",
+    "distroBase": "SUSE",
+    "by": ["openSUSE Project"],
+    "basedOn": ["Linux kernel"],
+    "devices": ["Desktop", "Server"],
+    "installs": "1M+",
+    "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
+    "licenseTags": ["GPL"],
+    "logo": "opensuse.svg",
+    "source": { "type": "open-source", "url": "https://github.com/openSUSE" },
+    "specs": {
+      "cpuCompatibility": ["x86_64", "ARM64"],
+      "kernel": "Linux 7.2 (Tumbleweed) / 6.12 (Leap 16)",
+      "bootloader": ["GRUB2"],
+      "fileSystems": ["Btrfs"],
+      "graphicServer": ["Wayland", "X11"],
+      "audioServer": ["PipeWire"],
+      "desktopEnvironment": ["KDE Plasma", "GNOME"],
+      "packageManager": ["zypper"],
+      "defaultShell": ["bash"],
+      "userland": ["GNU (coreutils, glibc)"]
+    }
+  }
+]

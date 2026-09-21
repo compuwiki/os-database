@@ -1,0 +1,28 @@
+[
+  {
+    "id": "macos",
+    "name": "macOS",
+    "baseOS": "macOS",
+    "distroBase": null,
+    "by": ["Apple"],
+    "basedOn": ["Darwin (XNU)"],
+    "devices": ["Desktop"],
+    "installs": "100M+",
+    "license": "Proprietary (Apple EULA); Darwin core under APSL-2.0",
+    "licenseTags": ["Proprietary"],
+    "logo": "macos.svg",
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["Apple Silicon (ARM64)", "x86_64"],
+      "kernel": "XNU (Darwin 26, macOS 27)",
+      "bootloader": ["iBoot"],
+      "fileSystems": ["APFS"],
+      "graphicServer": ["Quartz Compositor"],
+      "audioServer": ["CoreAudio"],
+      "desktopEnvironment": ["Aqua"],
+      "packageManager": ["Mac App Store", "Homebrew"],
+      "defaultShell": ["zsh", "bash 3.2"],
+      "userland": ["BSD userland (FreeBSD-derived)", "libSystem"]
+    }
+  }
+]
