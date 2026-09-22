@@ -34,6 +34,8 @@ Adding a whole new Base OS or family means adding its key to `taxonomy/`, creati
 
 `knownFor` (2 to 4 words, required) and `pitch` (one sentence, optional) are opinion, not specification: what each system is best known for, in the voice "Give me X and I'll Y". Keep `knownFor` neutral and factual in spirit ("Immutable, rollback-safe"), and use `pitch` for personality. They are shown in the detail dialog and the comparison, and are searchable.
 
+`released` (year, required) is the year the system, or the continuing project it represents, was first released — like `installs`, a best-effort estimate rather than a verified fact, and approximate for early, renamed or rebranded projects (e.g. macOS uses 2001, the Mac OS X 10.0 release, rather than the 2016 rename). It drives the year-of-creation range slider.
+
 ## How systems are classified
 
 Three independent facts, so nothing has to be squeezed into one label:

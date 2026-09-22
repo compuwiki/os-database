@@ -4,6 +4,7 @@
     "name": "macOS",
     "knownFor": "Integrated hardware/software",
     "pitch": "Give me hardware and software I control, and I'll integrate them.",
+    "released": 2001,
     "baseOS": "macOS",
     "distroBase": null,
     "by": ["Apple"],
