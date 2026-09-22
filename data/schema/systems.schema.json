@@ -9,12 +9,13 @@
     "system": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "knownFor", "baseOS", "distroBase", "by", "basedOn", "unix", "devices", "installs", "license", "licenseTags", "source", "specs"],
+      "required": ["id", "name", "knownFor", "released", "baseOS", "distroBase", "by", "basedOn", "unix", "devices", "installs", "license", "licenseTags", "source", "specs"],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "Unique, lowercase, dashes." },
         "name": { "type": "string", "minLength": 1 },
         "knownFor": { "type": "string", "minLength": 1, "description": "Editorial: what it is best known for, 2 to 4 words." },
         "pitch": { "type": "string", "description": "Editorial, optional: one sentence in the \"Give me X and I'll Y\" voice." },
+        "released": { "type": "integer", "minimum": 1960, "description": "Year the system (or the project it continues) was first released. Approximate for early or renamed/rebranded projects, like `installs`." },
         "baseOS": { "type": "string", "description": "Key of taxonomy/base-types.json (kernel lineage)." },
         "distroBase": { "type": ["string", "null"], "description": "Key of taxonomy/families.json (the closest distro family, used for the card tag and color) for Linux systems, null otherwise." },
         "by": { "$ref": "#/definitions/strings", "description": "Who makes it: keys of authors.json, primary author first." },

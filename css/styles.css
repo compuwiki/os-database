@@ -12,13 +12,41 @@ body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple
 .badge-open { background: rgba(2, 44, 34, .8); border-color: #065f46; color: #6ee7b7; }
 
 /* filter pills */
-.pill-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+.pill-row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
 .pill-row[hidden] { display: none; }
 .pill { display: inline-flex; align-items: center; gap: .5rem; padding: .375rem .875rem; border-radius: 9999px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; transition: background-color .2s; }
 #basedPills .pill, #generationPills .pill, #devicePills .pill, #licensePills .pill, #licenseFamilyPills .pill, #installPills .pill, #authorPills .pill, #authorSubPills .pill { padding: .25rem .75rem; gap: .375rem; }
-.pill-more { color: #7dd3fc; border-style: dashed; }
+.pill-more { color: #7dd3fc; border-style: dashed; background: transparent; cursor: pointer; }
+.pill-more:hover { background: #1e293b; }
 .pill:hover { background: #334155; }
 .pill[aria-pressed="true"] { background: #0284c7; color: #fff; border-color: #38bdf8; }
+
+/* "More filters" toggle */
+#moreFiltersBtn { background: none; border: none; cursor: pointer; }
+#moreFiltersBtn[aria-expanded="true"] [data-icon="chevronDown"] { transform: rotate(180deg); }
+#moreFilters[hidden] { display: none; }
+
+/* year-of-creation dual range slider */
+.year-slider { position: relative; height: 1.5rem; }
+.year-slider-track { position: absolute; top: 50%; left: 0; right: 0; height: 4px; margin-top: -2px; border-radius: 9999px; background: #334155; }
+.year-slider-range { position: absolute; top: 0; bottom: 0; background: #38bdf8; border-radius: 9999px; }
+.year-slider input[type="range"] {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0;
+  -webkit-appearance: none; appearance: none; background: transparent; pointer-events: none;
+}
+.year-slider input[type="range"]:focus-visible { outline: none; }
+.year-slider input[type="range"]::-webkit-slider-runnable-track { -webkit-appearance: none; background: transparent; }
+.year-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; pointer-events: auto; width: 1.125rem; height: 1.125rem; margin-top: 0;
+  border-radius: 9999px; background: #f8fafc; border: 2px solid #0284c7; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+.year-slider input[type="range"]::-moz-range-track { background: transparent; border: none; }
+.year-slider input[type="range"]::-moz-range-thumb {
+  pointer-events: auto; width: 1.125rem; height: 1.125rem; border-radius: 9999px;
+  background: #f8fafc; border: 2px solid #0284c7; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+.year-slider input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 2px solid #38bdf8; outline-offset: 2px; }
+.year-slider input[type="range"]:focus-visible::-moz-range-thumb { outline: 2px solid #38bdf8; outline-offset: 2px; }
 
 /* compare: add/remove toggle on cards, buttons, chips, bar */
 .cmp-toggle { position: absolute; top: .5rem; right: .5rem; display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 9999px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; transition: background-color .2s; }

@@ -35,6 +35,7 @@ const SPECS = [
 const COMPARE_ROWS = [
   ['Known for', 'compass', (os) => os.knownFor],
   ['Pitch', 'feather', (os) => os.pitch ?? '—'],
+  ['Released', 'calendar', (os) => String(os.released)],
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
   ['UNIX heritage', 'terminal', (os) => unixStatus[os.unix].label],
@@ -78,7 +79,23 @@ const generationOptions = () => {
   const options = Object.keys(n).filter((g) => n[g] > 0);
   return { n, total: pool.length, options: options.length > 1 ? options : [] };
 };
-const state = { base: 'All', based: 'All', generation: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', kind: 'All', author: 'All', query: '' };
+const YEAR_MIN = Math.min(...osData.map((os) => os.released));
+const YEAR_MAX = Math.max(...osData.map((os) => os.released));
+const state = { base: 'All', based: 'All', generation: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', kind: 'All', author: 'All', query: '', yearMin: YEAR_MIN, yearMax: YEAR_MAX };
+// Rows collapsed to a "+N more" pill until expanded (id -> expanded?)
+const expandedRows = new Set();
+const ROW_LIMIT = 12;
+// Truncates a rendered pill row to ROW_LIMIT items with a "+N more" / "Show less" toggle. Auto-expands once the active pill would otherwise be hidden.
+function collapseRow(id, items, activeIndex) {
+  if (activeIndex >= ROW_LIMIT) expandedRows.add(id);
+  if (items.length <= ROW_LIMIT) return items.join('');
+  const expanded = expandedRows.has(id);
+  const shown = expanded ? items : items.slice(0, ROW_LIMIT);
+  const toggle = expanded
+    ? `<button type="button" class="pill pill-more" data-collapse-row="${id}">${uiIcon('chevronDown', 'w-3.5 h-3.5')}Show less</button>`
+    : `<button type="button" class="pill pill-more" data-expand-row="${id}">${uiIcon('chevronDown', 'w-3.5 h-3.5')}+${items.length - ROW_LIMIT} more</button>`;
+  return shown.join('') + toggle;
+}
 // Author counts inside the selected Base OS: per author and per category
 const authorStats = () => {
   const author = {}, kind = {};
@@ -96,7 +113,7 @@ const compare = []; // ids, in the order added
 // Lowercased searchable text per OS, built once.
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.knownFor, os.pitch ?? '', os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.knownFor, os.pitch ?? '', String(os.released), os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -134,9 +151,11 @@ function renderPills() {
     bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : b, baseTypes[b]?.logo, baseTypes[b]?.icon ?? 'grid', 'w-5 h-5')
       .replace('<button ', `<button title="${esc(baseTypes[b]?.hint ?? 'Grouped by kernel lineage')} · ${baseCount(b)} systems" `)).join('');
   const based = basedOnOptions();
-  $('basedPills').innerHTML = ['All', ...based.options].map((b) =>
+  const basedList = ['All', ...based.options];
+  const basedItems = basedList.map((b) =>
     pill('based', b, b === 'All' ? 'Based on: any' : basedOnTypes[b].label, basedOnTypes[b]?.logo, basedOnTypes[b]?.icon ?? 'layers', 'w-4 h-4')
-      .replace('<button ', `<button title="${esc(basedOnTypes[b]?.hint ?? 'Upstream a system is built on')} · ${b === 'All' ? based.total : based.n[b]} systems" `)).join('');
+      .replace('<button ', `<button title="${esc(basedOnTypes[b]?.hint ?? 'Upstream a system is built on')} · ${b === 'All' ? based.total : based.n[b]} systems" `));
+  $('basedPills').innerHTML = collapseRow('based', basedItems, basedList.indexOf(state.based));
   $('basedPills').hidden = based.options.length === 0;
   const gen = generationOptions();
   $('generationPills').innerHTML = ['All', ...gen.options].map((g) =>
@@ -167,12 +186,35 @@ function renderPills() {
     Object.keys(authorKinds).filter((k) => stats.kind[k]).map((k) => pill('kind', k, authorKinds[k].label, null, authorKinds[k].icon, 'w-4 h-4')
       .replace('<button ', `<button title="${esc(authorKinds[k].hint)} · ${stats.kind[k]} systems" `)).join('');
   const kind = authorKinds[state.kind];
-  $('authorSubPills').innerHTML = !kind ? '' :
-    pill('author', 'All', `All ${kind.label.toLowerCase()}`, null, kind.icon, 'w-4 h-4') +
-    Object.keys(stats.author).filter((a) => authors[a].type === state.kind).sort((a, b) => stats.author[b] - stats.author[a] || a.localeCompare(b))
-      .map((a) => pill('author', a, authorLabel(a), authors[a].logo, kind.icon, 'w-4 h-4', 'author')
-        .replace('<button ', `<button title="${stats.author[a]} system${stats.author[a] > 1 ? 's' : ''}" `)).join('');
+  if (kind) {
+    const authorList = ['All', ...Object.keys(stats.author).filter((a) => authors[a].type === state.kind).sort((a, b) => stats.author[b] - stats.author[a] || a.localeCompare(b))];
+    const authorItems = authorList.map((a) => a === 'All'
+      ? pill('author', 'All', `All ${kind.label.toLowerCase()}`, null, kind.icon, 'w-4 h-4')
+      : pill('author', a, authorLabel(a), authors[a].logo, kind.icon, 'w-4 h-4', 'author')
+          .replace('<button ', `<button title="${stats.author[a]} system${stats.author[a] > 1 ? 's' : ''}" `));
+    $('authorSubPills').innerHTML = collapseRow('authorSub', authorItems, authorList.indexOf(state.author));
+  } else {
+    $('authorSubPills').innerHTML = '';
+  }
   $('authorSubPills').hidden = !kind;
+
+  // Badge the "More filters" toggle with how many of the filters it hides are active, so collapsing it doesn't hide that from the user.
+  const activeCount = ['based', 'generation', 'device', 'kind', 'license', 'installs'].filter((k) => state[k] !== 'All').length;
+  const expanded = $('moreFiltersBtn').getAttribute('aria-expanded') === 'true';
+  $('moreFiltersLabel').textContent = (expanded ? 'Fewer filters' : 'More filters') + (activeCount ? ` · ${activeCount} active` : '');
+}
+
+function renderYearSlider() {
+  const minEl = $('yearMin'), maxEl = $('yearMax');
+  minEl.min = maxEl.min = YEAR_MIN;
+  minEl.max = maxEl.max = YEAR_MAX;
+  minEl.value = state.yearMin;
+  maxEl.value = state.yearMax;
+  const span = (YEAR_MAX - YEAR_MIN) || 1;
+  $('yearRange').style.left = `${((state.yearMin - YEAR_MIN) / span) * 100}%`;
+  $('yearRange').style.right = `${((YEAR_MAX - state.yearMax) / span) * 100}%`;
+  $('yearValue').textContent = state.yearMin === YEAR_MIN && state.yearMax === YEAR_MAX
+    ? `${YEAR_MIN}–${YEAR_MAX} (all)` : `${state.yearMin}–${state.yearMax}`;
 }
 
 function card(os) {
@@ -196,6 +238,7 @@ function renderGrid() {
   const q = state.query.trim().toLowerCase();
   const shown = index.filter(({ os, text }) =>
     (state.base === 'All' || os.baseOS === state.base) &&
+    os.released >= state.yearMin && os.released <= state.yearMax &&
     (state.device === 'All' || os.devices.includes(state.device)) &&
     licenseMatch(os, state.license) && (state.family === 'All' || os.licenseTags.includes(state.family)) &&
     installsMatch(os, state.installs) &&
@@ -222,7 +265,8 @@ function openModal(id) {
   // label -> value (falsy rows are skipped)
   const facts = [
     ['Author', owners.map((a) => chip(`${logoTile(authors[a].logo, 'w-4 h-4', initials(a), '#5b6472', 'author')}${esc(authorLabel(a))}`)).join('')],
-    ['Base', chip(esc(os.baseOS + (os.distroBase ? ` · ${os.distroBase}` : ''))) +
+    ['Base', chip(`${uiIcon('calendar', 'w-3.5 h-3.5')}${os.released}`, 'Year of creation') +
+      chip(esc(os.baseOS + (os.distroBase ? ` · ${os.distroBase}` : ''))) +
       (os.generation ? chip(esc(generations[os.generation].label), generations[os.generation].hint) : '') +
       chip(esc(unixStatus[os.unix].label), unixStatus[os.unix].hint)],
     os.basedOn.length && ['Based on', os.basedOn.map((b) => chip(
@@ -332,6 +376,10 @@ const actions = {
 
 // ---------- events ----------
 $('filters').addEventListener('click', (e) => {
+  const expand = e.target.closest('[data-expand-row]');
+  if (expand) { expandedRows.add(expand.dataset.expandRow); renderPills(); return; }
+  const collapse = e.target.closest('[data-collapse-row]');
+  if (collapse) { expandedRows.delete(collapse.dataset.collapseRow); renderPills(); return; }
   const btn = e.target.closest('.pill');
   if (!btn) return;
   if (btn.dataset.base) {
@@ -356,6 +404,28 @@ $('filters').addEventListener('click', (e) => {
 
 $('searchInput').addEventListener('input', (e) => { state.query = e.target.value; renderGrid(); });
 
+// Dual-thumb year slider: two overlapping <input type=range>, each clamped so it can't cross the other.
+$('yearMin').addEventListener('input', (e) => {
+  state.yearMin = Math.min(Number(e.target.value), state.yearMax);
+  renderYearSlider();
+  renderGrid();
+});
+$('yearMax').addEventListener('input', (e) => {
+  state.yearMax = Math.max(Number(e.target.value), state.yearMin);
+  renderYearSlider();
+  renderGrid();
+});
+// Raise whichever thumb is being dragged above the other, so a nearly-closed range can still be grabbed.
+$('yearMin').addEventListener('pointerdown', () => { $('yearMin').style.zIndex = 2; $('yearMax').style.zIndex = 1; });
+$('yearMax').addEventListener('pointerdown', () => { $('yearMax').style.zIndex = 2; $('yearMin').style.zIndex = 1; });
+
+$('moreFiltersBtn').addEventListener('click', () => {
+  const opening = $('moreFilters').hidden;
+  $('moreFilters').hidden = !opening;
+  $('moreFiltersBtn').setAttribute('aria-expanded', String(opening));
+  renderPills();
+});
+
 // One delegated handler for every [data-action]. <dialog> gives Esc + focus trap; a click on the dialog itself is the backdrop.
 document.addEventListener('click', (e) => {
   const el = e.target.closest('[data-action]');
@@ -374,5 +444,6 @@ window.addEventListener('keydown', (e) => {
 document.querySelectorAll('[data-icon]').forEach((el) => { el.innerHTML = uiIcon(el.dataset.icon, el.dataset.size ?? 'w-4 h-4'); });
 $('asOf').textContent = `Kernel and release versions as of ${dataAsOf}. Systems without a version could not be confirmed. Install counts are rough estimates of active devices, servers and long-lived VMs.`;
 renderPills();
+renderYearSlider();
 renderGrid();
 renderBar();
