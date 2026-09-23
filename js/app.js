@@ -67,6 +67,7 @@ const BASED_ON_ORDER = [
   'FreeBSD', 'NetBSD',
   'OS/2',
   'UNIX System V',
+  'OSEK/VDX',
 ];
 const basedOnRank = (b) => { const i = BASED_ON_ORDER.indexOf(b); return i === -1 ? BASED_ON_ORDER.length : i; };
 // Device pills: All first, then A-Z (card chips keep taxonomy order via devicesOf below).

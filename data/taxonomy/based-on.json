@@ -53,5 +53,6 @@
     "logo": "macos-mini.svg",
     "hint": "Apple's Darwin: the XNU kernel (Mach + BSD) under macOS, iOS, iPadOS, watchOS, tvOS and visionOS"
   },
-  "UNIX System V": { "label": "System V based", "icon": "terminal", "hint": "System V lineage: Solaris / illumos, AIX, HP-UX" }
+  "UNIX System V": { "label": "System V based", "icon": "terminal", "hint": "System V lineage: Solaris / illumos, AIX, HP-UX" },
+  "OSEK/VDX": { "label": "OSEK/VDX based", "icon": "cpu", "hint": "OSEK/VDX automotive real-time standard: AUTOSAR OS and other classic AUTOSAR stacks" }
 }

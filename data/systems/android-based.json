@@ -268,5 +268,34 @@
       "userland": ["Toybox", "Bionic libc"]
     },
     "unix": "like"
+  },
+  {
+    "id": "android-automotive-os",
+    "name": "Android Automotive OS",
+    "knownFor": "Android in the dashboard",
+    "pitch": "Give me a car and I'll put Play on the dash.",
+    "released": 2017,
+    "baseOS": "Android-based",
+    "distroBase": null,
+    "by": ["Google"],
+    "basedOn": ["Linux kernel", "Android (AOSP)"],
+    "devices": ["Automotive"],
+    "installs": "10M+",
+    "license": "Proprietary (Google), Apache-2.0 / GPL-2.0 components",
+    "licenseTags": ["Proprietary"],
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["ARM64", "x86_64"],
+      "kernel": "Linux (Android-based)",
+      "bootloader": ["Vendor bootloader"],
+      "fileSystems": ["ext4", "f2fs"],
+      "graphicServer": ["SurfaceFlinger"],
+      "audioServer": ["AudioFlinger"],
+      "desktopEnvironment": ["Android Automotive Home / Cluster"],
+      "packageManager": ["Google Play", "APK / pm"],
+      "defaultShell": ["mksh (adb shell)"],
+      "userland": ["Toybox", "Bionic libc"]
+    },
+    "unix": "like"
   }
 ]

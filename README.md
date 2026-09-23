@@ -17,7 +17,7 @@ It also loads Tailwind from its CDN, so it needs an internet connection.
   - **Base OS**: Android, iOS, Linux, macOS, Windows, Windows (pre-NT), BSD, OS/2, UNIX, UNIX-like, Independents
   - **Year of creation**: dual-thumb range slider over each system's `released` year
   - **Generation**: kernel generation for versioned families, for example Windows NT 5 (XP), NT 6 (7) and NT 10 (10, 11, Server) or Windows 3.x (Win16) and Windows 9x; shown when the selected Base OS has several
-  - **Device**: Server, Desktop, Mobile, TV, Wearable, Automotive, Embedded, Network (routers and firewalls), Console, VR headset, Robot
+  - **Device**: Server, Desktop, Mobile, TV, Wearable, Automotive, Embedded, Network (routers and firewalls), Console, VR headset, Robot, Aviation, Maritime, Space, Defense
   - **Lifecycle**: Active, Maintenance only, Discontinued
   - **License**: Proprietary or Open Source, with families (GPL, MIT / BSD, Apache, MPL / CDDL) under Open Source
   - **Installs (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)

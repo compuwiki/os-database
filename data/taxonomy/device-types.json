@@ -9,5 +9,9 @@
   "Network": { "icon": "wifi", "hint": "Routers, firewalls and network appliances" },
   "Console": { "icon": "gamepad", "hint": "Game consoles" },
   "VR headset": { "icon": "vr", "hint": "VR and mixed-reality headsets" },
-  "Robot": { "icon": "robot", "hint": "Humanoids, arms, drones and robotic platforms" }
+  "Robot": { "icon": "robot", "hint": "Humanoids, arms, drones and robotic platforms" },
+  "Aviation": { "icon": "plane", "hint": "Avionics, aircraft and flight-control systems" },
+  "Maritime": { "icon": "anchor", "hint": "Ships, submarines and marine electronics" },
+  "Space": { "icon": "rocket", "hint": "Satellites, launch vehicles and spacecraft" },
+  "Defense": { "icon": "shield", "hint": "Military and defense systems" }
 }

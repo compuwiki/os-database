@@ -130,5 +130,11 @@
   "ByteDance": { "type": "company" },
   "RTEMS Project": { "type": "community" },
   "Arch Linux ARM Team": { "type": "community" },
-  "UBports Foundation": { "type": "foundation" }
+  "UBports Foundation": { "type": "foundation" },
+  "Green Hills Software": { "type": "company" },
+  "Lynx Software Technologies": { "type": "company" },
+  "AUTOSAR": { "type": "foundation" },
+  "Apache Software Foundation": { "type": "foundation" },
+  "Gregory Nutt": { "type": "developer" },
+  "DDC-I": { "type": "company" }
 }
