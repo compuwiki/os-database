@@ -319,35 +319,6 @@
     "unix": "like"
   },
   {
-    "id": "fedora-coreos",
-    "name": "Fedora CoreOS",
-    "knownFor": "Self-updating container host",
-    "pitch": "Give me containers and I'll update myself.",
-    "baseOS": "Linux",
-    "distroBase": "Red Hat",
-    "by": ["Red Hat", "IBM"],
-    "basedOn": ["Linux kernel", "Red Hat"],
-    "devices": ["Server"],
-    "installs": "1M+",
-    "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
-    "licenseTags": ["GPL"],
-    "logo": "fedora.svg",
-    "source": { "type": "open-source", "url": "https://github.com/coreos/fedora-coreos-tracker" },
-    "specs": {
-      "cpuCompatibility": ["x86_64", "ARM64", "s390x", "ppc64le"],
-      "kernel": "Linux 7.2 (Fedora 44 base)",
-      "bootloader": ["GRUB2"],
-      "fileSystems": ["XFS"],
-      "graphicServer": ["None (headless)"],
-      "audioServer": ["N/A"],
-      "desktopEnvironment": ["None (container host, Ignition-provisioned)"],
-      "packageManager": ["rpm-ostree"],
-      "defaultShell": ["bash"],
-      "userland": ["GNU (coreutils, glibc)"]
-    },
-    "unix": "like"
-  },
-  {
     "id": "openeuler",
     "name": "openEuler",
     "knownFor": "Multi-architecture server OS",
