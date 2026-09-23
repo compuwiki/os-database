@@ -14,7 +14,7 @@ It also loads Tailwind from its CDN, so it needs an internet connection.
 
 - **Search** across names, kernels, desktops, package managers, file systems, licenses and authors (press `/` to focus).
 - **Filters** that combine with each other:
-  - **Base OS**: Windows NT, Windows (pre-NT), OS/2, macOS, Linux, Android-based, iOS-based, BSD, UNIX, Other UNIX-like, Other
+  - **Base OS**: Android, iOS, Linux, macOS, Windows, Windows (pre-NT), BSD, OS/2, UNIX, UNIX-like, Independents
   - **Generation**: kernel generation for versioned families, for example Windows NT 5 (XP), NT 6 (7) and NT 10 (10, 11, Server) or Windows 3.x (Win16) and Windows 9x; shown when the selected Base OS has several
   - **Device**: Server, Desktop, Mobile, TV, Wearable, Automotive, Embedded, Network (routers and firewalls), Console, VR headset, Robot
   - **Lifecycle**: Active, Maintenance only, Discontinued

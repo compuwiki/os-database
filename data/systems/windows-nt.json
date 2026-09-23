@@ -291,5 +291,37 @@
     },
     "unix": "none",
     "generation": "NT 10"
+  },
+  {
+    "id": "xbox-360",
+    "name": "Xbox 360 system software",
+    "knownFor": "Xbox 360 system software",
+    "pitch": "Give me a 360 and I'll light up the guide blade.",
+    "baseOS": "Windows NT",
+    "distroBase": null,
+    "by": ["Microsoft"],
+    "basedOn": ["Windows NT"],
+    "devices": ["Console"],
+    "installs": "100M+",
+    "lifecycle": "discontinued",
+    "license": "Proprietary (Microsoft)",
+    "licenseTags": ["Proprietary"],
+    "logo": "xbox-360.png",
+    "source": {
+      "type": "closed"
+    },
+    "specs": {
+      "cpuCompatibility": ["PowerPC (Xenon triple-core)"],
+      "kernel": "Xbox 360 OS (modified Windows NT)",
+      "bootloader": ["Proprietary (CB / CB_A)"],
+      "fileSystems": ["FATX"],
+      "graphicServer": ["DirectX 9 (custom GPU)"],
+      "audioServer": ["XAudio2"],
+      "desktopEnvironment": ["Xbox Dashboard / Guide"],
+      "packageManager": ["Xbox Live Marketplace"],
+      "defaultShell": ["None (no user shell)"],
+      "userland": ["Xbox 360 system modules"]
+    },
+    "unix": "none"
   }
 ]

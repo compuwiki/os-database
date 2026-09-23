@@ -35,7 +35,7 @@ const SPECS = [
 const COMPARE_ROWS = [
   ['Known for', 'compass', (os) => os.knownFor],
   ['Pitch', 'feather', (os) => os.pitch ?? '—'],
-  ['Base OS', 'layers', (os) => os.baseOS],
+  ['Base OS', 'layers', (os) => baseLabel(os.baseOS)],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
   ['Lifecycle', 'clock', (os) => lifecycle[os.lifecycle ?? 'active'].label],
   ['UNIX heritage', 'terminal', (os) => unixStatus[os.unix].label],
@@ -50,9 +50,13 @@ const COMPARE_ROWS = [
 ];
 
 const byId = new Map(osData.map((os) => [os.id, os]));
-const bases = ['All', ...Object.keys(baseTypes)];
 const baseCount = (b) => (b === 'All' ? osData.length : osData.filter((os) => os.baseOS === b).length);
-const deviceNames = ['All', ...Object.keys(deviceTypes)];
+// Base pills: All first, then a fixed editorial order with display labels.
+const BASE_ORDER = ['Android-based', 'iOS-based', 'Linux', 'macOS', 'Windows NT', 'Windows (pre-NT)', 'BSD', 'OS/2', 'UNIX', 'Other UNIX-like', 'Other'];
+const baseLabel = (b) => baseTypes[b]?.label ?? b;
+const bases = ['All', ...BASE_ORDER.filter((b) => baseTypes[b])];
+// Device pills: All first, then A-Z (card chips keep taxonomy order via devicesOf below).
+const deviceNames = ['All', ...Object.keys(deviceTypes).sort((a, b) => a.localeCompare(b))];
 // Device tags in the order of deviceTypes (Server, Desktop, ...)
 const devicesOf = (os) => Object.keys(deviceTypes).filter((d) => os.devices.includes(d));
 const deviceCount = (d) => (d === 'All' ? osData.length : osData.filter((os) => os.devices.includes(d)).length);
@@ -103,7 +107,7 @@ const compare = []; // ids, in the order added
 // Lowercased searchable text per OS, built once; displayed A-Z with natural numbers (Windows 10 before 11).
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.knownFor, os.pitch ?? '', os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', lifecycle[lifeKey(os)].label, os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.knownFor, os.pitch ?? '', os.baseOS, baseLabel(os.baseOS), os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', lifecycle[lifeKey(os)].label, os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 })).sort((a, b) => a.os.name.localeCompare(b.os.name, undefined, { numeric: true, sensitivity: 'base' }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -139,7 +143,7 @@ function renderPills() {
   // Pills without a logo file (All, UNIX, ...) get a UI icon instead.
   const hintTitle = (hint, n) => `title="${esc(hint)}${hint ? ' · ' : ''}${n} system${n === 1 ? '' : 's'}"`;
   $('basePills').innerHTML =
-    bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : b, baseTypes[b]?.logo, baseTypes[b]?.icon ?? 'grid', 'w-5 h-5')
+    bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : baseLabel(b), baseTypes[b]?.logo, baseTypes[b]?.icon ?? 'grid', 'w-5 h-5')
       .replace('<button ', `<button title="${esc(baseTypes[b]?.hint ?? 'Grouped by kernel lineage')} · ${baseCount(b)} systems" `)).join('');
   const based = basedOnOptions();
   $('basedPills').innerHTML = ['All', ...based.options].map((b) =>
@@ -201,7 +205,7 @@ function card(os) {
       <div class="mb-3">${osIcon(os, 'w-14 h-14')}</div>
       <div>
         <h3 class="font-bold text-slate-100 text-sm">${esc(os.name)}</h3>
-        <span class="tag">${esc(os.distroBase ?? os.baseOS)}</span>
+        <span class="tag">${esc(os.distroBase ?? baseLabel(os.baseOS))}</span>
       </div>
       <div class="mt-3 text-xs flex flex-wrap justify-center gap-1.5">${badge}${lifeBadge}</div>
     </article>`;
@@ -238,7 +242,7 @@ function openModal(id) {
   // label -> value (falsy rows are skipped)
   const facts = [
     ['Author', owners.map((a) => chip(`${logoTile(authors[a].logo, 'w-4 h-4', initials(a), '#5b6472', 'author')}${esc(authorLabel(a))}`)).join('')],
-    ['Base', chip(esc(os.baseOS + (os.distroBase ? ` · ${os.distroBase}` : ''))) +
+    ['Base', chip(esc(baseLabel(os.baseOS) + (os.distroBase ? ` · ${os.distroBase}` : ''))) +
       (os.generation ? chip(esc(generations[os.generation].label), generations[os.generation].hint) : '') +
       chip(esc(unixStatus[os.unix].label), unixStatus[os.unix].hint)],
     os.basedOn.length && ['Based on', os.basedOn.map((b) => chip(

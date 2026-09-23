@@ -539,100 +539,6 @@
     "unix": "none"
   },
   {
-    "id": "ps5",
-    "name": "PlayStation 5 OS",
-    "knownFor": "PlayStation system software",
-    "pitch": "Give me a DualSense and I'll fill the living room.",
-    "baseOS": "Other",
-    "distroBase": null,
-    "by": ["Sony Interactive Entertainment"],
-    "basedOn": ["FreeBSD"],
-    "devices": ["Console"],
-    "installs": "10M+",
-    "license": "Proprietary (Sony Interactive Entertainment)",
-    "licenseTags": ["Proprietary"],
-    "logo": "ps5.svg",
-    "source": {
-      "type": "closed"
-    },
-    "specs": {
-      "cpuCompatibility": ["x86_64 (AMD Zen 2, custom APU)"],
-      "kernel": "PlayStation OS (FreeBSD-derived)",
-      "bootloader": ["Proprietary (Secure Boot)"],
-      "fileSystems": ["PFS2", "ext4", "FAT32"],
-      "graphicServer": ["GNM / GNMX (proprietary)"],
-      "audioServer": ["Tempest Engine"],
-      "desktopEnvironment": ["PlayStation Dynamic Menu"],
-      "packageManager": ["PlayStation Store"],
-      "defaultShell": ["None (no user shell)"],
-      "userland": ["PlayStation OS userland"]
-    },
-    "unix": "like"
-  },
-  {
-    "id": "ps4",
-    "name": "PlayStation 4 OS",
-    "knownFor": "PS4 system software",
-    "pitch": "Give me a DualShock 4 and I'll fill the living room.",
-    "baseOS": "Other",
-    "distroBase": null,
-    "by": ["Sony Interactive Entertainment"],
-    "basedOn": ["FreeBSD"],
-    "devices": ["Console"],
-    "installs": "100M+",
-    "license": "Proprietary (Sony Interactive Entertainment)",
-    "licenseTags": ["Proprietary"],
-    "logo": "ps4.svg",
-    "source": {
-      "type": "closed"
-    },
-    "specs": {
-      "cpuCompatibility": ["x86_64 (AMD Jaguar, custom APU)"],
-      "kernel": "PlayStation OS (FreeBSD-derived)",
-      "bootloader": ["Proprietary (Secure Boot)"],
-      "fileSystems": ["PFS", "ext4", "FAT32"],
-      "graphicServer": ["GNM / GNMX (proprietary)"],
-      "audioServer": ["Proprietary audio engine"],
-      "desktopEnvironment": ["PlayStation Dynamic Menu (PS4)"],
-      "packageManager": ["PlayStation Store"],
-      "defaultShell": ["None (no user shell)"],
-      "userland": ["PlayStation OS userland"]
-    },
-    "unix": "like"
-  },
-  {
-    "id": "rtems",
-    "name": "RTEMS",
-    "knownFor": "Real-time for space",
-    "pitch": "Give me a rover or a satellite and I'll schedule every tick.",
-    "baseOS": "Other",
-    "distroBase": null,
-    "by": ["RTEMS Project"],
-    "basedOn": [],
-    "devices": ["Embedded", "Robot"],
-    "installs": "100K+",
-    "license": "BSD-2-Clause (RTEMS); GPL components",
-    "licenseTags": ["MIT"],
-    "logo": "rtems.svg",
-    "source": {
-      "type": "open-source",
-      "url": "https://github.com/RTEMS/rtems"
-    },
-    "specs": {
-      "cpuCompatibility": ["ARM", "ARM64", "PowerPC", "RISC-V", "x86", "MIPS", "SPARC"],
-      "kernel": "RTEMS (real-time executive)",
-      "bootloader": ["BSP / firmware / U-Boot"],
-      "fileSystems": ["IMFS", "FAT", "ext2"],
-      "graphicServer": ["Optional (framebuffer / X11)"],
-      "audioServer": ["None (headless typical)"],
-      "desktopEnvironment": ["None (headless)"],
-      "packageManager": ["RTEMS Source Builder (rsb)"],
-      "defaultShell": ["RTEMS shell", "mshell"],
-      "userland": ["Newlib / RTEMS POSIX API"]
-    },
-    "unix": "like"
-  },
-  {
     "id": "switch",
     "name": "Nintendo Switch OS",
     "knownFor": "Hybrid console firmware",
@@ -660,38 +566,6 @@
       "packageManager": ["Nintendo eShop"],
       "defaultShell": ["None (no user shell)"],
       "userland": ["Nintendo system modules"]
-    },
-    "unix": "none"
-  },
-  {
-    "id": "xbox-360",
-    "name": "Xbox 360 system software",
-    "knownFor": "Xbox 360 system software",
-    "pitch": "Give me a 360 and I'll light up the guide blade.",
-    "baseOS": "Other",
-    "distroBase": null,
-    "by": ["Microsoft"],
-    "basedOn": [],
-    "devices": ["Console"],
-    "installs": "100M+",
-    "lifecycle": "discontinued",
-    "license": "Proprietary (Microsoft)",
-    "licenseTags": ["Proprietary"],
-    "logo": "xbox-360.png",
-    "source": {
-      "type": "closed"
-    },
-    "specs": {
-      "cpuCompatibility": ["PowerPC (Xenon triple-core)"],
-      "kernel": "Xbox 360 OS (modified Windows NT / Unix-like hybrid)",
-      "bootloader": ["Proprietary (CB / CB_A)"],
-      "fileSystems": ["FATX"],
-      "graphicServer": ["DirectX 9 (custom GPU)"],
-      "audioServer": ["XAudio2"],
-      "desktopEnvironment": ["Xbox Dashboard / Guide"],
-      "packageManager": ["Xbox Live Marketplace"],
-      "defaultShell": ["None (no user shell)"],
-      "userland": ["Xbox 360 system modules"]
     },
     "unix": "none"
   }

@@ -230,5 +230,37 @@
       "userland": ["QNX POSIX utilities", "GNU tools via ports"]
     },
     "unix": "like"
+  },
+  {
+    "id": "rtems",
+    "name": "RTEMS",
+    "knownFor": "Real-time for space",
+    "pitch": "Give me a rover or a satellite and I'll schedule every tick.",
+    "baseOS": "Other UNIX-like",
+    "distroBase": null,
+    "by": ["RTEMS Project"],
+    "basedOn": [],
+    "devices": ["Embedded", "Robot"],
+    "installs": "100K+",
+    "license": "BSD-2-Clause (RTEMS); GPL components",
+    "licenseTags": ["MIT"],
+    "logo": "rtems.svg",
+    "source": {
+      "type": "open-source",
+      "url": "https://github.com/RTEMS/rtems"
+    },
+    "specs": {
+      "cpuCompatibility": ["ARM", "ARM64", "PowerPC", "RISC-V", "x86", "MIPS", "SPARC"],
+      "kernel": "RTEMS (real-time executive)",
+      "bootloader": ["BSP / firmware / U-Boot"],
+      "fileSystems": ["IMFS", "FAT", "ext2"],
+      "graphicServer": ["Optional (framebuffer / X11)"],
+      "audioServer": ["None (headless typical)"],
+      "desktopEnvironment": ["None (headless)"],
+      "packageManager": ["RTEMS Source Builder (rsb)"],
+      "defaultShell": ["RTEMS shell", "mshell"],
+      "userland": ["Newlib / RTEMS POSIX API"]
+    },
+    "unix": "like"
   }
 ]

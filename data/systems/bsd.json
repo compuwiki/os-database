@@ -203,6 +203,68 @@
     "unix": "like"
   },
   {
+    "id": "ps5",
+    "name": "PlayStation 5 OS",
+    "knownFor": "PlayStation system software",
+    "pitch": "Give me a DualSense and I'll fill the living room.",
+    "baseOS": "BSD",
+    "distroBase": null,
+    "by": ["Sony Interactive Entertainment"],
+    "basedOn": ["FreeBSD"],
+    "devices": ["Console"],
+    "installs": "10M+",
+    "license": "Proprietary (Sony Interactive Entertainment)",
+    "licenseTags": ["Proprietary"],
+    "logo": "ps5.svg",
+    "source": {
+      "type": "closed"
+    },
+    "specs": {
+      "cpuCompatibility": ["x86_64 (AMD Zen 2, custom APU)"],
+      "kernel": "PlayStation OS (FreeBSD-derived)",
+      "bootloader": ["Proprietary (Secure Boot)"],
+      "fileSystems": ["PFS2", "ext4", "FAT32"],
+      "graphicServer": ["GNM / GNMX (proprietary)"],
+      "audioServer": ["Tempest Engine"],
+      "desktopEnvironment": ["PlayStation Dynamic Menu"],
+      "packageManager": ["PlayStation Store"],
+      "defaultShell": ["None (no user shell)"],
+      "userland": ["PlayStation OS userland"]
+    },
+    "unix": "like"
+  },
+  {
+    "id": "ps4",
+    "name": "PlayStation 4 OS",
+    "knownFor": "PS4 system software",
+    "pitch": "Give me a DualShock 4 and I'll fill the living room.",
+    "baseOS": "BSD",
+    "distroBase": null,
+    "by": ["Sony Interactive Entertainment"],
+    "basedOn": ["FreeBSD"],
+    "devices": ["Console"],
+    "installs": "100M+",
+    "license": "Proprietary (Sony Interactive Entertainment)",
+    "licenseTags": ["Proprietary"],
+    "logo": "ps4.svg",
+    "source": {
+      "type": "closed"
+    },
+    "specs": {
+      "cpuCompatibility": ["x86_64 (AMD Jaguar, custom APU)"],
+      "kernel": "PlayStation OS (FreeBSD-derived)",
+      "bootloader": ["Proprietary (Secure Boot)"],
+      "fileSystems": ["PFS", "ext4", "FAT32"],
+      "graphicServer": ["GNM / GNMX (proprietary)"],
+      "audioServer": ["Proprietary audio engine"],
+      "desktopEnvironment": ["PlayStation Dynamic Menu (PS4)"],
+      "packageManager": ["PlayStation Store"],
+      "defaultShell": ["None (no user shell)"],
+      "userland": ["PlayStation OS userland"]
+    },
+    "unix": "like"
+  },
+  {
     "id": "junos",
     "name": "Junos OS",
     "knownFor": "Carrier-grade routing",

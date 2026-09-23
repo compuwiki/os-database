@@ -1,8 +1,9 @@
 {
   "Windows NT": {
+    "label": "Windows",
     "logo": "windows-11.svg",
     "color": "#0078d4",
-    "hint": "Windows XP, 7, 10, 11 and Windows Server (NT kernel, not UNIX)"
+    "hint": "Windows XP, 7, 10, 11, Windows Server and Xbox (NT kernel, not UNIX)"
   },
   "Windows (pre-NT)": {
     "icon": "monitor",
@@ -25,11 +26,13 @@
     "hint": "Everything with the Linux kernel and a GNU or BusyBox userland (UNIX-like)"
   },
   "Android-based": {
+    "label": "Android",
     "logo": "android.svg",
     "color": "#1f9d55",
     "hint": "Android and its forks: Linux kernel with the AOSP userland (Bionic, Toybox)"
   },
   "iOS-based": {
+    "label": "iOS",
     "logo": "ios-mini.svg",
     "color": "#475569",
     "hint": "Apple mobile, TV, watch and headset systems: Darwin with the iOS frameworks"
@@ -45,13 +48,15 @@
     "hint": "Certified or System V-lineage UNIX: Solaris, AIX, HP-UX, z/OS, illumos"
   },
   "Other UNIX-like": {
+    "label": "UNIX-like",
     "icon": "code",
     "color": "#0f766e",
-    "hint": "UNIX-like systems written from scratch or in their own lineage (Redox, SerenityOS, Plan 9, MINIX...)"
+    "hint": "UNIX-like systems written from scratch or in their own lineage (Redox, SerenityOS, Plan 9, MINIX, RTOSes with a POSIX API...)"
   },
   "Other": {
+    "label": "Independents",
     "icon": "compass",
     "color": "#5b6472",
-    "hint": "Not UNIX: DOS, Amiga family, Haiku, Fuchsia, HarmonyOS, RTOSes..."
+    "hint": "Not UNIX and not a known family: DOS, Amiga, Haiku, Fuchsia, HarmonyOS, proprietary consoles..."
   }
 }

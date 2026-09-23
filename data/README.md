@@ -7,7 +7,7 @@ data/
   meta.json          dataAsOf + systemFiles: the systems files to load, in display order
   authors.json       every author: { "type": <author kind>, "logo"?: file in assets/author/, "parent"?: owner company }
   taxonomy/          the filter definitions (each key is what systems refer to)
-    base-types.json    Base OS pills (the OS family), with logo/icon, color, hint
+    base-types.json    Base OS pills (the OS family), with optional display `label`, logo/icon, color, hint
     families.json      Linux distro families: color for the initials tile (card tag = the family key)
     based-on.json      "Based on" upstreams (Debian based, Ubuntu based, FreeBSD based, Darwin based...); multi-valued
     unix-status.json   Certified UNIX / UNIX-like / Not UNIX
@@ -43,7 +43,7 @@ Adding a whole new Base OS or family means adding its key to `taxonomy/`, creati
 
 Three independent facts, so nothing has to be squeezed into one label:
 
-- **`baseOS`** is the OS family and drives the top row of pills (Windows NT, Windows (pre-NT), OS/2, macOS, Linux, Android-based, iOS-based, BSD, UNIX, Other UNIX-like, Other). Every system has exactly one.
+- **`baseOS`** is the OS family and drives the top row of pills (keys: Android-based, iOS-based, Linux, macOS, Windows NT, Windows (pre-NT), BSD, OS/2, UNIX, Other UNIX-like, Other; shown as Android, iOS, Windows, UNIX-like, Independents). Every system has exactly one.
 - **`basedOn`** lists every upstream it descends from, and can hold several: Android is `Linux kernel` + `Android (AOSP)`, macOS is `Darwin (XNU)` + `FreeBSD`, Ubuntu is `Linux kernel` + `Debian` + `Ubuntu`. This drives the "Based on" row.
 - **`generation`** (optional) is the kernel generation inside a versioned family, for example Windows XP = `NT 5`, Windows 7 = `NT 6`, Windows 10 / 11 / Server = `NT 10`, Windows 3.1 = `Win16`, Windows 95 / 98 / ME = `Win9x`. It drives the "Generation" row, which appears when the selected Base OS spans several generations, and is shown in the detail dialog and comparison.
 - **`unix`** is the UNIX heritage: `certified` (passed the UNIX certification: macOS, Solaris, AIX, HP-UX, z/OS), `like` (Linux, BSD, Android...) or `none` (Windows NT, DOS, OS/2, Haiku, Fuchsia...). It is shown in the detail dialog and the comparison, not as a filter.
