@@ -51,6 +51,16 @@ const COMPARE_ROWS = [
 ];
 
 const byId = new Map(osData.map((os) => [os.id, os]));
+const PAGE_TITLE = document.title;
+// Shareable URL: index.html#<os-id>. replaceState (not location.hash) so open/close do not spam history.
+const hashOsId = () => {
+  const id = decodeURIComponent(location.hash.replace(/^#/, ''));
+  return byId.has(id) ? id : null;
+};
+const osShareUrl = (id) => `${location.origin}${location.pathname}${location.search}#${encodeURIComponent(id)}`;
+function setOsHash(id) {
+  history.replaceState(null, '', id ? osShareUrl(id) : `${location.pathname}${location.search}`);
+}
 const baseCount = (b) => (b === 'All' ? osData.length : osData.filter((os) => os.baseOS === b).length);
 // Base pills: All first, then a fixed editorial order with display labels.
 const BASE_ORDER = ['Android-based', 'iOS-based', 'Linux', 'macOS', 'Windows NT', 'Windows (pre-NT)', 'BSD', 'OS/2', 'UNIX', 'Other UNIX-like', 'Other'];
@@ -302,6 +312,7 @@ function renderGrid() {
 
 function openModal(id) {
   const os = byId.get(id);
+  if (!os) return;
   const chip = (inner, hint = '') => `<span class="info-chip"${hint ? ` title="${esc(hint)}"` : ''}>${inner}</span>`;
   // an owner already shown inside its child's label (Red Hat (IBM)) is not repeated
   const owners = os.by.filter((a) => !os.by.some((b) => authors[b].parent === a));
@@ -338,7 +349,10 @@ function openModal(id) {
     <dl class="facts mt-5 pt-5 border-t border-slate-800">
       ${facts.map(([label, value]) => `<dt>${label}</dt><dd>${value}</dd>`).join('')}
     </dl>
-    <button type="button" class="btn mt-5" data-action="toggle" data-id="${os.id}" data-text></button>
+    <div class="mt-5 flex flex-wrap gap-2">
+      <button type="button" class="btn" data-action="copy" data-id="${os.id}">${uiIcon('link')}<span>Copy link</span></button>
+      <button type="button" class="btn" data-action="toggle" data-id="${os.id}" data-text></button>
+    </div>
 
     <h3 class="mt-6 pt-5 border-t border-slate-800 mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Specifications</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
@@ -349,7 +363,10 @@ function openModal(id) {
         </div>`).join('')}
     </div>`;
   syncToggles($('modalContent'));
-  $('detailModal').showModal();
+  document.title = `${os.name} · ${PAGE_TITLE}`;
+  setOsHash(os.id);
+  const dlg = $('detailModal');
+  if (!dlg.open) dlg.showModal();
   $('detailScroll').scrollTop = 0; // reopened dialogs start at the top
 }
 
@@ -420,7 +437,38 @@ const actions = {
   clear: () => { compare.length = 0; syncCompare(); },
   compare: () => { renderTable(); $('compareModal').showModal(); },
   close: (_, el) => el.closest('dialog').close(),
+  copy: async (_, el) => {
+    const url = osShareUrl(el.dataset.id);
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.append(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    const prev = el.innerHTML;
+    el.innerHTML = uiIcon('check') + '<span>Link copied</span>';
+    el.disabled = true;
+    setTimeout(() => { el.innerHTML = prev; el.disabled = false; }, 1500);
+  },
 };
+
+// Deep link: opening sets #id; closing clears it; hashchange (manual edit / back-forward) syncs the dialog.
+$('detailModal').addEventListener('close', () => {
+  document.title = PAGE_TITLE;
+  if (hashOsId()) setOsHash(null);
+});
+window.addEventListener('hashchange', () => {
+  const id = hashOsId();
+  if (id) openModal(id);
+  else if ($('detailModal').open) $('detailModal').close();
+});
 
 // ---------- events ----------
 $('filters').addEventListener('click', (e) => {
@@ -496,3 +544,5 @@ renderPills();
 renderYearSlider();
 renderGrid();
 renderBar();
+const deepLink = hashOsId();
+if (deepLink) openModal(deepLink);
