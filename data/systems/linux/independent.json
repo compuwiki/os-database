@@ -339,7 +339,7 @@
     "distroBase": "Independent",
     "by": ["Linux Foundation"],
     "basedOn": ["Linux kernel", "Independent Linux"],
-    "devices": ["Automotive"],
+    "devices": ["Vehicle"],
     "installs": "1M+",
     "license": "Apache-2.0, GPL-2.0 (kernel)",
     "licenseTags": ["Apache", "GPL"],
