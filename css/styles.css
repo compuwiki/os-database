@@ -19,7 +19,7 @@ body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple
 .pill-row { display: flex; flex-wrap: wrap; gap: .5rem; }
 .pill-row[hidden] { display: none; }
 .pill { display: inline-flex; align-items: center; gap: .5rem; padding: .375rem .875rem; border-radius: 9999px; background: #1e293b; border: 1px solid #334155; color: #cbd5e1; transition: background-color .2s; }
-#basedPills .pill, #generationPills .pill, #devicePills .pill, #licensePills .pill, #licenseFamilyPills .pill, #installPills .pill, #authorPills .pill, #authorSubPills .pill { padding: .25rem .75rem; gap: .375rem; }
+#basedPills .pill, #generationPills .pill, #devicePills .pill, #lifePills .pill, #licensePills .pill, #licenseFamilyPills .pill, #installPills .pill, #authorPills .pill, #authorSubPills .pill { padding: .25rem .75rem; gap: .375rem; }
 .pill-more { color: #7dd3fc; border-style: dashed; }
 .pill:hover { background: #334155; }
 .pill[aria-pressed="true"] { background: #0284c7; color: #fff; border-color: #38bdf8; }

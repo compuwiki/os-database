@@ -65,6 +65,12 @@ const licenseFamilies = Object.keys(licenseTypes).filter((f) => f !== 'Proprieta
 // User pills: each system is in exactly one tier (estimates)
 const installsMatch = (os, t) => t === 'All' || os.installs === t;
 const installCount = (t) => osData.filter((os) => installsMatch(os, t)).length;
+// Lifecycle pills: All / Active / Maintenance only / Discontinued (omit field = active)
+const lifeKey = (os) => os.lifecycle ?? 'active';
+const isDead = (os) => lifeKey(os) !== 'active';
+const lifeMatch = (os, t) => t === 'All' || lifeKey(os) === t;
+const lifeCount = (t) => osData.filter((os) => lifeMatch(os, t)).length;
+const lifeIcon = { All: 'grid', active: 'power', maintenance: 'clock', discontinued: 'archive' };
 // "Based on" options that apply to the systems in the selected Base OS (with counts). Empty when none of them narrows the list.
 const basedOnOptions = () => {
   const pool = osData.filter((os) => state.base === 'All' || os.baseOS === state.base);
@@ -79,7 +85,7 @@ const generationOptions = () => {
   const options = Object.keys(n).filter((g) => n[g] > 0);
   return { n, total: pool.length, options: options.length > 1 ? options : [] };
 };
-const state = { base: 'All', based: 'All', generation: 'All', device: 'All', license: 'All', family: 'All', installs: 'All', kind: 'All', author: 'All', query: '' };
+const state = { base: 'All', based: 'All', generation: 'All', device: 'All', life: 'All', license: 'All', family: 'All', installs: 'All', kind: 'All', author: 'All', query: '' };
 // Author counts inside the selected Base OS: per author and per category
 const authorStats = () => {
   const author = {}, kind = {};
@@ -93,9 +99,6 @@ const authorStats = () => {
 // "Red Hat (IBM)": show the owning company next to an author that has one
 const authorLabel = (a) => (authors[a]?.parent ? `${a} (${authors[a].parent})` : a);
 const compare = []; // ids, in the order added
-
-const lifeKey = (os) => os.lifecycle ?? 'active';
-const isDead = (os) => lifeKey(os) !== 'active';
 
 // Lowercased searchable text per OS, built once; displayed A-Z with natural numbers (Windows 10 before 11).
 const index = osData.map((os) => ({
@@ -134,6 +137,7 @@ function pill(kind, value, label, file, fallbackIcon, size, dir) {
 
 function renderPills() {
   // Pills without a logo file (All, UNIX, ...) get a UI icon instead.
+  const hintTitle = (hint, n) => `title="${esc(hint)}${hint ? ' · ' : ''}${n} system${n === 1 ? '' : 's'}"`;
   $('basePills').innerHTML =
     bases.map((b) => pill('base', b, b === 'All' ? 'All OS' : b, baseTypes[b]?.logo, baseTypes[b]?.icon ?? 'grid', 'w-5 h-5')
       .replace('<button ', `<button title="${esc(baseTypes[b]?.hint ?? 'Grouped by kernel lineage')} · ${baseCount(b)} systems" `)).join('');
@@ -150,8 +154,10 @@ function renderPills() {
   $('devicePills').innerHTML =
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
       .replace('<button ', `<button title="${esc(deviceTypes[d]?.hint ?? '')}${d === 'All' ? '' : ' · '}${deviceCount(d)} systems" `)).join('');
+  $('lifePills').innerHTML =
+    ['All', ...Object.keys(lifecycle)].map((k) => pill('life', k, k === 'All' ? 'All Lifecycles' : lifecycle[k].label, null, lifeIcon[k] ?? 'clock', 'w-4 h-4')
+      .replace('<button ', `<button ${hintTitle(k === 'All' ? 'Active, maintenance only or discontinued' : lifecycle[k].hint, lifeCount(k))} `)).join('');
 
-  const hintTitle = (hint, n) => `title="${esc(hint)}${hint ? ' · ' : ''}${n} system${n === 1 ? '' : 's'}"`;
   $('licensePills').innerHTML =
     [['All', 'All Licenses', 'grid', ''], ['Proprietary', 'Proprietary', 'lock', licenseTypes.Proprietary.hint], [LICENSE_OPEN, LICENSE_OPEN, 'unlock', 'Anything with an open-source license']]
       .map(([l, label, icon, hint]) => pill('license', l, label, null, icon, 'w-4 h-4').replace('<button ', `<button ${hintTitle(hint, licenseCount(l))} `)).join('');
@@ -206,6 +212,7 @@ function renderGrid() {
   const shown = index.filter(({ os, text }) =>
     (state.base === 'All' || os.baseOS === state.base) &&
     (state.device === 'All' || os.devices.includes(state.device)) &&
+    lifeMatch(os, state.life) &&
     licenseMatch(os, state.license) && (state.family === 'All' || os.licenseTags.includes(state.family)) &&
     installsMatch(os, state.installs) &&
     (state.based === 'All' || os.basedOn.includes(state.based)) &&
@@ -355,6 +362,7 @@ $('filters').addEventListener('click', (e) => {
   else if (btn.dataset.based) state.based = btn.dataset.based;
   else if (btn.dataset.generation) state.generation = btn.dataset.generation;
   else if (btn.dataset.device) state.device = btn.dataset.device;
+  else if (btn.dataset.life) state.life = btn.dataset.life;
   else if (btn.dataset.license) { state.license = btn.dataset.license; state.family = 'All'; }
   else if (btn.dataset.family) state.family = btn.dataset.family;
   else if (btn.dataset.installs) state.installs = btn.dataset.installs;
