@@ -1,5 +1,35 @@
 [
   {
+    "id": "bsd",
+    "name": "BSD",
+    "knownFor": "Berkeley UNIX",
+    "pitch": "Give me UNIX and I'll make it a full campus system.",
+    "baseOS": "BSD",
+    "distroBase": null,
+    "by": ["Computer Systems Research Group"],
+    "basedOn": [],
+    "devices": ["Server", "Desktop"],
+    "installs": "<10K",
+    "lifecycle": "discontinued",
+    "license": "BSD License (UCB)",
+    "licenseTags": ["MIT"],
+    "logo": "bsd.svg",
+    "source": { "type": "open-source", "url": "https://www.tuhs.org/bsd/" },
+    "specs": {
+      "cpuCompatibility": ["VAX", "PDP-11", "Sun-3", "i386"],
+      "kernel": "BSD (Berkeley UNIX kernel)",
+      "bootloader": ["Boot from tape / disk pack"],
+      "fileSystems": ["UFS"],
+      "graphicServer": ["X11 (4.3BSD-Reno onward)"],
+      "audioServer": ["None"],
+      "desktopEnvironment": ["None (terminals / X)"],
+      "packageManager": ["None (source patches)"],
+      "defaultShell": ["csh", "sh"],
+      "userland": ["BSD userland (4.3BSD / 4.4BSD)"]
+    },
+    "unix": "like"
+  },
+  {
     "id": "freebsd",
     "name": "FreeBSD",
     "knownFor": "Integrated Unix system",
