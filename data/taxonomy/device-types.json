@@ -3,9 +3,11 @@
   "Desktop": { "icon": "monitor", "hint": "Desktops, laptops and workstations" },
   "Mobile": { "icon": "smartphone", "hint": "Phones and tablets" },
   "TV": { "icon": "tv", "hint": "Smart TVs and set-top boxes" },
-  "Wearable": { "icon": "watch", "hint": "Watches, smart glasses and headsets" },
+  "Wearable": { "icon": "watch", "hint": "Watches, bands and smart glasses" },
   "Automotive": { "icon": "car", "hint": "Car infotainment and vehicle systems" },
   "Embedded": { "icon": "cpu", "hint": "Embedded and IoT: kiosks, digital signage, POS, ATMs, smart devices" },
   "Network": { "icon": "wifi", "hint": "Routers, firewalls and network appliances" },
-  "Console": { "icon": "gamepad", "hint": "Game consoles" }
+  "Console": { "icon": "gamepad", "hint": "Game consoles" },
+  "VR headset": { "icon": "vr", "hint": "VR and mixed-reality headsets" },
+  "Robot": { "icon": "robot", "hint": "Humanoids, arms, drones and robotic platforms" }
 }

@@ -356,7 +356,7 @@
     "distroBase": "Arch",
     "by": ["Valve"],
     "basedOn": ["Linux kernel", "Arch Linux"],
-    "devices": ["Desktop"],
+    "devices": ["Desktop", "Console"],
     "installs": "1M+",
     "license": "GPL and other FOSS; proprietary Steam client",
     "licenseTags": ["GPL"],

@@ -124,7 +124,7 @@
     "distroBase": null,
     "by": ["Apple"],
     "basedOn": ["FreeBSD", "Darwin (XNU)"],
-    "devices": ["Wearable"],
+    "devices": ["VR headset", "Wearable"],
     "installs": "1M+",
     "license": "Proprietary (Apple EULA)",
     "licenseTags": ["Proprietary"],

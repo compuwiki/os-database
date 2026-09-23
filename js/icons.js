@@ -41,6 +41,8 @@ const UI = {
   code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
   archive: '<polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/>',
   clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  vr: '<rect x="2" y="6" width="20" height="14" rx="4"/><circle cx="9" cy="13" r="3"/><circle cx="15" cy="13" r="3"/>',
+  robot: '<rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="9" cy="14.5" r="1.5"/><circle cx="15" cy="14.5" r="1.5"/><line x1="12" y1="5" x2="12" y2="9"/><circle cx="12" cy="4" r="1.5"/>',
 };
 
 export const uiIcon = (name, cls = 'w-4 h-4') =>

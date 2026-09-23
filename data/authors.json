@@ -125,5 +125,7 @@
   "SliTaz Association": { "type": "community", "logo": "slitaz-association.svg" },
   "Jerry Bezencon": { "type": "developer", "logo": "jerry-bezencon.svg" },
   "V Language Project": { "type": "community", "logo": "v-language-project.svg" },
-  "Alexander Medvednikov": { "type": "developer" }
+  "Alexander Medvednikov": { "type": "developer" },
+  "ByteDance": { "type": "company" },
+  "RTEMS Project": { "type": "community" }
 }
