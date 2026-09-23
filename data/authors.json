@@ -15,6 +15,7 @@
   "Hyperion Entertainment": { "type": "company", "logo": "hyperion-entertainment.svg" },
   "Jolla": { "type": "company", "logo": "jolla.svg" },
   "Manjaro GmbH": { "type": "company", "logo": "manjaro-gmbh.svg" },
+  "Nintendo": { "type": "company" },
   "Offensive Security": { "type": "company", "logo": "offensive-security.svg" },
   "RISC OS Open Ltd": { "type": "company" },
   "ROSA": { "type": "company", "logo": "rosa.svg" },

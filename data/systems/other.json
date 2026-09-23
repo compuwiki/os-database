@@ -520,5 +520,34 @@
       "userland": ["PlayStation OS userland"]
     },
     "unix": "like"
+  },
+  {
+    "id": "switch",
+    "name": "Nintendo Switch OS",
+    "knownFor": "Hybrid console firmware",
+    "pitch": "Give me a dock and I'll fill the TV.",
+    "baseOS": "Other",
+    "distroBase": null,
+    "by": ["Nintendo"],
+    "basedOn": [],
+    "devices": ["Console"],
+    "installs": "100M+",
+    "license": "Proprietary (Nintendo)",
+    "licenseTags": ["Proprietary"],
+    "logo": "switch.svg",
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["ARMv8 (Nvidia Tegra X1)"],
+      "kernel": "Horizon OS (proprietary microkernel)",
+      "bootloader": ["Proprietary (BootROM / package2)"],
+      "fileSystems": ["FAT32", "exFAT"],
+      "graphicServer": ["NVN (Nvidia)"],
+      "audioServer": ["Proprietary audio framework"],
+      "desktopEnvironment": ["Horizon Home Menu"],
+      "packageManager": ["Nintendo eShop"],
+      "defaultShell": ["None (no user shell)"],
+      "userland": ["Nintendo system modules"]
+    },
+    "unix": "none"
   }
 ]

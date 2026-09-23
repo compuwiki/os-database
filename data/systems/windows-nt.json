@@ -208,5 +208,35 @@
     },
     "unix": "none",
     "generation": "NT 10"
+  },
+  {
+    "id": "xbox",
+    "name": "Xbox System Software",
+    "knownFor": "Windows console shell",
+    "pitch": "Give me a living room and I'll run Windows games on a TV.",
+    "baseOS": "Windows NT",
+    "distroBase": null,
+    "by": ["Microsoft"],
+    "basedOn": ["Windows NT"],
+    "devices": ["Console"],
+    "installs": "10M+",
+    "license": "Proprietary (Microsoft EULA)",
+    "licenseTags": ["Proprietary"],
+    "logo": "xbox.svg",
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["x86_64 (AMD Zen 2, custom APU)"],
+      "kernel": "Windows NT 10.0 (Xbox OS)",
+      "bootloader": ["Proprietary (Secure Boot)"],
+      "fileSystems": ["NTFS"],
+      "graphicServer": ["DirectX 12 / GDK"],
+      "audioServer": ["XAudio2"],
+      "desktopEnvironment": ["Xbox Dashboard"],
+      "packageManager": ["Microsoft Store (Xbox)"],
+      "defaultShell": ["None (no user shell)"],
+      "userland": ["Windows / GDK userland"]
+    },
+    "unix": "none",
+    "generation": "NT 10"
   }
 ]
