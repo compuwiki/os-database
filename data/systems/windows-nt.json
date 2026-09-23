@@ -30,6 +30,36 @@
     "generation": "NT 5"
   },
   {
+    "id": "windows-vista",
+    "name": "Windows Vista",
+    "knownFor": "Aero glass & UAC",
+    "pitch": "Give me transparency and I'll guard every click with UAC.",
+    "baseOS": "Windows NT",
+    "distroBase": null,
+    "by": ["Microsoft"],
+    "basedOn": ["Windows NT"],
+    "devices": ["Desktop", "Embedded"],
+    "installs": "100K+",
+    "license": "Proprietary (Microsoft EULA)",
+    "licenseTags": ["Proprietary"],
+    "logo": "windows-vista.svg",
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["x86", "x86_64"],
+      "kernel": "Windows NT 6.0 (build 6002, SP2)",
+      "bootloader": ["Windows Boot Manager (BOOTMGR)"],
+      "fileSystems": ["NTFS", "FAT32"],
+      "graphicServer": ["DWM (WDDM 1.0)"],
+      "audioServer": ["WASAPI"],
+      "desktopEnvironment": ["Aero Glass / Explorer"],
+      "packageManager": ["Windows Installer (MSI)"],
+      "defaultShell": ["cmd.exe", "PowerShell 1.0"],
+      "userland": ["Windows built-in tools (Win32)"]
+    },
+    "unix": "none",
+    "generation": "NT 6"
+  },
+  {
     "id": "windows-7",
     "name": "Windows 7",
     "knownFor": "The beloved desktop",
@@ -55,6 +85,36 @@
       "packageManager": ["Windows Installer (MSI)"],
       "defaultShell": ["cmd.exe", "PowerShell 2.0"],
       "userland": ["Windows built-in tools (Win32)"]
+    },
+    "unix": "none",
+    "generation": "NT 6"
+  },
+  {
+    "id": "windows-8",
+    "name": "Windows 8",
+    "knownFor": "Start screen & tiles",
+    "pitch": "Give me a touchscreen and I'll relearn the whole desktop.",
+    "baseOS": "Windows NT",
+    "distroBase": null,
+    "by": ["Microsoft"],
+    "basedOn": ["Windows NT"],
+    "devices": ["Desktop", "Mobile", "Embedded"],
+    "installs": "1M+",
+    "license": "Proprietary (Microsoft EULA)",
+    "licenseTags": ["Proprietary"],
+    "logo": "windows-8.svg",
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["x86", "x86_64", "ARM (Windows RT)"],
+      "kernel": "Windows NT 6.2 (build 9200)",
+      "bootloader": ["Windows Boot Manager"],
+      "fileSystems": ["NTFS", "ReFS", "exFAT", "FAT32"],
+      "graphicServer": ["DWM (WDDM 1.2)"],
+      "audioServer": ["WASAPI"],
+      "desktopEnvironment": ["Start screen (Metro) / Desktop"],
+      "packageManager": ["Windows Store (AppX)", "Windows Installer (MSI)"],
+      "defaultShell": ["cmd.exe", "PowerShell 3.0"],
+      "userland": ["Windows built-in tools (Win32)", "Metro runtime (ARM: WinRT only)"]
     },
     "unix": "none",
     "generation": "NT 6"

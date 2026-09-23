@@ -41,6 +41,7 @@
     "installs": "10K+",
     "license": "BSD-2-Clause",
     "licenseTags": ["MIT"],
+    "logo": "serenityos.png",
     "source": { "type": "open-source", "url": "https://github.com/SerenityOS/serenity" },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64", "RISC-V"],
@@ -69,6 +70,7 @@
     "installs": "<10K",
     "license": "GPL-2.0",
     "licenseTags": ["GPL"],
+    "logo": "vinix.svg",
     "source": { "type": "open-source", "url": "https://github.com/vlang/vinix" },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64 (Apple Silicon M1)"],
@@ -97,6 +99,7 @@
     "installs": "<10K",
     "license": "MIT (Plan 9 Foundation) and 9front changes",
     "licenseTags": ["MIT"],
+    "logo": "plan9.svg",
     "source": { "type": "open-source", "url": "https://git.9front.org/plan9front/plan9front" },
     "specs": {
       "cpuCompatibility": ["x86_64", "x86", "ARM64", "MIPS"],
@@ -125,6 +128,7 @@
     "installs": "10K+",
     "license": "BSD-3-Clause",
     "licenseTags": ["MIT"],
+    "logo": "minix.png",
     "source": { "type": "open-source", "url": "https://github.com/Stichting-MINIX-Research-Foundation/minix" },
     "specs": {
       "cpuCompatibility": ["x86", "ARM (BeagleBone)"],
@@ -153,6 +157,7 @@
     "installs": "<10K",
     "license": "GPL-2.0+",
     "licenseTags": ["GPL"],
+    "logo": "hurd.svg",
     "source": { "type": "open-source", "url": "https://git.savannah.gnu.org/cgit/hurd/hurd.git" },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64 (in progress)"],
@@ -181,6 +186,7 @@
     "installs": "<10K",
     "license": "NCSA (permissive)",
     "licenseTags": ["MIT"],
+    "logo": "toaruos.png",
     "source": { "type": "open-source", "url": "https://github.com/klange/toaruos" },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64"],
@@ -209,6 +215,7 @@
     "installs": "100M+",
     "license": "Proprietary (QNX license)",
     "licenseTags": ["Proprietary"],
+    "logo": "qnx.svg",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["ARM64", "x86_64"],

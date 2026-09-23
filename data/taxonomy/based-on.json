@@ -25,12 +25,23 @@
     "logo": "linux.svg",
     "hint": "Linux systems with their own base, not derived from another distribution"
   },
+  "NixOS": {
+    "label": "NixOS based",
+    "logo": "nixos.svg",
+    "hint": "NixOS and systems configured with Nix on top of another base"
+  },
   "FreeBSD": {
     "label": "FreeBSD based",
     "logo": "freebsd.svg",
     "hint": "FreeBSD and systems forked or built from it, including the FreeBSD-derived userland of macOS and iOS"
   },
   "NetBSD": { "label": "NetBSD based", "logo": "netbsd.svg", "hint": "NetBSD and OpenBSD (forked from NetBSD)" },
+  "MS-DOS": {
+    "label": "MS-DOS based",
+    "logo": "ms-dos.svg",
+    "hint": "Boots from or embeds MS-DOS: Windows 1.0, 2.0, 3.x, 95, 98 and ME"
+  },
+  "OS/2": { "label": "OS/2 based", "icon": "layout", "hint": "IBM OS/2 lineage: eComStation and ArcaOS" },
   "Windows NT": { "label": "Windows NT based", "logo": "windows-11.svg", "hint": "Built on the Windows NT kernel" },
   "Android (AOSP)": {
     "label": "Android based",

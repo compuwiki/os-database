@@ -99,6 +99,7 @@
     "installs": "100M+",
     "license": "Proprietary (Apple EULA)",
     "licenseTags": ["Proprietary"],
+    "logo": "ipados.svg",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["ARM64"],
@@ -127,6 +128,7 @@
     "installs": "1M+",
     "license": "Proprietary (Apple EULA)",
     "licenseTags": ["Proprietary"],
+    "logo": "visionos.svg",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["ARM64 (Apple M / R chips)"],

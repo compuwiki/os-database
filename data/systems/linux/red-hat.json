@@ -244,6 +244,7 @@
     "installs": "10M+",
     "license": "GPL and other FOSS licenses (Red Hat compatible)",
     "licenseTags": ["GPL"],
+    "logo": "oracle-linux.svg",
     "source": { "type": "open-source", "url": "https://github.com/oracle/linux-uek" },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64"],
@@ -272,6 +273,7 @@
     "installs": "100M+",
     "license": "GPL and other FOSS licenses",
     "licenseTags": ["GPL"],
+    "logo": "amazon-linux.png",
     "source": { "type": "open-source", "url": "https://github.com/amazonlinux" },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64"],
@@ -300,6 +302,7 @@
     "installs": "100K+",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
     "licenseTags": ["GPL"],
+    "logo": "bazzite.svg",
     "source": { "type": "open-source", "url": "https://github.com/ublue-os/bazzite" },
     "specs": {
       "cpuCompatibility": ["x86_64"],
@@ -357,6 +360,7 @@
     "installs": "1M+",
     "license": "GPL and Mulan PSL v2",
     "licenseTags": ["GPL", "MIT"],
+    "logo": "openeuler.svg",
     "source": { "type": "open-source", "url": "https://gitee.com/openeuler" },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64", "RISC-V", "LoongArch", "PowerPC"],

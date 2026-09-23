@@ -6,5 +6,6 @@
   "Wearable": { "icon": "watch", "hint": "Watches, smart glasses and headsets" },
   "Automotive": { "icon": "car", "hint": "Car infotainment and vehicle systems" },
   "Embedded": { "icon": "cpu", "hint": "Embedded and IoT: kiosks, digital signage, POS, ATMs, smart devices" },
-  "Network": { "icon": "wifi", "hint": "Routers, firewalls and network appliances" }
+  "Network": { "icon": "wifi", "hint": "Routers, firewalls and network appliances" },
+  "Console": { "icon": "gamepad", "hint": "Game consoles" }
 }

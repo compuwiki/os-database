@@ -4,6 +4,16 @@
     "color": "#0078d4",
     "hint": "Windows XP, 7, 10, 11 and Windows Server (NT kernel, not UNIX)"
   },
+  "Windows (pre-NT)": {
+    "icon": "monitor",
+    "color": "#008080",
+    "hint": "DOS-based Windows before the NT kernel: 1.0, 2.0, 3.x, Windows 95, 98 and ME"
+  },
+  "OS/2": {
+    "icon": "layout",
+    "color": "#0057b8",
+    "hint": "IBM OS/2 and its continuations: Warp, eComStation, ArcaOS (not UNIX, not NT)"
+  },
   "macOS": {
     "logo": "macos-mini.svg",
     "color": "#475569",

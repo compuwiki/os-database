@@ -99,6 +99,7 @@
     "installs": "100K+",
     "license": "GPL-2.0",
     "licenseTags": ["GPL"],
+    "logo": "freedos.svg",
     "source": { "type": "open-source", "url": "https://github.com/FDOS" },
     "specs": {
       "cpuCompatibility": ["x86 (16-bit)"],
@@ -127,6 +128,7 @@
     "installs": "10K+",
     "license": "Apache-2.0 (RISC OS 5)",
     "licenseTags": ["Apache"],
+    "logo": "risc-os.svg",
     "source": { "type": "open-source", "url": "https://gitlab.riscosopen.org/RiscOS" },
     "specs": {
       "cpuCompatibility": ["ARM (32-bit / 64-bit)"],
@@ -213,6 +215,7 @@
     "installs": "10K+",
     "license": "AROS Public License (MPL-based)",
     "licenseTags": ["MPL"],
+    "logo": "aros.png",
     "source": { "type": "open-source", "url": "https://github.com/aros-development-team/AROS" },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64", "ARM", "PowerPC", "m68k"],
@@ -241,6 +244,7 @@
     "installs": "10K+",
     "license": "Proprietary (VSI)",
     "licenseTags": ["Proprietary"],
+    "logo": "openvms.svg",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["Alpha", "Itanium (IA-64)", "x86_64"],
@@ -327,6 +331,7 @@
     "installs": "100K+",
     "license": "Apache-2.0 (Linux kernel: GPL-2.0)",
     "licenseTags": ["Apache", "GPL"],
+    "logo": "openharmony.svg",
     "source": { "type": "open-source", "url": "https://gitee.com/openharmony" },
     "specs": {
       "cpuCompatibility": ["ARM", "ARM64", "RISC-V", "x86_64 (emulator)"],
@@ -384,6 +389,7 @@
     "installs": "<10K",
     "license": "Public domain",
     "licenseTags": ["Public Domain"],
+    "logo": "templeos.png",
     "source": { "type": "open-source", "url": "https://github.com/cia-foundation/TempleOS" },
     "specs": {
       "cpuCompatibility": ["x86_64"],
@@ -412,6 +418,7 @@
     "installs": "<10K",
     "license": "GPL-2.0",
     "licenseTags": ["GPL"],
+    "logo": "kolibrios.png",
     "source": { "type": "open-source", "url": "https://repo.or.cz/kolibrios.git" },
     "specs": {
       "cpuCompatibility": ["x86"],
@@ -428,34 +435,6 @@
     "unix": "none"
   },
   {
-    "id": "arcaos",
-    "name": "ArcaOS (OS/2)",
-    "knownFor": "OS/2 revival",
-    "pitch": "Give me OS/2 and I'll keep it alive on modern PCs.",
-    "baseOS": "Other",
-    "distroBase": null,
-    "by": ["Arca Noae"],
-    "basedOn": [],
-    "devices": ["Desktop"],
-    "installs": "10K+",
-    "license": "Proprietary (Arca Noae)",
-    "licenseTags": ["Proprietary"],
-    "source": { "type": "closed" },
-    "specs": {
-      "cpuCompatibility": ["x86"],
-      "kernel": "OS/2 kernel (ArcaOS 5.1)",
-      "bootloader": ["OS/2 Boot Manager"],
-      "fileSystems": ["JFS", "HPFS", "FAT32"],
-      "graphicServer": ["Presentation Manager"],
-      "audioServer": ["MMOS/2 / UNIAUD"],
-      "desktopEnvironment": ["Workplace Shell"],
-      "packageManager": ["ANPM"],
-      "defaultShell": ["CMD.EXE", "4OS2"],
-      "userland": ["OS/2 utilities (GNU ports via ANPM)"]
-    },
-    "unix": "none"
-  },
-  {
     "id": "vxworks",
     "name": "VxWorks",
     "knownFor": "Spacecraft & industrial RTOS",
@@ -468,6 +447,7 @@
     "installs": "100M+",
     "license": "Proprietary (Wind River)",
     "licenseTags": ["Proprietary"],
+    "logo": "vxworks.svg",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["ARM", "ARM64", "x86_64", "PowerPC", "RISC-V", "MIPS"],
@@ -496,6 +476,7 @@
     "installs": "100M+",
     "license": "MIT",
     "licenseTags": ["MIT"],
+    "logo": "freertos.png",
     "source": { "type": "open-source", "url": "https://github.com/FreeRTOS/FreeRTOS" },
     "specs": {
       "cpuCompatibility": ["ARM Cortex-M", "RISC-V", "ESP32 (Xtensa)", "many other MCUs"],
@@ -510,5 +491,34 @@
       "userland": ["Minimal libc (newlib)"]
     },
     "unix": "none"
+  },
+  {
+    "id": "ps5",
+    "name": "PlayStation 5 OS",
+    "knownFor": "PlayStation system software",
+    "pitch": "Give me a DualSense and I'll fill the living room.",
+    "baseOS": "Other",
+    "distroBase": null,
+    "by": ["Sony Interactive Entertainment"],
+    "basedOn": ["FreeBSD"],
+    "devices": ["Console"],
+    "installs": "10M+",
+    "license": "Proprietary (Sony Interactive Entertainment)",
+    "licenseTags": ["Proprietary"],
+    "logo": "ps5.svg",
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["x86_64 (AMD Zen 2, custom APU)"],
+      "kernel": "PlayStation OS (FreeBSD-derived)",
+      "bootloader": ["Proprietary (Secure Boot)"],
+      "fileSystems": ["PFS2", "ext4", "FAT32"],
+      "graphicServer": ["GNM / GNMX (proprietary)"],
+      "audioServer": ["Tempest Engine"],
+      "desktopEnvironment": ["PlayStation Dynamic Menu"],
+      "packageManager": ["PlayStation Store"],
+      "defaultShell": ["None (no user shell)"],
+      "userland": ["PlayStation OS userland"]
+    },
+    "unix": "like"
   }
 ]

@@ -30,7 +30,7 @@
   },
   {
     "id": "opensuse",
-    "name": "openSUSE (Tumbleweed/Leap)",
+    "name": "openSUSE",
     "knownFor": "Administration & tooling",
     "pitch": "Give me a complex system and I'll make it manageable.",
     "baseOS": "Linux",

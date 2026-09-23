@@ -12,6 +12,7 @@
     "installs": "100K+",
     "license": "Proprietary (Oracle)",
     "licenseTags": ["Proprietary"],
+    "logo": "solaris.svg",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["x86_64", "SPARC64"],
@@ -97,6 +98,7 @@
     "installs": "100K+",
     "license": "Proprietary (IBM)",
     "licenseTags": ["Proprietary"],
+    "logo": "zos.svg",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["IBM Z (z/Architecture)"],
@@ -125,6 +127,7 @@
     "installs": "10K+",
     "license": "CDDL-1.0 (illumos), mixed FOSS",
     "licenseTags": ["MPL"],
+    "logo": "openindiana.svg",
     "source": { "type": "open-source", "url": "https://github.com/OpenIndiana" },
     "specs": {
       "cpuCompatibility": ["x86_64"],

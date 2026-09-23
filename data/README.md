@@ -34,11 +34,15 @@ Adding a whole new Base OS or family means adding its key to `taxonomy/`, creati
 
 `knownFor` (2 to 4 words, required) and `pitch` (one sentence, optional) are opinion, not specification: what each system is best known for, in the voice "Give me X and I'll Y". Keep `knownFor` neutral and factual in spirit ("Immutable, rollback-safe"), and use `pitch` for personality. They are shown in the detail dialog and the comparison, and are searchable.
 
+**Discontinued systems:** put `(discontinued)` as a suffix on `name` only — e.g. `"Clear Linux (discontinued)"`. Do not repeat it in `knownFor`. The name is searchable and shown on the card, so the flag is visible everywhere without a separate field.
+
+**Logo filenames:** match the system `id` exactly — lowercase, hyphens, no dots/underscores (`risc-os.svg` for `risc-os`, `pureos.svg` for `pureos`). Extension stays `.svg` (or `.png` for raster sources).
+
 ## How systems are classified
 
 Three independent facts, so nothing has to be squeezed into one label:
 
-- **`baseOS`** is the OS family and drives the top row of pills (Windows NT, macOS, Linux, Android-based, iOS-based, BSD, UNIX, Other UNIX-like, Other). Every system has exactly one.
+- **`baseOS`** is the OS family and drives the top row of pills (Windows NT, Windows (pre-NT), OS/2, macOS, Linux, Android-based, iOS-based, BSD, UNIX, Other UNIX-like, Other). Every system has exactly one.
 - **`basedOn`** lists every upstream it descends from, and can hold several: Android is `Linux kernel` + `Android (AOSP)`, macOS is `Darwin (XNU)` + `FreeBSD`, Ubuntu is `Linux kernel` + `Debian` + `Ubuntu`. This drives the "Based on" row.
-- **`generation`** (optional) is the kernel generation inside a versioned family, for example Windows XP = `NT 5`, Windows 7 = `NT 6`, Windows 10 / 11 / Server = `NT 10`. It drives the "Generation" row, which appears when the selected Base OS spans several generations, and is shown in the detail dialog and comparison.
-- **`unix`** is the UNIX heritage: `certified` (passed the UNIX certification: macOS, Solaris, AIX, HP-UX, z/OS), `like` (Linux, BSD, Android...) or `none` (Windows NT, DOS, Haiku, Fuchsia...). It is shown in the detail dialog and the comparison, not as a filter.
+- **`generation`** (optional) is the kernel generation inside a versioned family, for example Windows XP = `NT 5`, Windows 7 = `NT 6`, Windows 10 / 11 / Server = `NT 10`, Windows 3.1 = `Win16`, Windows 95 / 98 / ME = `Win9x`. It drives the "Generation" row, which appears when the selected Base OS spans several generations, and is shown in the detail dialog and comparison.
+- **`unix`** is the UNIX heritage: `certified` (passed the UNIX certification: macOS, Solaris, AIX, HP-UX, z/OS), `like` (Linux, BSD, Android...) or `none` (Windows NT, DOS, OS/2, Haiku, Fuchsia...). It is shown in the detail dialog and the comparison, not as a filter.

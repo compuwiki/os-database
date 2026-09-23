@@ -273,6 +273,7 @@
     "installs": "100M+",
     "license": "Flora / Apache-2.0 / BSD / GPL mix",
     "licenseTags": ["Apache", "GPL"],
+    "logo": "tizen.svg",
     "source": { "type": "open-source", "url": "https://review.tizen.org/git/" },
     "specs": {
       "cpuCompatibility": ["ARM64", "ARMv7", "x86_64"],
@@ -301,6 +302,7 @@
     "installs": "100M+",
     "license": "Apache-2.0, GPL-2.0 (kernel)",
     "licenseTags": ["Apache", "GPL"],
+    "logo": "webos.svg",
     "source": { "type": "open-source", "url": "https://github.com/webosose" },
     "specs": {
       "cpuCompatibility": ["ARM64", "ARMv7"],
@@ -329,6 +331,7 @@
     "installs": "1M+",
     "license": "Apache-2.0, GPL-2.0 (kernel)",
     "licenseTags": ["Apache", "GPL"],
+    "logo": "agl.svg",
     "source": { "type": "open-source", "url": "https://git.automotivelinux.org" },
     "specs": {
       "cpuCompatibility": ["ARM64", "x86_64"],
@@ -463,7 +466,7 @@
   {
     "id": "clear-linux",
     "name": "Clear Linux (discontinued)",
-    "knownFor": "Intel-tuned speed (discontinued)",
+    "knownFor": "Intel-tuned speed",
     "pitch": "Give me an Intel CPU and I'll optimize every binary for it.",
     "baseOS": "Linux",
     "distroBase": "Independent",

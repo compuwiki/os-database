@@ -493,34 +493,6 @@
     "unix": "like"
   },
   {
-    "id": "ubuntu-touch",
-    "name": "Ubuntu Touch",
-    "knownFor": "Community mobile Linux",
-    "pitch": "Give me a phone and I'll run real Linux on it.",
-    "baseOS": "Linux",
-    "distroBase": "Debian",
-    "by": ["UBports Foundation"],
-    "basedOn": ["Linux kernel", "Debian", "Ubuntu"],
-    "devices": ["Mobile"],
-    "installs": "10K+",
-    "license": "GPL / LGPL",
-    "licenseTags": ["GPL"],
-    "source": { "type": "open-source", "url": "https://gitlab.com/ubports" },
-    "specs": {
-      "cpuCompatibility": ["ARM64", "ARMv7"],
-      "kernel": "Linux (Halium / vendor kernel)",
-      "bootloader": ["Vendor bootloader (unlockable)"],
-      "fileSystems": ["ext4"],
-      "graphicServer": ["Wayland (Mir)"],
-      "audioServer": ["PulseAudio"],
-      "desktopEnvironment": ["Lomiri"],
-      "packageManager": ["OpenStore (click)"],
-      "defaultShell": ["bash", "dash (/bin/sh)"],
-      "userland": ["GNU (coreutils, glibc)"]
-    },
-    "unix": "like"
-  },
-  {
     "id": "linux-lite",
     "name": "Linux Lite",
     "knownFor": "Easy on old PCs",
@@ -630,35 +602,6 @@
       "audioServer": ["ALSA", "PipeWire (optional)"],
       "desktopEnvironment": ["IceWM", "Fluxbox", "JWM"],
       "packageManager": ["apt"],
-      "defaultShell": ["bash", "dash (/bin/sh)"],
-      "userland": ["GNU (coreutils, glibc)"]
-    },
-    "unix": "like"
-  },
-  {
-    "id": "lmde",
-    "name": "LMDE (Linux Mint Debian Edition)",
-    "knownFor": "Mint without Ubuntu",
-    "pitch": "Give me Mint and I'll build it on Debian.",
-    "baseOS": "Linux",
-    "distroBase": "Debian",
-    "by": ["Linux Mint Team"],
-    "basedOn": ["Linux kernel", "Debian"],
-    "devices": ["Desktop"],
-    "installs": "100K+",
-    "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
-    "licenseTags": ["GPL"],
-    "logo": "linux-mint.svg",
-    "source": { "type": "open-source", "url": "https://github.com/linuxmint" },
-    "specs": {
-      "cpuCompatibility": ["x86_64"],
-      "kernel": "Linux (Debian kernel)",
-      "bootloader": ["GRUB2"],
-      "fileSystems": ["ext4", "Btrfs"],
-      "graphicServer": ["X11"],
-      "audioServer": ["PipeWire"],
-      "desktopEnvironment": ["Cinnamon"],
-      "packageManager": ["apt", "flatpak"],
       "defaultShell": ["bash", "dash (/bin/sh)"],
       "userland": ["GNU (coreutils, glibc)"]
     },
@@ -793,6 +736,7 @@
     "installs": "10K+",
     "license": "GPL-2.0 (Linux kernel), FSF-endorsed free software only",
     "licenseTags": ["GPL"],
+    "logo": "pureos.svg",
     "source": { "type": "open-source", "url": "https://source.puri.sm" },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64 (Librem 5)"],

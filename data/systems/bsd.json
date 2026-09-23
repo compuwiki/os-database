@@ -99,6 +99,7 @@
     "installs": "10K+",
     "license": "BSD-3-Clause",
     "licenseTags": ["MIT"],
+    "logo": "dragonflybsd.svg",
     "source": { "type": "open-source", "url": "https://github.com/DragonFlyBSD/DragonFlyBSD" },
     "specs": {
       "cpuCompatibility": ["x86_64"],
@@ -127,6 +128,7 @@
     "installs": "10K+",
     "license": "BSD-2-Clause",
     "licenseTags": ["MIT"],
+    "logo": "ghostbsd.svg",
     "source": { "type": "open-source", "url": "https://github.com/ghostbsd" },
     "specs": {
       "cpuCompatibility": ["x86_64"],
