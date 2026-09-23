@@ -70,8 +70,8 @@ const BASED_ON_ORDER = [
   'OSEK/VDX',
 ];
 const basedOnRank = (b) => { const i = BASED_ON_ORDER.indexOf(b); return i === -1 ? BASED_ON_ORDER.length : i; };
-// Device pills: All first, then A-Z (card chips keep taxonomy order via devicesOf below).
-const deviceNames = ['All', ...Object.keys(deviceTypes).sort((a, b) => a.localeCompare(b))];
+// Device pills: All first, then taxonomy order (same as card chips via devicesOf).
+const deviceNames = ['All', ...Object.keys(deviceTypes)];
 // Device tags in the order of deviceTypes (Server, Desktop, ...)
 const devicesOf = (os) => Object.keys(deviceTypes).filter((d) => os.devices.includes(d));
 const deviceCount = (d) => (d === 'All' ? osData.length : osData.filter((os) => os.devices.includes(d)).length);
@@ -85,6 +85,7 @@ const licenseFamilies = Object.keys(licenseTypes).filter((f) => f !== 'Proprieta
 const installsMatch = (os, t) => t === 'All' || os.installs === t;
 const installCount = (t) => osData.filter((os) => installsMatch(os, t)).length;
 // Lifecycle pills: All / Active / Maintenance only / Discontinued (omit field = active)
+const LIFE_ORDER = ['active', 'maintenance', 'discontinued'];
 const lifeKey = (os) => os.lifecycle ?? 'active';
 const isDead = (os) => lifeKey(os) !== 'active';
 const lifeMatch = (os, t) => t === 'All' || lifeKey(os) === t;
@@ -194,9 +195,9 @@ function renderPills() {
     deviceNames.map((d) => pill('device', d, d === 'All' ? 'All Devices' : d, null, deviceTypes[d]?.icon ?? 'grid', 'w-4 h-4')
       .replace('<button ', `<button title="${esc(deviceTypes[d]?.hint ?? '')}${d === 'All' ? '' : ' · '}${deviceCount(d)} systems" `)).join('');
   $('lifePills').innerHTML =
-    ['All', ...Object.keys(lifecycle)].map((k) => pill('life', k, k === 'All' ? 'All Lifecycles' : lifecycle[k].label, null, lifeIcon[k] ?? 'clock', 'w-4 h-4')
-      .replace('<button ', `<button ${hintTitle(k === 'All' ? 'Active, maintenance only or discontinued' : lifecycle[k].hint, lifeCount(k))} `)).join('');
-
+    ['All', ...LIFE_ORDER].map((k) =>
+      pill('life', k, k === 'All' ? 'All Lifecycles' : lifecycle[k].label, null, lifeIcon[k] ?? 'clock', 'w-4 h-4')
+        .replace('<button ', `<button ${hintTitle(k === 'All' ? 'Active, maintenance only or discontinued' : lifecycle[k].hint, lifeCount(k))} `)).join('');
   $('licensePills').innerHTML =
     [['All', 'All Licenses', 'grid', ''], ['Proprietary', 'Proprietary', 'lock', licenseTypes.Proprietary.hint], [LICENSE_OPEN, LICENSE_OPEN, 'unlock', 'Anything with an open-source license']]
       .map(([l, label, icon, hint]) => pill('license', l, label, null, icon, 'w-4 h-4').replace('<button ', `<button ${hintTitle(hint, licenseCount(l))} `)).join('');
@@ -228,8 +229,18 @@ function renderPills() {
   }
   $('authorSubPills').hidden = !kind;
 
-  // Badge the "More filters" toggle with how many of the filters it hides are active, so collapsing it doesn't hide that from the user.
-  const activeCount = ['based', 'generation', 'device', 'life', 'kind', 'license', 'installs'].filter((k) => state[k] !== 'All').length;
+  // Badge the "More filters" toggle with how many of the filters it hides are active (Based on / Device stay visible outside).
+  const yearActive = state.yearMin !== YEAR_MIN || state.yearMax !== YEAR_MAX;
+  const activeCount = [
+    yearActive,
+    state.generation !== 'All',
+    state.life !== 'All',
+    state.license !== 'All',
+    state.family !== 'All',
+    state.installs !== 'All',
+    state.kind !== 'All',
+    state.author !== 'All',
+  ].filter(Boolean).length;
   const expanded = $('moreFiltersBtn').getAttribute('aria-expanded') === 'true';
   $('moreFiltersLabel').textContent = (expanded ? 'Fewer filters' : 'More filters') + (activeCount ? ` · ${activeCount} active` : '');
 }
