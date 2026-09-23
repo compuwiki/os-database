@@ -262,5 +262,34 @@
       "userland": ["Newlib / RTEMS POSIX API"]
     },
     "unix": "like"
+  },
+  {
+    "id": "darwin",
+    "name": "Darwin",
+    "knownFor": "Apple's open-source Unix core",
+    "pitch": "Give me Mach and BSD and I'll underpin every Mac.",
+    "baseOS": "Other UNIX-like",
+    "distroBase": null,
+    "by": ["Apple"],
+    "basedOn": ["FreeBSD"],
+    "devices": ["Server", "Desktop"],
+    "installs": "10K+",
+    "license": "Apple Public Source License (APSL-2.0)",
+    "licenseTags": ["MPL"],
+    "logo": "darwin.png",
+    "source": { "type": "open-source", "url": "https://github.com/apple-oss-distributions" },
+    "specs": {
+      "cpuCompatibility": ["x86_64", "ARM64 (Apple Silicon)"],
+      "kernel": "XNU (Mach + FreeBSD hybrid)",
+      "bootloader": ["iBoot (Apple Silicon)", "Open Firmware / EFI (Intel)"],
+      "fileSystems": ["APFS", "HFS+", "UFS"],
+      "graphicServer": ["Quartz (optional; headless by default)"],
+      "audioServer": ["CoreAudio (when run with macOS frameworks)"],
+      "desktopEnvironment": ["None (CLI / server; no Aqua)"],
+      "packageManager": ["None (source builds / ports)"],
+      "defaultShell": ["zsh", "bash"],
+      "userland": ["BSD userland (FreeBSD-derived)", "libSystem"]
+    },
+    "unix": "like"
   }
 ]

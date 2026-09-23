@@ -55,6 +55,19 @@ const baseCount = (b) => (b === 'All' ? osData.length : osData.filter((os) => os
 const BASE_ORDER = ['Android-based', 'iOS-based', 'Linux', 'macOS', 'Windows NT', 'Windows (pre-NT)', 'BSD', 'OS/2', 'UNIX', 'Other UNIX-like', 'Other'];
 const baseLabel = (b) => baseTypes[b]?.label ?? b;
 const bases = ['All', ...BASE_ORDER.filter((b) => baseTypes[b])];
+// Based-on pills follow the same pattern: Android, Apple (iOS/macOS), Linux families, Windows, BSD, OS/2, UNIX.
+// "Linux kernel" is still a valid basedOn value (data + detail dialog) but has no pill.
+const BASED_ON_ORDER = [
+  'Android (AOSP)',
+  'Darwin (XNU)',
+  'Arch Linux',
+  'Debian', 'Ubuntu', 'Red Hat', 'Slackware', 'Gentoo', 'SUSE', 'Alpine', 'Independent Linux', 'NixOS',
+  'Windows NT', 'MS-DOS',
+  'FreeBSD', 'NetBSD',
+  'OS/2',
+  'UNIX System V',
+];
+const basedOnRank = (b) => { const i = BASED_ON_ORDER.indexOf(b); return i === -1 ? BASED_ON_ORDER.length : i; };
 // Device pills: All first, then A-Z (card chips keep taxonomy order via devicesOf below).
 const deviceNames = ['All', ...Object.keys(deviceTypes).sort((a, b) => a.localeCompare(b))];
 // Device tags in the order of deviceTypes (Server, Desktop, ...)
@@ -79,8 +92,10 @@ const lifeIcon = { All: 'grid', active: 'power', maintenance: 'clock', discontin
 const basedOnOptions = () => {
   const pool = osData.filter((os) => state.base === 'All' || os.baseOS === state.base);
   const n = Object.fromEntries(Object.keys(basedOnTypes).map((b) => [b, pool.filter((os) => os.basedOn.includes(b)).length]));
-  // keep only options that narrow the list (an option matching every system in the Base OS says nothing)
-  return { n, total: pool.length, options: Object.keys(n).filter((b) => n[b] > 0 && n[b] < pool.length) };
+  // options that narrow the list (an option matching every system in the Base OS says nothing), in BASED_ON_ORDER; no Linux kernel pill
+  const options = Object.keys(n).filter((b) => b !== 'Linux kernel' && n[b] > 0 && n[b] < pool.length)
+    .sort((a, b) => basedOnRank(a) - basedOnRank(b));
+  return { n, total: pool.length, options };
 };
 // "Generation" options (e.g. NT 5 / NT 6 / NT 10) when a Base OS is selected and its systems span several generations
 const generationOptions = () => {
