@@ -12,7 +12,7 @@
     "installs": "10M+",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
-    "logo": "windows-2000.svg",
+    "logo": "windows-2000.png",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["x86"],
