@@ -26,7 +26,7 @@ It also loads Tailwind from its CDN, so it needs an internet connection.
     - **Author**: who actually makes a system, in four categories (Companies, Foundations & non-profits, Community projects, Independent developers); picking a category lists its authors. Owners are shown, for example Red Hat (IBM). Only categories and authors with systems in the selected Base OS are listed
 - **Known for / pitch**: a short editorial line for every system ("Freedom & control", "Give me Linux and I'll make it do anything."), shown in the dialog and the comparison, and searchable
 - **Detail dialog** with UNIX heritage (certified UNIX / UNIX-like / not UNIX), CPU support, kernel, bootloader, file systems, graphics and audio stack, desktop, package manager, default shell (bash, zsh, PowerShell...), userland / core tools (GNU, BusyBox, BSD...), license and more.
-- **Shareable links**: each system has a stable URL (`index.html#<id>`, for example `#ubuntu`). Opening it loads that system's dialog; **Copy link** in the dialog copies the URL.
+- **Shareable links**: each system has a stable URL (`index.html#<id>`, for example `#ubuntu`). Opening it loads that system's dialog.
 - **Comparison table**: add up to 10 systems with the `+` button on each card, then compare them in columns. Rows that differ are highlighted.
 - **More to explore**: external links to the OS Family Tree and DistroWatch Search
 

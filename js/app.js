@@ -349,10 +349,7 @@ function openModal(id) {
     <dl class="facts mt-5 pt-5 border-t border-slate-800">
       ${facts.map(([label, value]) => `<dt>${label}</dt><dd>${value}</dd>`).join('')}
     </dl>
-    <div class="mt-5 flex flex-wrap gap-2">
-      <button type="button" class="btn" data-action="copy" data-id="${os.id}">${uiIcon('link')}<span>Copy link</span></button>
-      <button type="button" class="btn" data-action="toggle" data-id="${os.id}" data-text></button>
-    </div>
+    <button type="button" class="btn mt-5" data-action="toggle" data-id="${os.id}" data-text></button>
 
     <h3 class="mt-6 pt-5 border-t border-slate-800 mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Specifications</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
@@ -437,26 +434,6 @@ const actions = {
   clear: () => { compare.length = 0; syncCompare(); },
   compare: () => { renderTable(); $('compareModal').showModal(); },
   close: (_, el) => el.closest('dialog').close(),
-  copy: async (_, el) => {
-    const url = osShareUrl(el.dataset.id);
-    try {
-      await navigator.clipboard.writeText(url);
-    } catch {
-      const ta = document.createElement('textarea');
-      ta.value = url;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.append(ta);
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
-    }
-    const prev = el.innerHTML;
-    el.innerHTML = uiIcon('check') + '<span>Link copied</span>';
-    el.disabled = true;
-    setTimeout(() => { el.innerHTML = prev; el.disabled = false; }, 1500);
-  },
 };
 
 // Deep link: opening sets #id; closing clears it; hashchange (manual edit / back-forward) syncs the dialog.
