@@ -15,6 +15,7 @@ It also loads Tailwind from its CDN, so it needs an internet connection.
 - **Search** across names, kernels, desktops, package managers, file systems, licenses and authors (press `/` to focus).
 - **Filters** that combine with each other:
   - **Base OS**: Android, iOS, Linux, macOS, Windows, Windows (pre-NT), BSD, OS/2, UNIX, UNIX-like, Independents
+  - **Year of creation**: dual-thumb range slider over each system's `released` year
   - **Generation**: kernel generation for versioned families, for example Windows NT 5 (XP), NT 6 (7) and NT 10 (10, 11, Server) or Windows 3.x (Win16) and Windows 9x; shown when the selected Base OS has several
   - **Device**: Server, Desktop, Mobile, TV, Wearable, Automotive, Embedded, Network (routers and firewalls), Console, VR headset, Robot
   - **Lifecycle**: Active, Maintenance only, Discontinued
@@ -22,9 +23,11 @@ It also loads Tailwind from its CDN, so it needs an internet connection.
   - **Installs (est.)**: 1B+, 100M+, 10M+, 1M+, 100K+, 10K+, <10K (each system is in exactly one range)
   - **Based on**: every upstream a system descends from, so a system can match several: Android, Darwin, Arch, Debian, Ubuntu, Fedora, Slackware, Gentoo, SUSE, Alpine, NixOS, Windows NT, MS-DOS, FreeBSD, NetBSD, OS/2, System V (same order pattern as Base OS; no Linux kernel pill). Only options that narrow the selected Base OS are shown
   - **Author**: who actually makes a system, in four categories (Companies, Foundations & non-profits, Community projects, Independent developers); picking a category lists its authors. Owners are shown, for example Red Hat (IBM). Only categories and authors with systems in the selected Base OS are listed
+  - Secondary filters collapse behind **More filters** (long pill rows show a **+N more** toggle)
 - **Known for / pitch**: a short editorial line for every system ("Freedom & control", "Give me Linux and I'll make it do anything."), shown in the dialog and the comparison, and searchable
 - **Detail dialog** with UNIX heritage (certified UNIX / UNIX-like / not UNIX), CPU support, kernel, bootloader, file systems, graphics and audio stack, desktop, package manager, default shell (bash, zsh, PowerShell...), userland / core tools (GNU, BusyBox, BSD...), license and more.
 - **Comparison table**: add up to 10 systems with the `+` button on each card, then compare them in columns. Rows that differ are highlighted.
+- **More to explore**: external links to the OS Family Tree and DistroWatch Search
 
 ## Project layout
 

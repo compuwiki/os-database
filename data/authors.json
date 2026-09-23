@@ -128,5 +128,7 @@
   "V Language Project": { "type": "community", "logo": "v-language-project.svg" },
   "Alexander Medvednikov": { "type": "developer" },
   "ByteDance": { "type": "company" },
-  "RTEMS Project": { "type": "community" }
+  "RTEMS Project": { "type": "community" },
+  "Arch Linux ARM Team": { "type": "community" },
+  "UBports Foundation": { "type": "foundation" }
 }

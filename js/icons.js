@@ -43,6 +43,9 @@ const UI = {
   clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
   vr: '<rect x="2" y="6" width="20" height="14" rx="4"/><circle cx="9" cy="13" r="3"/><circle cx="15" cy="13" r="3"/>',
   robot: '<rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="9" cy="14.5" r="1.5"/><circle cx="15" cy="14.5" r="1.5"/><line x1="12" y1="5" x2="12" y2="9"/><circle cx="12" cy="4" r="1.5"/>',
+  chevronDown: '<polyline points="6 9 12 15 18 9"/>',
+  external: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
 };
 
 export const uiIcon = (name, cls = 'w-4 h-4') =>

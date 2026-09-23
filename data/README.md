@@ -39,6 +39,8 @@ Adding a whole new Base OS or family means adding its key to `taxonomy/`, creati
 
 **Logo filenames:** match the system `id` exactly — lowercase, hyphens, no dots/underscores (`risc-os.svg` for `risc-os`, `pureos.svg` for `pureos`). Extension stays `.svg` (or `.png` for raster sources).
 
+`released` (year, required) is the year the system, or the continuing project it represents, was first released — like `installs`, a best-effort estimate rather than a verified fact, and approximate for early, renamed or rebranded projects (e.g. macOS uses 2001, the Mac OS X 10.0 release, rather than the 2016 rename). It drives the year-of-creation range slider.
+
 ## How systems are classified
 
 Three independent facts, so nothing has to be squeezed into one label:

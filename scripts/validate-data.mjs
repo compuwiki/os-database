@@ -86,6 +86,8 @@ for (const f of meta.systemFiles) {
     if (!o.name) at('no name');
     if (!o.knownFor) at('no knownFor');
     if (o.pitch != null && typeof o.pitch !== 'string') at('pitch must be a string');
+    const thisYear = new Date().getFullYear();
+    if (!Number.isInteger(o.released) || o.released < 1960 || o.released > thisYear) at(`bad released year: ${o.released}`);
     if (!o.license) at('no license text');
     if (/\(discontinued\)/i.test(o.name ?? '')) at('use lifecycle: "discontinued" instead of (discontinued) in name');
     if (o.logo && !exists(`assets/logos/${o.logo}`)) at(`missing logo file: ${o.logo}`);
