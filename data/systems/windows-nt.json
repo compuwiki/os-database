@@ -1,5 +1,35 @@
 [
   {
+    "id": "windows-2000",
+    "name": "Windows 2000",
+    "knownFor": "NT stability for business",
+    "pitch": "Give me a workgroup and I'll make NT reliable enough for the office.",
+    "baseOS": "Windows NT",
+    "distroBase": null,
+    "by": ["Microsoft"],
+    "basedOn": ["Windows NT"],
+    "devices": ["Desktop", "Server"],
+    "installs": "10M+",
+    "license": "Proprietary (Microsoft EULA)",
+    "licenseTags": ["Proprietary"],
+    "logo": "windows-2000.svg",
+    "source": { "type": "closed" },
+    "specs": {
+      "cpuCompatibility": ["x86"],
+      "kernel": "Windows NT 5.0 (build 2195, SP4)",
+      "bootloader": ["NTLDR"],
+      "fileSystems": ["NTFS", "FAT32"],
+      "graphicServer": ["GDI (Win32k)"],
+      "audioServer": ["WinMM / DirectSound"],
+      "desktopEnvironment": ["Explorer (Classic)"],
+      "packageManager": ["Windows Installer (MSI)"],
+      "defaultShell": ["cmd.exe"],
+      "userland": ["Windows built-in tools (Win32)"]
+    },
+    "unix": "none",
+    "generation": "NT 5"
+  },
+  {
     "id": "windows-xp",
     "name": "Windows XP",
     "knownFor": "Longevity & nostalgia",
