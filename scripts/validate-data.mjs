@@ -15,7 +15,7 @@ const err = (msg) => errors.push(msg);
 const meta = read('meta.json');
 const authors = read('authors.json');
 const lookup = { authors }; // name of a set of valid keys -> the set (taxonomy files are added below)
-for (const n of ['base-types', 'families', 'based-on', 'device-types', 'license-types', 'install-tiers', 'unix-status', 'generations', 'author-kinds'])
+for (const n of ['base-types', 'families', 'based-on', 'device-types', 'license-types', 'install-tiers', 'unix-status', 'generations', 'author-kinds', 'lifecycle'])
   lookup[n] = read(`taxonomy/${n}.json`);
 
 // Fields of a system that must hold keys of one of the sets above.
@@ -29,6 +29,7 @@ const REFS = [
   ['devices', 'device-types', 'list'],
   ['licenseTags', 'license-types', 'list'],
   ['installs', 'install-tiers', 'one'],
+  ['lifecycle', 'lifecycle', 'optional'],
 ];
 const SPEC_KEYS = ['cpuCompatibility', 'kernel', 'bootloader', 'fileSystems', 'graphicServer', 'audioServer', 'desktopEnvironment', 'packageManager', 'defaultShell', 'userland'];
 
@@ -86,6 +87,7 @@ for (const f of meta.systemFiles) {
     if (!o.knownFor) at('no knownFor');
     if (o.pitch != null && typeof o.pitch !== 'string') at('pitch must be a string');
     if (!o.license) at('no license text');
+    if (/\(discontinued\)/i.test(o.name ?? '')) at('use lifecycle: "discontinued" instead of (discontinued) in name');
     if (o.logo && !exists(`assets/logos/${o.logo}`)) at(`missing logo file: ${o.logo}`);
     for (const k of SPEC_KEYS) {
       const v = o.specs?.[k];

@@ -13,7 +13,10 @@
     "license": "MIT",
     "licenseTags": ["MIT"],
     "logo": "haiku.svg",
-    "source": { "type": "open-source", "url": "https://github.com/haiku/haiku" },
+    "source": {
+      "type": "open-source",
+      "url": "https://github.com/haiku/haiku"
+    },
     "specs": {
       "cpuCompatibility": ["x86_64", "x86", "ARM64 (experimental)", "RISC-V (experimental)"],
       "kernel": "Haiku (hybrid)",
@@ -42,7 +45,10 @@
     "license": "GPL-2.0+, LGPL",
     "licenseTags": ["GPL"],
     "logo": "reactos.svg",
-    "source": { "type": "open-source", "url": "https://github.com/reactos/reactos" },
+    "source": {
+      "type": "open-source",
+      "url": "https://github.com/reactos/reactos"
+    },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64"],
       "kernel": "ReactOS (NT-compatible)",
@@ -68,10 +74,13 @@
     "basedOn": [],
     "devices": ["Desktop"],
     "installs": "10K+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft); MS-DOS 1.25, 2.0 and 4.0 sources are MIT-licensed on GitHub",
     "licenseTags": ["Proprietary"],
     "logo": "ms-dos.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86 (16-bit)"],
       "kernel": "MS-DOS 6.22 (single-tasking, real mode)",
@@ -100,7 +109,10 @@
     "license": "GPL-2.0",
     "licenseTags": ["GPL"],
     "logo": "freedos.svg",
-    "source": { "type": "open-source", "url": "https://github.com/FDOS" },
+    "source": {
+      "type": "open-source",
+      "url": "https://github.com/FDOS"
+    },
     "specs": {
       "cpuCompatibility": ["x86 (16-bit)"],
       "kernel": "FreeDOS 1.4 kernel",
@@ -129,7 +141,10 @@
     "license": "Apache-2.0 (RISC OS 5)",
     "licenseTags": ["Apache"],
     "logo": "risc-os.svg",
-    "source": { "type": "open-source", "url": "https://gitlab.riscosopen.org/RiscOS" },
+    "source": {
+      "type": "open-source",
+      "url": "https://gitlab.riscosopen.org/RiscOS"
+    },
     "specs": {
       "cpuCompatibility": ["ARM (32-bit / 64-bit)"],
       "kernel": "RISC OS (cooperative multitasking)",
@@ -158,7 +173,9 @@
     "license": "Proprietary (Hyperion)",
     "licenseTags": ["Proprietary"],
     "logo": "amigaos-4.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["PowerPC"],
       "kernel": "Exec (microkernel)",
@@ -187,7 +204,9 @@
     "license": "Proprietary (MorphOS Team)",
     "licenseTags": ["Proprietary"],
     "logo": "morphos.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["PowerPC"],
       "kernel": "Quark (microkernel)",
@@ -216,7 +235,10 @@
     "license": "AROS Public License (MPL-based)",
     "licenseTags": ["MPL"],
     "logo": "aros.png",
-    "source": { "type": "open-source", "url": "https://github.com/aros-development-team/AROS" },
+    "source": {
+      "type": "open-source",
+      "url": "https://github.com/aros-development-team/AROS"
+    },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64", "ARM", "PowerPC", "m68k"],
       "kernel": "AROS Exec (AmigaOS-compatible)",
@@ -245,7 +267,9 @@
     "license": "Proprietary (VSI)",
     "licenseTags": ["Proprietary"],
     "logo": "openvms.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["Alpha", "Itanium (IA-64)", "x86_64"],
       "kernel": "OpenVMS 9.2-3",
@@ -274,7 +298,10 @@
     "license": "BSD-3-Clause, MIT, Apache-2.0",
     "licenseTags": ["MIT", "Apache"],
     "logo": "fuchsia.svg",
-    "source": { "type": "open-source", "url": "https://fuchsia.googlesource.com/fuchsia" },
+    "source": {
+      "type": "open-source",
+      "url": "https://fuchsia.googlesource.com/fuchsia"
+    },
     "specs": {
       "cpuCompatibility": ["ARM64", "x86_64", "RISC-V (experimental)"],
       "kernel": "Zircon (microkernel)",
@@ -303,7 +330,9 @@
     "license": "Proprietary (Huawei)",
     "licenseTags": ["Proprietary"],
     "logo": "harmonyos.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["ARM64"],
       "kernel": "HarmonyOS (multi-kernel: LiteOS / Linux)",
@@ -332,7 +361,10 @@
     "license": "Apache-2.0 (Linux kernel: GPL-2.0)",
     "licenseTags": ["Apache", "GPL"],
     "logo": "openharmony.svg",
-    "source": { "type": "open-source", "url": "https://gitee.com/openharmony" },
+    "source": {
+      "type": "open-source",
+      "url": "https://gitee.com/openharmony"
+    },
     "specs": {
       "cpuCompatibility": ["ARM", "ARM64", "RISC-V", "x86_64 (emulator)"],
       "kernel": "OpenHarmony (multi-kernel: LiteOS-M / LiteOS-A / Linux)",
@@ -361,7 +393,10 @@
     "license": "Apache-2.0",
     "licenseTags": ["Apache"],
     "logo": "zephyr.svg",
-    "source": { "type": "open-source", "url": "https://github.com/zephyrproject-rtos/zephyr" },
+    "source": {
+      "type": "open-source",
+      "url": "https://github.com/zephyrproject-rtos/zephyr"
+    },
     "specs": {
       "cpuCompatibility": ["ARM", "ARM64", "x86", "RISC-V", "Xtensa", "ARC"],
       "kernel": "Zephyr RTOS",
@@ -390,7 +425,10 @@
     "license": "Public domain",
     "licenseTags": ["Public Domain"],
     "logo": "templeos.png",
-    "source": { "type": "open-source", "url": "https://github.com/cia-foundation/TempleOS" },
+    "source": {
+      "type": "open-source",
+      "url": "https://github.com/cia-foundation/TempleOS"
+    },
     "specs": {
       "cpuCompatibility": ["x86_64"],
       "kernel": "TempleOS (single address space, ring 0 only)",
@@ -419,7 +457,10 @@
     "license": "GPL-2.0",
     "licenseTags": ["GPL"],
     "logo": "kolibrios.png",
-    "source": { "type": "open-source", "url": "https://repo.or.cz/kolibrios.git" },
+    "source": {
+      "type": "open-source",
+      "url": "https://repo.or.cz/kolibrios.git"
+    },
     "specs": {
       "cpuCompatibility": ["x86"],
       "kernel": "KolibriOS (assembly, monolithic)",
@@ -448,7 +489,9 @@
     "license": "Proprietary (Wind River)",
     "licenseTags": ["Proprietary"],
     "logo": "vxworks.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["ARM", "ARM64", "x86_64", "PowerPC", "RISC-V", "MIPS"],
       "kernel": "VxWorks 7 (modular RTOS)",
@@ -477,7 +520,10 @@
     "license": "MIT",
     "licenseTags": ["MIT"],
     "logo": "freertos.png",
-    "source": { "type": "open-source", "url": "https://github.com/FreeRTOS/FreeRTOS" },
+    "source": {
+      "type": "open-source",
+      "url": "https://github.com/FreeRTOS/FreeRTOS"
+    },
     "specs": {
       "cpuCompatibility": ["ARM Cortex-M", "RISC-V", "ESP32 (Xtensa)", "many other MCUs"],
       "kernel": "FreeRTOS kernel",
@@ -506,7 +552,9 @@
     "license": "Proprietary (Sony Interactive Entertainment)",
     "licenseTags": ["Proprietary"],
     "logo": "ps5.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86_64 (AMD Zen 2, custom APU)"],
       "kernel": "PlayStation OS (FreeBSD-derived)",
@@ -535,7 +583,9 @@
     "license": "Proprietary (Nintendo)",
     "licenseTags": ["Proprietary"],
     "logo": "switch.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["ARMv8 (Nvidia Tegra X1)"],
       "kernel": "Horizon OS (proprietary microkernel)",

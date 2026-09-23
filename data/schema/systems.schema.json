@@ -23,6 +23,7 @@
         "generation": { "type": "string", "description": "Optional key of taxonomy/generations.json (e.g. NT 5 / NT 6 / NT 10) for versioned families." },
         "devices": { "$ref": "#/definitions/strings", "description": "Keys of taxonomy/device-types.json." },
         "installs": { "type": "string", "description": "Key of taxonomy/install-tiers.json (rough estimate)." },
+        "lifecycle": { "type": "string", "description": "Optional key of taxonomy/lifecycle.json (active, maintenance, discontinued). Omit for active." },
         "license": { "type": "string", "description": "Readable license summary." },
         "licenseTags": { "$ref": "#/definitions/strings", "description": "Keys of taxonomy/license-types.json." },
         "logo": { "type": "string", "description": "File in assets/logos/; omit for a generated initials tile." },

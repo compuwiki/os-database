@@ -465,7 +465,7 @@
   },
   {
     "id": "clear-linux",
-    "name": "Clear Linux (discontinued)",
+    "name": "Clear Linux",
     "knownFor": "Intel-tuned speed",
     "pitch": "Give me an Intel CPU and I'll optimize every binary for it.",
     "baseOS": "Linux",
@@ -474,6 +474,7 @@
     "basedOn": ["Linux kernel", "Independent Linux"],
     "devices": ["Server", "Desktop"],
     "installs": "10K+",
+    "lifecycle": "discontinued",
     "license": "GPL-2.0 (Linux kernel) and mixed open-source licenses",
     "licenseTags": ["GPL"],
     "logo": "clear-linux.svg",

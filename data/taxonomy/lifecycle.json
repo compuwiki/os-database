@@ -1,0 +1,5 @@
+{
+  "active": { "label": "Active", "hint": "Still developed, shipped or maintained" },
+  "discontinued": { "label": "Discontinued", "hint": "No longer developed; last release is historical" },
+  "maintenance": { "label": "Maintenance only", "hint": "Security / bug fixes only; no new features" }
+}

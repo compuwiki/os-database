@@ -10,6 +10,10 @@ body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple
 .badge { display: inline-flex; align-items: center; gap: .25rem; padding: .125rem .5rem; border-radius: .25rem; border: 1px solid; font-weight: 500; }
 .badge-closed { background: rgba(76, 5, 25, .8); border-color: #9f1239; color: #fda4af; }
 .badge-open { background: rgba(2, 44, 34, .8); border-color: #065f46; color: #6ee7b7; }
+.badge-dead { background: rgba(51, 65, 85, .85); border-color: #475569; color: #cbd5e1; }
+.badge-warn { background: rgba(69, 26, 3, .85); border-color: #9a3412; color: #fdba74; }
+.glass-card.is-dead h3 { color: #94a3b8; }
+.glass-card.is-dead .logo { filter: grayscale(1); opacity: .85; }
 
 /* filter pills */
 .pill-row { display: flex; flex-wrap: wrap; gap: .5rem; }

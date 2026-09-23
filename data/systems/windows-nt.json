@@ -10,10 +10,13 @@
     "basedOn": ["Windows NT"],
     "devices": ["Desktop", "Server"],
     "installs": "10M+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-2000.png",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86"],
       "kernel": "Windows NT 5.0 (build 2195, SP4)",
@@ -40,10 +43,13 @@
     "basedOn": ["Windows NT"],
     "devices": ["Desktop", "Embedded"],
     "installs": "1M+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-xp.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64 (XP x64)"],
       "kernel": "Windows NT 5.1 (build 2600, SP3)",
@@ -70,10 +76,13 @@
     "basedOn": ["Windows NT"],
     "devices": ["Desktop", "Embedded"],
     "installs": "100K+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-vista.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64"],
       "kernel": "Windows NT 6.0 (build 6002, SP2)",
@@ -100,10 +109,13 @@
     "basedOn": ["Windows NT"],
     "devices": ["Desktop", "Embedded"],
     "installs": "10M+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-7.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64"],
       "kernel": "Windows NT 6.1 (build 7601, SP1)",
@@ -130,10 +142,13 @@
     "basedOn": ["Windows NT"],
     "devices": ["Desktop", "Mobile", "Embedded"],
     "installs": "1M+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-8.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64", "ARM (Windows RT)"],
       "kernel": "Windows NT 6.2 (build 9200)",
@@ -163,7 +178,9 @@
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-10.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86", "x86_64", "ARM64"],
       "kernel": "Windows NT 10.0 (build 19045, 22H2)",
@@ -193,7 +210,9 @@
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-11.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64"],
       "kernel": "Windows NT 10.0 (build 26200, 25H2)",
@@ -223,7 +242,9 @@
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-11.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86_64", "ARM64"],
       "kernel": "Windows NT 10.0 (Windows Server 2025, build 26100)",
@@ -253,7 +274,9 @@
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "xbox.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86_64 (AMD Zen 2, custom APU)"],
       "kernel": "Windows NT 10.0 (Xbox OS)",

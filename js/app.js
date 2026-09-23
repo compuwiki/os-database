@@ -15,7 +15,7 @@ try {
     Serve this folder over HTTP (GitHub Pages, <code>python -m http.server</code> or Live Server) instead of opening index.html directly.</p>`;
   throw err;
 }
-const { osData, families, baseTypes, authors, authorKinds, basedOnTypes, deviceTypes, licenseTypes, installTiers, unixStatus, generations, dataAsOf } = data;
+const { osData, families, baseTypes, authors, authorKinds, basedOnTypes, deviceTypes, licenseTypes, installTiers, unixStatus, generations, lifecycle, dataAsOf } = data;
 
 // [key in os.specs, label, icon]
 const SPECS = [
@@ -37,6 +37,7 @@ const COMPARE_ROWS = [
   ['Pitch', 'feather', (os) => os.pitch ?? '—'],
   ['Base OS', 'layers', (os) => os.baseOS],
   ['Family', 'branch', (os) => os.distroBase ?? '—'],
+  ['Lifecycle', 'clock', (os) => lifecycle[os.lifecycle ?? 'active'].label],
   ['UNIX heritage', 'terminal', (os) => unixStatus[os.unix].label],
   ['Generation', 'layers', (os) => generations[os.generation]?.label ?? '—'],
   ['Author', 'user', (os) => joined(os.by)],
@@ -93,10 +94,13 @@ const authorStats = () => {
 const authorLabel = (a) => (authors[a]?.parent ? `${a} (${authors[a].parent})` : a);
 const compare = []; // ids, in the order added
 
+const lifeKey = (os) => os.lifecycle ?? 'active';
+const isDead = (os) => lifeKey(os) !== 'active';
+
 // Lowercased searchable text per OS, built once; displayed A-Z with natural numbers (Windows 10 before 11).
 const index = osData.map((os) => ({
   os,
-  text: [os.name, os.knownFor, os.pitch ?? '', os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
+  text: [os.name, os.knownFor, os.pitch ?? '', os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', lifecycle[lifeKey(os)].label, os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
 })).sort((a, b) => a.os.name.localeCompare(b.os.name, undefined, { numeric: true, sensitivity: 'base' }));
 
 function joined(v) { return [].concat(v).join(', '); }
@@ -179,8 +183,13 @@ function card(os) {
   const badge = os.source.type === 'closed'
     ? `<span class="badge badge-closed">${uiIcon('lock')} Proprietary</span>`
     : `<span class="badge badge-open">${uiIcon('branch')} Open Source</span>`;
+  const life = lifeKey(os);
+  const lifeBadge = life === 'active' ? '' :
+    life === 'maintenance'
+      ? `<span class="badge badge-warn" title="${esc(lifecycle[life].hint)}">${uiIcon('clock')} ${esc(lifecycle[life].label)}</span>`
+      : `<span class="badge badge-dead" title="${esc(lifecycle[life].hint)}">${uiIcon('archive')} ${esc(lifecycle[life].label)}</span>`;
   return `
-    <article class="glass-card rounded-xl p-4 flex flex-col items-center justify-between text-center">
+    <article class="glass-card rounded-xl p-4 flex flex-col items-center justify-between text-center${isDead(os) ? ' is-dead' : ''}">
       <button type="button" class="card-hit" data-action="open" data-id="${os.id}" aria-label="${esc(os.name)} details"></button>
       <button type="button" class="cmp-toggle" data-action="toggle" data-id="${os.id}"></button>
       <div class="mb-3">${osIcon(os, 'w-14 h-14')}</div>
@@ -188,7 +197,7 @@ function card(os) {
         <h3 class="font-bold text-slate-100 text-sm">${esc(os.name)}</h3>
         <span class="tag">${esc(os.distroBase ?? os.baseOS)}</span>
       </div>
-      <div class="mt-3 text-xs">${badge}</div>
+      <div class="mt-3 text-xs flex flex-wrap justify-center gap-1.5">${badge}${lifeBadge}</div>
     </article>`;
 }
 
@@ -228,6 +237,7 @@ function openModal(id) {
     os.basedOn.length && ['Based on', os.basedOn.map((b) => chip(
       `${basedOnTypes[b].logo ? logoTile(basedOnTypes[b].logo, 'w-4 h-4') : uiIcon(basedOnTypes[b].icon, 'w-3.5 h-3.5')}${esc(b)}`, basedOnTypes[b].hint)).join('')],
     ['Devices', devicesOf(os).map((d) => chip(`${uiIcon(deviceTypes[d].icon, 'w-3.5 h-3.5 text-sky-400')}${d}`, deviceTypes[d].hint)).join('')],
+    ['Lifecycle', chip(`${uiIcon(lifeKey(os) === 'active' ? 'clock' : lifeKey(os) === 'maintenance' ? 'clock' : 'archive', 'w-3.5 h-3.5')}${esc(lifecycle[lifeKey(os)].label)}`, lifecycle[lifeKey(os)].hint)],
     ['License', esc(os.license)],
     ['Installs', `<span title="Rough estimate of active installs: devices, servers and long-lived VMs">${esc(installTiers[os.installs])} <span class="text-slate-500">(est.)</span></span>`],
     ['Source', source],

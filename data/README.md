@@ -16,6 +16,7 @@ data/
     license-types.json license families (GPL, MIT / BSD, ...)
     install-tiers.json install ranges: key -> range text, highest first
     author-kinds.json  Companies, Foundations & non-profits, Community projects, Independent developers
+    lifecycle.json     Active / Maintenance only / Discontinued; a system's optional `lifecycle` (omit = active)
   systems/           one file per Base OS; Linux is split by distro family (systems/linux/<family>.json)
   schema/            JSON Schema for the systems files (VS Code picks it up via .vscode/settings.json)
 ```
@@ -23,7 +24,7 @@ data/
 ## Adding a system
 
 1. Add an object to the right file in `systems/` (see `schema/systems.schema.json` for every field).
-2. Every name you use in `by`, `basedOn`, `unix`, `devices`, `licenseTags`, `installs`, `baseOS` and `distroBase` must exist in `authors.json` or `taxonomy/`; add it there first if it is new.
+2. Every name you use in `by`, `basedOn`, `unix`, `devices`, `licenseTags`, `installs`, `baseOS`, `lifecycle` and `distroBase` must exist in `authors.json` or `taxonomy/`; add it there first if it is new.
    Open vs proprietary is one or the other (the validator enforces it): `source` `closed` means `licenseTags` is exactly `["Proprietary"]`, `open-source` means it has license families and no `Proprietary`. Mixed products (RHEL binaries under a subscription, KaiOS with proprietary services, Junos with BSD parts) go by their main nature, and the nuance goes into the `license` text.
 3. Drop the logo into `assets/logos/` (optimize with `npx svgo -f assets/logos --multipass`) and set `"logo"`, or omit it for an initials tile.
 4. Run `node scripts/validate-data.mjs`.
@@ -34,7 +35,7 @@ Adding a whole new Base OS or family means adding its key to `taxonomy/`, creati
 
 `knownFor` (2 to 4 words, required) and `pitch` (one sentence, optional) are opinion, not specification: what each system is best known for, in the voice "Give me X and I'll Y". Keep `knownFor` neutral and factual in spirit ("Immutable, rollback-safe"), and use `pitch` for personality. They are shown in the detail dialog and the comparison, and are searchable.
 
-**Discontinued systems:** put `(discontinued)` as a suffix on `name` only — e.g. `"Clear Linux (discontinued)"`. Do not repeat it in `knownFor`. The name is searchable and shown on the card, so the flag is visible everywhere without a separate field.
+**Lifecycle:** set `"lifecycle"` to a key from `taxonomy/lifecycle.json` when the system is not simply active — `"discontinued"` (no longer developed) or `"maintenance"` (security fixes only). Omit the field for active systems (the default). Do not put `(discontinued)` in `name`; the validator rejects that. The label shows as a badge on the card, a chip in the detail dialog, and a row in comparison.
 
 **Logo filenames:** match the system `id` exactly — lowercase, hyphens, no dots/underscores (`risc-os.svg` for `risc-os`, `pureos.svg` for `pureos`). Extension stays `.svg` (or `.png` for raster sources).
 

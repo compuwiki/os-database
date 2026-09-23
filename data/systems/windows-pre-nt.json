@@ -10,10 +10,13 @@
     "basedOn": ["MS-DOS"],
     "devices": ["Desktop"],
     "installs": "<10K",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-1.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86 (16-bit)"],
       "kernel": "Windows 1.01 (16-bit, cooperative multitasking on DOS)",
@@ -40,10 +43,13 @@
     "basedOn": ["MS-DOS"],
     "devices": ["Desktop"],
     "installs": "<10K",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-2.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86 (16-bit)"],
       "kernel": "Windows 2.0 / 2.1 (16-bit, cooperative multitasking on DOS)",
@@ -70,10 +76,13 @@
     "basedOn": ["MS-DOS"],
     "devices": ["Desktop"],
     "installs": "<10K",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-3.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86 (16-bit, 386 enhanced mode)"],
       "kernel": "Windows 3.0 (16-bit, standard / 386 enhanced mode on DOS)",
@@ -100,10 +109,13 @@
     "basedOn": ["MS-DOS"],
     "devices": ["Desktop"],
     "installs": "100K+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-95.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86 (386+)"],
       "kernel": "Windows 95 (4.00.950, hybrid 16/32-bit)",
@@ -130,10 +142,13 @@
     "basedOn": ["MS-DOS"],
     "devices": ["Desktop"],
     "installs": "1M+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-98.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86 (486+)"],
       "kernel": "Windows 98 Second Edition (4.10.2222, hybrid 16/32-bit)",
@@ -160,10 +175,13 @@
     "basedOn": ["MS-DOS"],
     "devices": ["Desktop"],
     "installs": "10K+",
+    "lifecycle": "discontinued",
     "license": "Proprietary (Microsoft EULA)",
     "licenseTags": ["Proprietary"],
     "logo": "windows-me.svg",
-    "source": { "type": "closed" },
+    "source": {
+      "type": "closed"
+    },
     "specs": {
       "cpuCompatibility": ["x86 (Pentium recommended)"],
       "kernel": "Windows ME (4.90.3000, hybrid 16/32-bit, no real-mode DOS)",
