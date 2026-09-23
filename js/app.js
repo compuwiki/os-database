@@ -93,11 +93,11 @@ const authorStats = () => {
 const authorLabel = (a) => (authors[a]?.parent ? `${a} (${authors[a].parent})` : a);
 const compare = []; // ids, in the order added
 
-// Lowercased searchable text per OS, built once.
+// Lowercased searchable text per OS, built once; displayed A-Z with natural numbers (Windows 10 before 11).
 const index = osData.map((os) => ({
   os,
   text: [os.name, os.knownFor, os.pitch ?? '', os.baseOS, os.distroBase, unixStatus[os.unix].label, generations[os.generation]?.label ?? '', os.license, ...os.by, ...os.basedOn, ...os.devices, ...SPECS.flatMap(([k]) => os.specs[k])].join('\n').toLowerCase(),
-}));
+})).sort((a, b) => a.os.name.localeCompare(b.os.name, undefined, { numeric: true, sensitivity: 'base' }));
 
 function joined(v) { return [].concat(v).join(', '); }
 

@@ -70,6 +70,7 @@
     "installs": "10K+",
     "license": "Proprietary (HPE)",
     "licenseTags": ["Proprietary"],
+    "logo": "hp-ux.svg",
     "source": { "type": "closed" },
     "specs": {
       "cpuCompatibility": ["Itanium (IA-64)", "PA-RISC"],
