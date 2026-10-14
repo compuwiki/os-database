@@ -48,6 +48,11 @@
     "logo": "android.svg",
     "hint": "Built on the Android Open Source Project (Linux kernel underneath)"
   },
+  "ChromeOS": {
+    "label": "ChromeOS based",
+    "logo": "chromeos.svg",
+    "hint": "Googlebook OS incorporates ChromeOS lineage alongside Android"
+  },
   "Darwin (XNU)": {
     "label": "Darwin based",
     "logo": "macos-mini.svg",

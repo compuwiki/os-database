@@ -2,6 +2,7 @@
   "Microsoft": { "type": "company", "logo": "microsoft.svg" },
   "Apple": { "type": "company", "logo": "apple.svg" },
   "Google": { "type": "company", "logo": "google.svg" },
+  "Google DeepMind": { "type": "company" },
   "Canonical": { "type": "company", "logo": "canonical.svg" },
   "Hewlett Packard Enterprise": { "type": "company", "logo": "hewlett-packard-enterprise.svg" },
   "IBM": { "type": "company", "logo": "ibm.svg" },

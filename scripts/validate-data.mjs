@@ -83,6 +83,7 @@ for (const f of meta.systemFiles) {
 
     checkRefs(o, at);
     checkSource(o, at);
+    if (o.website != null && !/^https?:\/\/\S+$/.test(o.website)) at('bad website url');
     if (!o.name) at('no name');
     if (!o.knownFor) at('no knownFor');
     if (o.pitch != null && typeof o.pitch !== 'string') at('pitch must be a string');

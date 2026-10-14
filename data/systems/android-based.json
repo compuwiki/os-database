@@ -30,6 +30,36 @@
     "unix": "like"
   },
   {
+    "id": "googlebook-os",
+    "name": "Googlebook OS",
+    "knownFor": "Android / ChromeOS fusion",
+    "pitch": "Give me a personal computer and I'll bring Android and ChromeOS together.",
+    "released": 2026,
+    "baseOS": "Android-based",
+    "distroBase": null,
+    "by": ["Google", "Google DeepMind"],
+    "basedOn": ["Linux kernel", "Android (AOSP)", "ChromeOS"],
+    "devices": ["Desktop", "Mobile"],
+    "installs": "Unknown",
+    "license": "Closed-source Google OS; combines Android and ChromeOS components",
+    "licenseTags": ["Proprietary"],
+    "source": { "type": "closed" },
+    "website": "https://googlebook.google",
+    "specs": {
+      "cpuCompatibility": ["ARM64", "x86_64"],
+      "kernel": "Monolithic Linux kernel",
+      "bootloader": ["Not publicly documented"],
+      "fileSystems": ["Not publicly documented"],
+      "graphicServer": ["Not publicly documented"],
+      "audioServer": ["Not publicly documented"],
+      "desktopEnvironment": ["Googlebook OS desktop environment (Android / ChromeOS fusion)"],
+      "packageManager": ["APK-based"],
+      "defaultShell": ["Not publicly documented"],
+      "userland": ["Android and ChromeOS components; details unconfirmed"]
+    },
+    "unix": "like"
+  },
+  {
     "id": "wear-os",
     "name": "Wear OS",
     "knownFor": "Android on the wrist",

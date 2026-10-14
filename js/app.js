@@ -70,6 +70,7 @@ const bases = ['All', ...BASE_ORDER.filter((b) => baseTypes[b])];
 // "Linux kernel" is still a valid basedOn value (data + detail dialog) but has no pill.
 const BASED_ON_ORDER = [
   'Android (AOSP)',
+  'ChromeOS',
   'Darwin (XNU)',
   'Arch Linux',
   'Debian', 'Ubuntu', 'Red Hat', 'Slackware', 'Gentoo', 'SUSE', 'Alpine', 'Independent Linux', 'NixOS',
@@ -334,6 +335,7 @@ function openModal(id) {
     ['License', esc(os.license)],
     ['Installs', `<span title="Rough estimate of active installs: devices, servers and long-lived VMs">${esc(installTiers[os.installs])} <span class="text-slate-500">(est.)</span></span>`],
     ['Source', source],
+    os.website && ['Website', `<a href="${esc(os.website)}" target="_blank" rel="noopener" class="info-link">${uiIcon('globe', 'w-4 h-4')}${esc(os.website.replace(/^https?:\/\//, ''))}</a>`],
   ].filter(Boolean);
 
   $('modalContent').innerHTML = `
